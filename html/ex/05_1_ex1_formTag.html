@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<form action="">
+	<fieldset>
+		<legend>기본사항</legend>
+		<label for="id">ID : </label> 
+		<input type="text" name="id" id="id" maxlength="8" placeholder="아이디를 입력하세요">
+	<!-- id="id"에서 "id" 부분의 값은 중복되어선 안된다.  -->
+	<br>
+		<label for="pw">PW : </label> 
+		<input type="password" name="pw" id="pw" maxlength="12" required>
+	<br>
+	
+	<!-- required : 필수입력사항 만드는법 입력하지않으면 입력하란 메세지가 뜸 -->
+		<label for="txta">기타 : </label>
+		<textarea name="txta" id="txta" cols="30" rows="10"></textarea>
+		<br>
+		<select name="poketmon" id="poketmon">
+			<option value="0">피카츄</option>
+			<option value="1">라이츄</option>
+			<option value="2">파이리</option>
+		</select>
+	</fieldset>
+	<br>
+		<label for="email">email : </label> 
+		<input type="email" name="email" id="email" readonly value="셋팅값">
+		<!-- readonly : 정해진값을 수정하지 못하게함 -->
+	<br>
+		<label for="number">number : </label> 
+		<input type="number" name="number" id="number" min="0" max="10">
+	<br>
+		<label for="range">range : </label> 
+		<input type="range" name="range" id="range" min="0" max="10">
+	<br>
+		<label for="date">date : </label> 
+		<input type="date" name="date" id="date">
+	<br>
+		<label for="bn">바나나 </label> 
+		<input type="checkbox" id="bn" name="chk_fruit">
+		<label for="sb">딸기</label> </label> 
+		<input type="checkbox" id="sb" name="chk_fruit">
+		<label for="wm">수박</label> </label> 
+		<input type="checkbox" id="wm" name="chk_fruit">
+	<br>
+		<label for="zz">짜장면</label> </label> 
+		<input type="radio" id="zz" name="foods">
+		<label for="ta">탕수육</label> </label> 
+		<input type="radio" id="ta" name="foods">	
+		<label for="um">울면</label> </label> 
+		<input type="radio" id="um" name="foods">
+		<!-- name 을 같게해주면 하나의 그룹으로 엮인다. -->
+	<br>
+		<!-- <input type="submit">
+		<input type="reset"> -->
+		<button type="submit">전송</button>
+		<button type="reset">초기화</button>
+		<button type="button">버튼</button>
+		<input type="hidden" value="히든" name="hidden">
+	</form>
+</body>
+</html>
