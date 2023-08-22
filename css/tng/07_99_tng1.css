@@ -1,0 +1,15 @@
+body {
+	font-size: 11px;
+}
+.grf {
+	list-style-type: none;
+	line-height: 2rem;
+}
+.ph1 {
+	color: #ad3000;
+	font-size: 1.2rem;
+}
+.div1 {
+	width: 460px;
+	border: 1px solid black;
+}

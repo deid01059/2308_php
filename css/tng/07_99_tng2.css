@@ -1,0 +1,29 @@
+.container {
+	width: 700px;
+	height: 560px;
+	text-align: center;
+	border: 1px solid #000000 ;
+}
+.M1 {
+	text-align: left;
+	background-color: black;
+	color: white;
+	font-size: 1.3rem;
+	padding: 10px;
+}
+h2 {
+	font-size: 1.5em;
+	color: #ff0000;
+}
+.p1 {
+	line-height: 2em;
+	font-weight: 800;
+	font-size: 1.2em
+}
+.accent{
+	color: #0000ff;
+}
+
+.smolltext {
+	font-size: 0.7em;
+}

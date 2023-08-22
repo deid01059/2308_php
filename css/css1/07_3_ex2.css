@@ -1,0 +1,24 @@
+.deco {
+	text-decoration: none;
+	text-decoration: underline;
+	text-decoration: overline;
+} /* 글씨 및줄같은꾸미기 */
+
+.height {
+	line-height: 2em;
+} /*줄간격*/
+
+.left {
+	text-align: left; 
+} /* 글씨 왼쪽정렬 */
+
+.right {
+	text-align: right;
+} /* 글씨 오른쪽 정렬 */
+
+.center {
+	background-color: cadetblue;
+	height: 300px;
+	line-height: 300px;
+	text-align: center;
+} /* 글씨 가운대 정렬 */

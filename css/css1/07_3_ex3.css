@@ -1,0 +1,21 @@
+.tran{
+	text-transform: capitalize;
+	/* 첫글자만 대문자 */
+	text-transform: uppercase;
+	/* 모두 대문자 */
+	text-transform: lowercase;
+	/* 모두 소문자 */
+}
+
+.spacing {
+	letter-spacing: 10px;
+}         /* 글자사이간격*/
+
+.w_spacing {
+	word-spacing: 10px;
+}      /* 띄어쓰기 공백넓이*/
+
+.shadow {
+	text-shadow: -5px 0px 20px #000000;
+}           /*  좌우 상하 투명도 색상 */
+
