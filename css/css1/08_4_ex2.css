@@ -1,0 +1,9 @@
+img {
+	float: left;
+	/* 공중으로띄어서 좌로밀착 */
+}
+.p-2 {
+	clear: both;
+	/* 얘부터 전체스탑
+	both말고 left,bottom 등 방향도가능 */
+}

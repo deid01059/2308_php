@@ -1,0 +1,71 @@
+main, section, article {
+	padding: 20px;
+}
+
+main {
+	background-color: darksalmon;
+}
+section {
+	background-color: antiquewhite;
+	
+}
+
+article {
+	background-color: darkseagreen;
+	position: relative;
+	height: 1000px;
+}
+.div_static {
+	background-color: azure;
+	position: static;
+	/* 기본값 static */
+}
+.div_relative {
+	background-color: burlywood;
+	position: relative;
+	left: -30px;
+	/* 기본위치는 static가 같은대 이동가능 */
+}
+.div_absolute {
+	background-color: chartreuse;
+	position: absolute;
+	/* 나보다 상위에있는 relative에 고정 
+		top bottom 등을 주면 위치가 바뀌지만
+		따로값을 안주면 absolute 를 넣기전 위치에서
+		붕뜸*/
+		z-index: -1;
+}
+.div_fixed {
+	background-color: cornflowerblue;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	/* 화면기준(뷰포트)기준으로 움직임 */
+}
+.div_sticky {
+	background-color: lightpink;
+	position: sticky;
+	top: 20px;
+	/* 처음엔 원위치에있으나 화면을 이동하면
+	 고정한위치값에 고정되어있다 */
+}
+
+.zindex1 {
+	background-color: aliceblue;
+	width: 100px;
+	position: absolute;
+	z-index: 2;
+	/* 큰수에따라 먼저표시됨 */
+}
+.zindex2 {
+	background-color: black;
+	width: 200px;
+	position: absolute;
+	z-index: 1;
+}
+.zindex3 {
+	background-color: blue;
+	width: 300px;
+	position: absolute;
+	z-index: 0;
+}

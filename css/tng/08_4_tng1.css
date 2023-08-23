@@ -1,0 +1,13 @@
+ul {
+	list-style: none;
+	display: flex;
+}
+.li-1 {
+	display: inline-block;
+	background-color: #9e9e9e;
+	width: 120px;
+	height: 80px;
+	text-align: center;
+	line-height: 80px;
+
+}

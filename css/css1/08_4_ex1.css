@@ -1,0 +1,34 @@
+.none {
+	display: none;
+	/* 사라지게하는것 창이사라졋다 나타낫다할때 쓰임 */
+}
+
+.block {
+	display: block;
+	/* 인라인을 블럭으로 */
+}
+
+span {
+	border: 1px solid #000;
+	width: 150px;
+}
+
+.inline {
+	display: inline;
+	/* 블럭을 인라인으로 */
+	padding: 10px;
+	border:  1px solid #000;
+	
+}
+
+.inline-block {
+	display: inline-block;
+	/* 모양은 인라인인대 기능은 블럭으로 */
+	border:  1px solid #000;
+	width: 150px;
+}
+
+div {
+	border:  5px solid #000;
+	padding: 10px;
+}

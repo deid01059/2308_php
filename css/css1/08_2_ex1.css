@@ -1,0 +1,42 @@
+
+div {
+	width: 200px;
+	height: 20px;
+	margin: 5px;
+	border-width: 5px;
+	}
+.div-1 {
+	border-style: none;
+	}
+.div-2 {
+	border-style: solid;
+	border-color: #00ffff;
+	border-width: 5px 2px 10px 6px;
+	            /* 상  우  하   좌  시계 방향*/
+	}
+
+.div-3 {
+	border-style: dotted;
+	}
+
+.div-4 {
+	border-style: dashed;
+	}
+
+.div-5 {
+	border-style: double;
+	}
+
+.div-6 {
+	border-style: groove;
+	}
+
+.div-7 {
+	border: 3px solid #00ff;
+	border-top-right-radius: 50px;
+	border-top-left-radius: 10px;
+	border-bottom-right-radius: 20px;
+	border-bottom-left-radius: 50px;
+
+	
+	}
