@@ -40,21 +40,26 @@
         <div class="box1">img</div>
 </header>
 <br>
+<form action="">
 <div class="div-1">
     <label for="id">ID</label>
     <input type="text" 
             name="id"
             id="id"
+            placeholder="id를 입력하세요."
             required
-            placeholder="id를 입력하세요." >
-    <label for="pw">PW</label>
+            minlength="4"
+            maxlength="10">
+            <label for="pw">PW</label>
+        
     <input type="password" 
             name="pw"
             id="pw"
-            required
-            placeholder="pw를 입력하세요." >
+            placeholder="pw를 입력하세요." 
+            required>
     <input type="submit" class="login">
-</div>
+        </div>
+    </form>
     
 </body>
 </html>
