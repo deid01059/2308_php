@@ -17,18 +17,22 @@ div {
 
 .div-3 {
 	border-style: dotted;
+	/* 점선 */
 	}
 
 .div-4 {
 	border-style: dashed;
+	/* 점선이긴한대 살짝긴점선 */
 	}
 
 .div-5 {
 	border-style: double;
+	/* 이중선 */
 	}
 
 .div-6 {
 	border-style: groove;
+	/* 입체모양 */
 	}
 
 .div-7 {

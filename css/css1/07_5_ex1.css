@@ -1,7 +1,7 @@
-/*  */
 table{
 	border: 1px solid #000000;
-	border-collapse: collapse; 빈공간없애기
+	border-collapse: collapse; 
+	/* 빈공간없애기 */
 	caption-side : bottom ;
 	
 }

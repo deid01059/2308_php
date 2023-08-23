@@ -22,5 +22,6 @@ span {
 	margin: 10px;
 	/* 외부 공백 */
 	border-radius: 50px;
+	/* 모서리 곡선 */
 	border-color: aquamarine;
 }

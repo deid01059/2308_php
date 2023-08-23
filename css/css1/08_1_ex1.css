@@ -9,10 +9,12 @@ div {
 
 .div-1 {
 	box-sizing: border-box;
+	/* 전체사이즈가 지정한 크기 */
 }
 
 .div-2 {
 	box-sizing: content-box;
+	/* 콘텐츠 크기만 적용:기초값 */
 }
 
 .div-3 {
