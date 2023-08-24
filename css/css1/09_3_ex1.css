@@ -1,0 +1,31 @@
+div {
+	width: 400px;
+	height: 200px;
+	border: 2px solid #000;
+}
+.div-1 {
+	background: linear-gradient(
+		to right
+		, red
+		, orange
+		, yellow
+		, green
+		, blue
+		, navy
+		, purple
+	);
+	/* 오른쪽에서 왼쪽으로 그라데인션 */
+}
+.div-2 {
+	background: radial-gradient(
+		circle at 50% 50%
+		/* 좌->우  상->하 */
+		,red
+		,orange
+		,rgb(217, 243, 71)
+		,rgb(16, 99, 16)
+		,rgb(22, 71, 145)
+		,rgb(99, 33, 223)
+		,purple
+	);
+}

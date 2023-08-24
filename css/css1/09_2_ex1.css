@@ -1,0 +1,29 @@
+body {
+	background-image: url(../../html/img/chim1.png);
+	background-size:cover
+}
+.div-img {
+	color: red;
+	width: 250px;
+	height: 300px;
+	background-image: url(../../html/img/20170606_003540.png)
+						, url(../../html/img/chim1.png);
+	/* ,를 써서 첫url이 안되면 두번째 url이 표시된다 */
+	background-size: cover;
+	/* 사진에 맞게  */ 
+	/*  background-size: contain 한개는 무조건나온다
+		background-size: cover  한개 사이즈에 맞게 나온다
+			*/
+	background-repeat: no-repeat;
+	/* 속성값
+		키워드 : repeat-x repeat-y no-repeat repeat 
+		정렬을 가로반복 새로로반복 반복x 반복하겠다.*/
+	background-position: top 10% left 30%;
+		/* background-position : 초기위치를 설정한다
+	    속성값
+		키워드  : top left right bottom % px
+		 */
+	overflow: scroll;
+	/* 스크롤바를 만듬 */
+}
+		 
