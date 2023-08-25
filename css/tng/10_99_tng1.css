@@ -1,0 +1,46 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+nav{
+	width: 484px;
+	margin: 50px auto;
+}
+ul {
+	
+	display: inline-block;
+ 	box-shadow:0px 5px 10px 3px #000;
+}
+li {
+	display: inline-block;
+	list-style: none;
+	float: left;
+	width: 80px;
+	height: 35px;
+	text-align: center;
+	background-color: rgb(221, 219, 219);
+	border-right: solid 1px;
+	
+}
+a {
+	display: inline-block;
+	width: 80px;
+	height: 35px;
+	line-height: 35px;
+	color: black;
+	text-decoration: none;
+}
+
+li:hover {
+	background-color: black;
+}
+a:hover {
+	color: white;
+}
+li:nth-last-of-type(1) :hover {
+	background-color: red;
+}
+
+li:nth-last-of-type(1) {
+	border: none;
+}

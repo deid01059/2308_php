@@ -62,8 +62,8 @@ span {
 }
 .img {
 	background-image: url(../../html/img/20170606_003540.png);
-	width: 100px;
-	height: 200px;
+	width: 650px;
+	height: 230px;
 	background-repeat: no-repeat;
-
-
+	background-position: bottom right ;
+}
