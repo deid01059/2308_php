@@ -61,9 +61,9 @@ span {
 	font-size: 20px;
 }
 .img {
-	background-image: url(../../html/img/20170606_003540.png);
-	width: 100px;
-	height: 200px;
+	background-image: url(../../html/img/chim1.png);
+	width: 660px;
+	height: 340px;
 	background-repeat: no-repeat;
-
-
+	background-size: contain;
+}
