@@ -1,0 +1,34 @@
+header div span{
+	color: aquamarine;
+}
+/* header 안에 div 안에 span */
+
+header span {
+	color: red;
+}
+
+header>span {
+	color: blue;
+/* header 안에 자식태그중 span 만 */
+}
+
+/* 꺽쇠가 없다면 모든 span태그에 적용이되나
+	> 를 사용하면 header안에 있는 자식요소중 
+	같은값에만 적용 */
+
+main span+p {
+	color: blue;
+}
+/* + 를 쓰면 a+b 라 가정할때
+	<a>aaa 
+	<b>bbb 
+	처럼 두개가 연속되게 있는것만 적용된다.*/
+
+span~p {
+	color: blueviolet;
+}
+/* ~ 를 쓰면 a~b 라 가정할때
+	<a>ㅁㅁ 밑에있는 모든
+	<b>태그에는 적용이된다 
+	단 형제태그 기준이다
+*/

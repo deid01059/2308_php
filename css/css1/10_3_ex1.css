@@ -1,0 +1,75 @@
+/* 방문에 상관없이 색고정 */
+a:link {
+	color: red;
+}
+/* 방문전 색 */
+
+a:visited(:not(#target-1)){
+	color: blue;
+}
+/* 방문후 색 */
+
+a:hover {
+	background-color: cornflowerblue;
+}
+/* 마우스를 가져다 대면 바뀜 */
+
+#input-1:focus {
+	outline: none;
+	/* 바깥선 없에기 */
+	border : 2px solid cornflowerblue;
+}
+/* focus 를주게되면 input 타입이 실행되는순간 적용시작 */
+
+input:checked  + label {
+	color : orange ;
+}
+/* input타입 radio 나 checkbox 를 선택하면 색이 바뀜 */
+
+/* 속성값이 타겟이되었을때 
+부여한 속성들이 적용된다 */
+
+.container :nth-child(4) {
+	color: aquamarine;
+}
+/* 부모태그안에 : 자식태그중 (몇번째)에 속성값을 적용한다 */
+
+.container p:nth-of-type(2) {
+	color: chocolate;
+}
+/* 부모태그안에 어떤태그 : 같은타입들중 (몇번째)에 속성값을 적용한다 */
+
+.container :not(p) {
+	color: yellow;
+}
+/* 부모태그안에 : (ex)가 아닌것들에 적용한다 */
+
+#label-2::before {
+	content: '중요';
+	color: aquamarine;
+}
+/* before=label 텍스트가 뒤로 중요ex
+after=label 텍스트가 앞으로 ex중요 */
+.korea-1::first-letter {
+	background-color: rgb(193, 202, 214)
+}
+.korea-2::first-line {
+	background-color: rgb(214, 208, 115)
+}
+/* 태그로 감싼 텍스트중 첫글자만 적용 */
+
+#target-1:target {
+	
+	background-color: red;
+
+}
+
+#target-2 {
+	position: fixed;
+	right: 10%;
+	bottom: 10%;
+	color: black;
+	font-size: 5px;
+	background-color: rgb(115, 127, 241);
+	border: 1px solid #000;
+}
