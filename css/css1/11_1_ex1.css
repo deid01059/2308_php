@@ -1,0 +1,23 @@
+.container {
+	display: flex;
+}
+.ball {
+	margin: 10px;
+	width: 50px;
+	height: 50px;
+	background-color: cornflowerblue;
+	border-radius: 50%;
+	animation: moveUpDown 1.5s ease-in-out infinite alternate;
+}
+			/*    이름    속도     반동,,?  움직이는거 	반복*/
+
+@keyframes moveUpDown {
+	from {
+		transform: translateY(0);
+	}
+	to {
+		transform: translateY(100px);
+	}
+}
+
+/* https://coolcssanimation.com/  무료애니메이션 사이트 */

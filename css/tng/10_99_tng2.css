@@ -1,0 +1,51 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+fieldset {
+	margin: 10px auto;
+	width: 500px;
+	padding: 10px 20px;
+	background-image: url(../../html/img/20170606_003540.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.label_red, #man:checked+label, #woman:checked+label {
+	color: #ff0000;
+}
+legend {
+	color: #b132b1;
+}
+
+#name:focus, #age:focus, #memo:focus {
+	outline: none;
+	border: 2px solid #ff0000;
+}
+
+.memo_label {
+	vertical-align: top;
+	/* textarea의 label태그를 위로 보낸다 */
+}
+.hidden {
+	background-color: #000000;
+	color: #ffffff;
+	display: none;
+}
+button:hover + .hidden {
+	display: inline-block;
+}
+button {
+	padding: 2px 5px;
+}
+input {
+	margin: 10px 0px;
+}
+
+label {
+	font-weight: 900;
+}
+
+#name, #age, textarea{
+	background : none;
+	/* 투명하세하여 배경이미지가 보이게한다 */
+}

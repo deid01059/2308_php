@@ -1,0 +1,96 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+header {
+	min-width: 600px;
+}
+h1 {
+	text-align: center;
+	background-color: red;
+	color: white;
+	height: 100px;
+	line-height: 100px;
+	font-size: 3rem;
+}
+ul {list-style: none;}
+.header ul li{
+	text-align: center;
+	width: 16.6666666%;
+	float: left;
+	font-style: none;
+	height: 35px;
+	line-height: 35px;
+	background-color: darkkhaki;
+	border-right: dotted 0.3px;
+}
+ul li:nth-child(6) {
+	border : none
+}
+.container {
+	min-width: 900px;
+}
+.head-a {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+}
+.con-list, .con-list2 {
+	float: left;
+	margin: 10vw 2vw;
+	width: 10vw;
+	border: 1px solid gray;
+	text-align: center;
+}
+
+.con-list a, .con-list2 a {
+	float: left;
+	display: inline-block;
+	text-decoration: none;
+	color: black;
+	border-bottom: 0.3px dotted black ;
+	height: 100%;
+	width: 100%;
+	font-size: 20px;
+	min-width: 70px;
+}
+.con-list a:nth-child(8),
+.con-list2 a:nth-child(8),
+.footer ul li:nth-child(5){
+	border: none;
+}
+.con-main {
+	float: left;
+	margin: 10px auto;
+	width: 70vw;
+	border: 1px solid #000;
+	padding: 10px;
+	min-width: 660px;
+}
+.con-main-box {
+	display: inline-block;
+	width: 100px;
+	height: 120px;
+	border: 1px solid #000;
+
+}
+.footer {
+	clear: both;
+	min-width: 400px;
+}
+
+.footer ul li{
+	text-align: center;
+	width: 20%;
+	float: left;
+	font-style: none;
+	height: 60px;
+	line-height: 60px;
+	background-color: rgb(0, 0, 0);
+	color: aliceblue;
+	border-right: dotted 0.3px;
+	font-size: 1.5rem;
