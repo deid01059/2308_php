@@ -1,0 +1,36 @@
+.container {
+	background-color: gray;
+	display: grid;
+	/* grid-template-columns: repeat(3, 50px); */
+					/* 반복하다  (갯수 크기)
+						auto-fit : 갯수만큼 반복
+						 */
+	grid-template-columns: repeat(3, 50px); 
+	grid-template-rows: ;
+	/* 최소, 1fr:1개의 위드값을 적절히분배 */
+	grid-template-rows: 50px 100px;
+	grid-gap: 10px 5px;	
+}
+.item_1 {
+	grid-column: 2/4;
+	grid-row: 2/3;
+}
+
+.item {
+	background-color: aquamarine;
+}
+
+.container2 {
+	background-color: gray;
+	display: grid;
+	grid-template-columns: repeat(2, 50px);
+	grid-template-rows: repeat(4, 50px);
+	grid-gap: 5px;
+}
+.item1{
+	grid-column: 1/3;
+}
+.itme5 {
+	grid-column: 2/3;
+	grid-row: 3/5;
+}
