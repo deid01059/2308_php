@@ -1,7 +1,7 @@
 .container {
 	background-color: gray;
 	margin: 10px;
-	width:  60vw;
+	width:  90vw;
 	height: 60vh;
 	display: flex;
 	flex-direction: row;
@@ -12,24 +12,49 @@
 /* flex-wrap = width 조절 
 	nowrap(flex기본설정) wrap(사용자 사이즈 설정) */
 /* flex-flow: row wrap; 
+<<<<<<< HEAD
 	으로 위에 direction 과 wrap 을 동시적용 시킬수도 있다 */
 	justify-content: flex-start;
 /* justify-content = 주축을 기준으로 정렬
+=======
+	으로 위에 direction 과 wrap 을 동시적용 시킬수도 있다*/
+	/* justify-content: flex-end; */
+/* justify-content: = 주축을 기준으로 정렬
+>>>>>>> 7adf27ffb245a17f1c40b20bd5fe0e4d4acf144c
 	현재주축 row 
 	flex-start(주축의 시작 부터) 
 	flex-end(주축의 시작 반대쪽부터)
 	center(가운대 정렬) 
 	space-between(주축기준 좌우측 끝을 붙이고 가운대에넣고 공백의크기를 같게한다
 	space-around(주축기준 좌우측 끝을 살짝띄우고 가운대에넣고 공백의크기를 같게한다)*/
+<<<<<<< HEAD
 	align-items: flex-start; 
 		flex-start(주축 쪽)
 		flex-end(주축 반대쪽)
 		baseline(특정한거만 튀어나옴)
+=======
+	/* align-items: space-around; */
+/* align-items:교차축을 기준으로 정렬을 어떻게 할거냐
+		flex-start(주축 쪽)
+		flex-end(주축 반대쪽)
+		center(중간으로)
+		space-around(적절히 조절해줌 위아래 마진값 같게)
+		baseline(특정한거만 튀어나옴)
+		stretch(인라인 값에 height값을 안줬을때 최대길로
+} */
+>>>>>>> 7adf27ffb245a17f1c40b20bd5fe0e4d4acf144c
 }
-
 .item {
-	width: 15vw;
-	height: 15vh;
+	width: 150px;
+	height: 150px;
 	background-color: skyblue;
 	border: 1px solid #000;
+	box-sizing: border-box;
+}
+
+.item2 {
+	/* align-self: center; */
+	/* align-self : 특정위치 조절
+		flex-end(영역값내 바닥으로붙임)
+		center(영역값내 중앙으로 붙임)  */
 }

@@ -1,0 +1,23 @@
+.container {
+	background-color: gray;
+	margin: 10px;
+	width:  90vw;
+	height: 60vh;
+}
+.item {
+	background-color: skyblue;
+	border: 1px solid #000;
+}
+.item_h {
+	background-color: none;
+	border: none;
+}
+.item_h, .item {
+	float: left;
+	width: 180px;
+	height: 15vh;
+	box-sizing: border-box;
+}
+.item-box {
+	width: 540px;
+}
