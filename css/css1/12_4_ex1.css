@@ -12,7 +12,7 @@
 /* flex-wrap = width 조절 
 	nowrap(flex기본설정) wrap(사용자 사이즈 설정) */
 /* flex-flow: row wrap; 
-	으로 위에 direction 과 wrap 을 동시적용 시킬수도 있다*/
+	으로 위에 direction 과 wrap 을 동시적용 시킬수도 있다 */
 	justify-content: flex-start;
 /* justify-content = 주축을 기준으로 정렬
 	현재주축 row 
@@ -21,10 +21,10 @@
 	center(가운대 정렬) 
 	space-between(주축기준 좌우측 끝을 붙이고 가운대에넣고 공백의크기를 같게한다
 	space-around(주축기준 좌우측 끝을 살짝띄우고 가운대에넣고 공백의크기를 같게한다)*/
-	/* align-items: flex-start; 
+	align-items: flex-start; 
 		flex-start(주축 쪽)
 		flex-end(주축 반대쪽)
-		baseline(특정한거만 튀어나옴)*/
+		baseline(특정한거만 튀어나옴)
 }
 
 .item {

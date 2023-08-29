@@ -32,6 +32,7 @@ ul li:nth-child(6) {
 .container {
 	min-width: 940px;
 	min-height: 300px;
+	right: 60%;
 }
 .head-a {
 	display: inline-block;
@@ -71,12 +72,12 @@ ul li:nth-child(6) {
 	width: 70vw;
 	border: 1px solid #000;
 	padding: 15px;
-	min-width: 660px;
-	max-width: 1084px;
+	min-width: 600px;
+	max-width: 982.5px;
 }
 .con-main-box {
 	display: inline-block;
-	width: 100px;
+	width: 90px;
 	height: 120px;
 	border: 1px solid #000;
 
@@ -99,7 +100,7 @@ ul li:nth-child(6) {
 }
  .con-main-box1 {
 	display: inline-block;
-	width: 200px;
+	width: 180px;
 	height: 120px;
 	border: 1px solid #000;
 	margin: 0px 2.7px;
