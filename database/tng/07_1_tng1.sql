@@ -65,7 +65,7 @@ FROM employees emp
 		ON emp.emp_no = dp_m.emp_no
 		AND dp_m.to_date >= NOW()
 	INNER JOIN departments dpm
-	ON dpm.dept_no = dp_m.dept_no
+	ON dpm.dept_no = dp_m.dept_no;
 
 -- 7번
 SELECT 
