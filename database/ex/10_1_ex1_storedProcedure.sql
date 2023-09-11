@@ -39,17 +39,17 @@
 -- 			프로시저의 실행 내용 정의
 -- 		END $$
 -- 		DELIMITER ;
--- DELIMITER $$
--- CREATE PROCEDURE test()
--- BEGIN
--- 		SELECT emp.*
--- 		,tit.title
--- 	FROM employees emp
--- 		JOIN titles tit
--- 			ON emp.emp_no = tit.emp_no
--- 			AND tit.to_date >= NOW();
--- END $$
--- DELIMITER ;
+DELIMITER $$
+CREATE PROCEDURE test()
+BEGIN
+	SELECT emp.*
+	,tit.title
+	FROM employees emp
+	JOIN titles tit
+			ON emp.emp_no = tit.emp_no
+			AND tit.to_date >= NOW();
+END $$
+DELIMITER ;
 
 
 -- 6. 프로시저 호출
