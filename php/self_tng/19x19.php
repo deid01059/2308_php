@@ -61,4 +61,29 @@ for( $num = 10; $num <= 19; $num++ ){
             echo "$num x $sec_num =",$sec_num*$num,"\n";
         }
 }
+
+
+// 2에서 +3의 배수단들만 나타내고 그중 짝수번째 단은 홀수곱하기항목 생략
+
+// for( $num = 2; $num <= 19; $num +=3 ){
+//         echo $num,"단\n";
+//     for( $sec_num = 1; $sec_num <= 19; $sec_num++){
+//             if( $sec_num % 2 === 1 && $num % 2 === 0){
+//                 continue;
+//             }
+//         echo "$num X $sec_num =",$num*$sec_num,"\n";
+//     }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
 ?>
