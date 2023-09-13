@@ -31,19 +31,27 @@
 // 이 문자열의 모든숫자를 더해주세요
 // 예) "3421"일결우, 3+4+2+1 = 10 이 리턴되는 함수
 
-// function my_allsum(...$num){
-// 	$sum=0;
-// 	foreach ($num as $num_1) {
-// 		$sum += $num_1;
+// 방법 1
+
+// $str = "34215";
+// function my_allsum(string $str){
+// 	$len = mb_strlen($str);
+// 	$sum = 0;
+// 	for ($idx = 0; $idx <= $len -1; $idx++) {
+// 		$sum += (int)mb_substr($str, $idx, 1);
 // 	}
 // 	return $sum;
 // }
+		
 
-
-
-
-
-
+// 방법 2
+// $str = "34285";
+// function my_allsum(string $str){
+// 	$sum = 0;
+// 	$arr = str_split($str);
+// 	return array_sum($arr);
+// }
+// echo my_allsum($str)
 
 
 
