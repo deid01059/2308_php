@@ -7,9 +7,10 @@ echo "1 번째 도전\n\n";
 
 $roof_no = 1;
 $com_no = rand(1,100);
+echo $com_no;
 while(true){
 	$user_no = trim(fgets(STDIN));
-	if($roof_no <= 4 && $roof_no > 0){
+	if($roof_no <= 5 && $roof_no > 0){
 		if($user_no>=1 && $user_no<= 100){
 			if($com_no > $user_no){
 				echo "컴퓨터의 숫자가 더 큽니다\n\n";
@@ -17,29 +18,23 @@ while(true){
 			else if($com_no < $user_no){
 				echo "컴퓨터의 숫자가 더 작습니다\n\n";				
 			}
-			else {
+			else{
 				echo "정답입니다!!!";
 				break;
 			}
-			echo "\n",$roof_no+1," 번째 도전\n\n";
-			}
-			else{
-				echo "잘못된 값을 입력하셨습니다\n";
-				$roof_no--; 
-			}
+		}				
+		else{
+			echo "잘못된 값을 입력하셨습니다\n";
+			$roof_no--; 
+		}
 	}
-	else if($roof_no > 4){
-		echo "정답은 $com_no !!\n~~실패~~";
-		break;
-	}
-	$roof_no++;
+	if($roof_no == 5){
+	echo "정답은 $com_no !!\n~~실패~~";
+	break;
 }
-
-
-
-
-
-
+echo "\n",$roof_no+1," 번째 도전\n\n";
+$roof_no++;
+}
 
 
 
