@@ -23,7 +23,7 @@ class Class1 {
 
 
 // namespace를 이용해서 객체를 지정
-// $obj_class1 = new \down\Class1();
+$obj_class1 = new \down\Class1();
 
 namespace test;
 use \up\Class1 as c1;
