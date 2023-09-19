@@ -38,6 +38,7 @@ $sql = " INSERT INTO "
 ." ,now() "
 ." ,:to_date "
 ." ); ";
+$stmt = $conn->prepare($sql);
 
 $a = 0;
 foreach($resert as $item){
@@ -49,29 +50,14 @@ foreach($resert as $item){
         ,":to_date" => 99990101
     ];
     
-    $stmt = $conn->prepare($sql);
     $result1 = $stmt->execute($arr_ps);
     
     var_dump($result1);
     
-    $conn -> commit();
 }
+$conn -> commit();
 
 print_r($a)
-// $arr_ps = [
-//     ":emp_no" => $a
-//     ,":title" => "green"
-//     ,":to_date" => 99990101
-// ];
-
-// $stmt = $conn->prepare($sql);
-// $result1 = $stmt->execute($arr_ps);
-
-// $conn -> commit();
-
-// var_dump($result1);
-
-// $conn = null;
 
 
 
