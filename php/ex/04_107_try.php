@@ -23,8 +23,6 @@ try{
 $conn = null;
 my_db_conn($conn);
 
-
-// SQL 작성
 echo "트라이";
 $sql = " SELEC " 
         ."   * "
@@ -34,7 +32,6 @@ $sql = " SELEC "
         ." emp_no = :emp_no "
         ;
 
-// prepared Statement 셋팅
 $arr_ps = [
     ":emp_no" => 10004
 ];

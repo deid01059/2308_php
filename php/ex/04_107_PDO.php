@@ -38,10 +38,10 @@ $obj_conn = new PDO($db_dns, $db_user, $db_pw, $db_options);
 //     ":emp_no" => 10004
 // ];
 
-// prepared Statement 생성
-// $stmt = $obj_conn->prepare($sql);
-// $stmt->execute($arr_ps); // 쿼리 실행
-// $result = $stmt->fetchAll(); // 쿼리 결과를 fetch
+prepared Statement 생성
+$stmt = $obj_conn->prepare($sql);
+$stmt->execute($arr_ps); // 쿼리 실행
+$result = $stmt->fetchAll(); // 쿼리 결과를 fetch
 
 // print_r($result)
 
@@ -104,26 +104,26 @@ $obj_conn = new PDO($db_dns, $db_user, $db_pw, $db_options);
 
 // 부서번호가 "d010"데이터 delete 
 
-$sql = " DELETE "
-        ." FROM " 
-        ." departments "
-        ." WHERE "
-        ."  dept_no = :dept_no1; "
-        ;
-$arr_ps = [
-    ":dept_no1" => "d010"
-];
+// $sql = " DELETE "
+//         ." FROM " 
+//         ." departments "
+//         ." WHERE "
+//         ."  dept_no = :dept_no1; "
+//         ;
+// $arr_ps = [
+//     ":dept_no1" => "d010"
+// ];
 
-$stmt = $obj_conn->prepare($sql);
-$result = $stmt->execute($arr_ps);
-$res_cnt = $stmt->rowCount(); //영향받는열 몇개인지 확인
-var_dump($res_cnt);
-if($res_cnt >= 2){
-    $obj_conn -> rollBack();
-}else{
-$obj_conn -> commit(); // 커밋
-}
-$obj_conn = null; //DB 파기
+// $stmt = $obj_conn->prepare($sql);
+// $result = $stmt->execute($arr_ps);
+// $res_cnt = $stmt->rowCount(); //영향받는열 몇개인지 확인
+// var_dump($res_cnt);
+// if($res_cnt >= 2){
+//     $obj_conn -> rollBack();
+// }else{
+// $obj_conn -> commit(); // 커밋
+// }
+// $obj_conn = null; //DB 파기
 
 
 ?>
