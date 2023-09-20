@@ -7,24 +7,24 @@ my_db_conn($conn);
 
 
 // 1번
-$sql =
-" INSERT INTO "
-    ." employees ( "
-	." emp_no "
-	." ,birth_date "
-	." ,first_name "
-	." ,last_name "
-	." ,gender "
-	." ,hire_date "
-    ." ) "
-." VALUES ( "
-    ." :emp_no "
-    ." ,:emp_birth_date "
-    ." ,:emp_first_name "
-    ." ,:emp_last_name "
-    ." ,:emp_gender "
-    ." ,:emp_hire_date "
-    ." ); ";
+// $sql =
+// " INSERT INTO "
+//     ." employees ( "
+// 	." emp_no "
+// 	." ,birth_date "
+// 	." ,first_name "
+// 	." ,last_name "
+// 	." ,gender "
+// 	." ,hire_date "
+//     ." ) "
+// ." VALUES ( "
+//     ." :emp_no "
+//     ." ,:emp_birth_date "
+//     ." ,:emp_first_name "
+//     ." ,:emp_last_name "
+//     ." ,:emp_gender "
+//     ." ,:emp_hire_date "
+//     ." ); ";
 
 // $arr_ps = [
 //     ":emp_no" => 500001
@@ -95,20 +95,27 @@ $sql =
 
 
 // 4번
-// $sql = " DELETE "
-//         ." FROM " 
-//         ." employees "
-//         ." WHERE "
-//         ."  emp_no = :emp_no; "
-//         ;
-// $arr_ps = [
-//     ":emp_no" => "500001"
-// ];
+$sql = " DELETE "
+        ." FROM " 
+        ." employees "
+        ." WHERE "
+        ."  emp_no = :emp_no; "
+        ;
+$arr_ps = [
+    ":emp_no" => "500001"
+];
 
-// $stmt = $conn->prepare($sql);
-// $result = $stmt->execute($arr_ps);
-// $res_cnt = $stmt->rowCount();
+$stmt = $conn->prepare($sql);
+$result = $stmt->execute($arr_ps);
+$res_cnt = $stmt->rowCount();
+var_dump($res_cnt);
+if($res_cnt >= 2){
+    $conn -> rollBack();
+}else{
+$conn -> commit(); 
+}
+$conn = null; 
 
-// var_dump($res_cnt);
+
 
 ?>
