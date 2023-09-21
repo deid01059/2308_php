@@ -38,10 +38,10 @@ $obj_conn = new PDO($db_dns, $db_user, $db_pw, $db_options);
 //     ":emp_no" => 10004
 // ];
 
-prepared Statement 생성
-$stmt = $obj_conn->prepare($sql);
-$stmt->execute($arr_ps); // 쿼리 실행
-$result = $stmt->fetchAll(); // 쿼리 결과를 fetch
+// prepared Statement 생성
+// $stmt = $obj_conn->prepare($sql);
+// $stmt->execute($arr_ps); // 쿼리 실행
+// $result = $stmt->fetchAll(); // 쿼리 결과를 fetch
 
 // print_r($result)
 

@@ -1,0 +1,4 @@
+터미널 값에 넣을것
+
+
+xcopy C:\Users\TEST\Desktop\html.file\2308_php\side_project\mini_board\src C:\Apache24\htdocs\mini_board\src /E /Y
