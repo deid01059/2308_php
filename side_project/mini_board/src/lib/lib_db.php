@@ -12,7 +12,8 @@
 // -------------------------------
 // 함수명   : my_db_conn
 // 기능     : DB Connect
-// 파라미터 : PDO  &$conn
+// 파라미터 : PDO    &$conn
+//           Array  &$arr_param
 // 리턴     : boolen
 // -------------------------------
 
@@ -39,6 +40,7 @@ try {
     $conn = new PDO($db_dns, $db_user, $db_pw, $db_options);
     return true;
     }catch (Exception $e){
+        echo $e->getMessage(); // Exception 메세지 출력
         $conn = null;
         return false;
     }
@@ -52,8 +54,8 @@ try {
 // 리턴     : 없음
 // -------------------------------
 
-
-function db_destroy_conn($conn){
+// DB 파기
+function db_destroy_conn(&$conn){
     $conn = null;
 }
 
@@ -64,7 +66,7 @@ function db_destroy_conn($conn){
 // 파라미터 : PDO  &$conn
 // 리턴     : Array /false
 // -------------------------------
-function db_select_boards_paging(&$conn){
+function db_select_boards_paging(&$conn, &$arr_param){
     try {
         $sql =
         " SELECT "
@@ -75,28 +77,82 @@ function db_select_boards_paging(&$conn){
         ." boards "
         ." ORDER BY "
         ." id DESC "
+        ." LIMIT :list_cnt OFFSET :offset "
         ;
 
-        $arr_ps = [];
+        $arr_ps = [
+            ":list_cnt" => $arr_param["list_cnt"]
+            ,":offset" => $arr_param["offset"]
+        ];
 
         $stmt = $conn->prepare($sql);
         $stmt->execute($arr_ps);
         $result = $stmt->fetchALL();
         return $result; //정상
     } catch(Exception $e){
+        echo $e->getMessage(); // Exception 메세지 출력
         return false; //예외발생
     }
 }
 
 
+function db_select_boards_cnt( &$conn ){
+        $sql =
+        " SELECT "
+        ." count(id) as cnt "
+        ." FROM "
+        ." boards "
+        ;
+    try {
+        $stmt = $conn->query($sql);
+        $result = $stmt->fetchALL();
+
+        return (int)$result[0]["cnt"]; //정상 : 쿼리 결과 리턴
+    } catch(Exception $e){
+        echo $e->getMessage(); // Exception 메세지 출력
+        return false; //예외발생 : false리턴
+    }
+
+
+}
 
 
 
 
+// -------------------------------
+// 함수명   : db_destroy_conn
+// 기능     : DB Destroy
+// 파라미터 : PDO       &$conn
+//           Array      &arr_param 쿼리 작성용 배열
+// 리턴     : bool / false
+// -------------------------------
+function db_insert_boards(&$conn, &$arr_param){
+    $sql =
+        " INSERT INTO boards( "
+        ." head "
+        ." ,content "
+        ." ) "
+        ." VALUES ( "
+        ." :head "
+        ." ,:content "
+        ." ) "
+        ;
+    $arr_ps = [
+        ":head" => $arr_param["head"]
+        ,":content" => $arr_param["content"]
+    ];
+
+    try{
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute($arr_ps);
+        return $result; // 정상 : 쿼리 결과 리턴
+    } catch(Exception $e) {
+        echo $e->getMessage(); // Exception 메세지 출력
+        return false; // 예외발생 : flase 리턴
+    }
 
 
-
-
+}
 
 
 
