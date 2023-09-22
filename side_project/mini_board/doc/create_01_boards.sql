@@ -2,7 +2,7 @@ CREATE DATABASE mini_board;
 
 USE mini_board;
 
-CREATE TABLE borads(
+CREATE TABLE boards(
 	id INT PRIMARY KEY AUTO_INCREMENT
 	,head VARCHAR(100) NOT NULL
 	,content VARCHAR(1000) NOT NULL
