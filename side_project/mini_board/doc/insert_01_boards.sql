@@ -1,4 +1,4 @@
-INSERT INTO borads(
+INSERT INTO boards(
 	head
 	,content
 )
@@ -33,4 +33,4 @@ VALUES('제목','내용')
 
 COMMIT;
 
-SELECT * FROM borads;
+SELECT * FROM boards;
