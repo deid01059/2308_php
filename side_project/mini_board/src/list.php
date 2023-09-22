@@ -4,62 +4,72 @@ define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/mini_board/src/");
 define("FILE_HEADER", ROOT."header.php");
 require_once(ROOT."lib/lib_db.php");
 
+$conn = null; // DB connection 변수
 
-    $conn = null; // DB connection 변수
-// DB 접속
-if(!my_db_conn($conn)){
-    // DB Instance 에러
-    echo "DB Error : PDO instance";
-    exit;
-}
-
-// -------------
-// 페이징 처리
-// -------------
 $list_cnt = 5; // 한 페이지 최대 표시 수
 $page_num = 1; // 페이지 번호 초기화
-$boards_cnt = db_select_boards_cnt($conn);
-if($boards_cnt === false) {
-    echo "DB Error : SELECT Count";
-    exit;
+try {
+    // DB 접속
+    if(!my_db_conn($conn)){
+        // DB Instance 에러
+        throw new Exception("DB Error : PDO instance"); //강제예외발생 : DB Insrance
+    }
+    // -------------
+    // 페이징 처리
+    // -------------
+    $boards_cnt = db_select_boards_cnt($conn);
+    if($boards_cnt === false) {
+        throw new Exception("DB Error : SELECT Count"); // 강제 예외 발생 : DB SELECT Count
+    }
+
+    $max_page_num = ceil($boards_cnt / $list_cnt); // 최대페이지 수
+    
+    if(isset($_GET["page"])){
+        $page_num = $_GET["page"]; // 유저가 보내온 페이지 셋팅
+    }
+    
+    $offset = ($page_num - 1)* $list_cnt; //오프셋계산
+    
+    // 이전버튼
+    $prev_page_num = $page_num - 1;
+    if($prev_page_num === 0){
+        $prev_page_num = 1;
+    }
+    
+    // 다음버튼
+    $next_page_num = $page_num + 1;
+    if($next_page_num > $max_page_num){
+        $next_page_num = $max_page_num;
+    }
+    
+    // DB 조회시 사용할 데이터 배열
+    $arr_param = [
+        "list_cnt" => $list_cnt
+        ,"offset" => $offset
+    ];
+    
+    
+    
+    // 게시글 리스트 조회 
+    $result  = db_select_boards_paging($conn, $arr_param);
+    if(!$result){
+        throw new Exception("DB Error : SELECT boards"); // 강제 예외 발생 : SELECT boards
+    }
+
+} catch(Exception $e) {
+    echo $e->getMessage(); //예외발생 메세지 출력
+    exit; //처리종료
+} finally {
+    db_destroy_conn($conn); //DB파기
 }
 
-$max_page_num = ceil($boards_cnt / $list_cnt); // 최대페이지 수
-
-if(isset($_GET["page"])){
-    $page_num = $_GET["page"]; // 유저가 보내온 페이지 셋팅
-}
-
-$offset = ($page_num - 1)* $list_cnt; //오프셋계산
-
-// 이전버튼
-$prev_page_num = $page_num - 1;
-if($prev_page_num === 0){
-    $prev_page_num = 1;
-}
-
-// 다음버튼
-$next_page_num = $page_num + 1;
-if($next_page_num > $max_page_num){
-    $next_page_num = $max_page_num;
-}
-
-// DB 조회시 사용할 데이터 배열
-$arr_param = [
-    "list_cnt" => $list_cnt
-    ,"offset" => $offset
-];
 
 
 
-// 게시글 리스트 조회 
-$result  = db_select_boards_paging($conn, $arr_param);
-if(!$result){
-    echo "DB Error : SELECT boards";
-    exit;
-}
 
-db_destroy_conn($conn); //DB파기
+
+
+
 
 
 ?>
@@ -94,7 +104,7 @@ db_destroy_conn($conn); //DB파기
             ?>        
                     <tr>
                         <td><?php echo $item["id"]; ?></td>
-                        <td><?php echo $item["head"]; ?></td>          
+                        <td><a href="/mini_board/src/detail.php/?id=<?php echo $item["id"]; ?>&page=<?php echo $page_num; ?>"><?php echo $item["head"]; ?></a></td>          
                         <td><?php echo $item["create_date"]; ?></td>
                     </tr>
             <?php    
