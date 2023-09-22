@@ -16,12 +16,18 @@ header {
     background-size: cover;
     background-repeat: no-repeat;
 }
-header h1 {
-    color: #fff;
+header h1 {  
     text-align: center;
     font-size: 4rem;
 }
 
+header h1 a{
+    color: #fff;
+}
+
+header h1 a:hover{
+    color: #a8a8a8;
+}
 
 table {
     border-collapse: collapse;

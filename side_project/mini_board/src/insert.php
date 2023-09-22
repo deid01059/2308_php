@@ -4,7 +4,7 @@ define("FILE_HEADER", ROOT."header.php");
 require_once(ROOT."lib/lib_db.php");
 
 // POST로 request가 왔을 때 처리 
-$http_method = $_SERVER["REQUEST_METHOD"];
+$http_method = $_SERVER["REQUEST_METHOD"]; // Method 확인
 if($http_method === "POST"){
     try {
         $arr_post = $_POST;    
@@ -15,7 +15,7 @@ if($http_method === "POST"){
             // DB Instance Error
             throw new Exception("DB Error : PDO Instance");
         }
-        // $conn->beginTransaction(); // 트랜잭션 시작
+        $conn->beginTransaction(); // 트랜잭션 시작
 
         // insert
         if(!db_insert_boards($conn, $arr_post)) {
