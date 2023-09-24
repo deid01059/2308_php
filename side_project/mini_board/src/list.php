@@ -122,7 +122,7 @@ try {
                     $class = ($i == $a) ? "page_btn now_page" : "page_btn";
                     // 현재 페이지와 $i를 비교하여 현재 페이지에 해당하는 버튼에 강조 스타일을 적용
             ?>
-                <a class="<?php echo $class; ?>" href="/mini_board/src/list.php/?page=<?php echo $i ?>"><?php echo $i ?></a>
+                <a class="<?php echo $class; ?> list_page_no_btn" href="/mini_board/src/list.php/?page=<?php echo $i ?>"><?php echo $i ?></a>
             <?php
                     }
                
