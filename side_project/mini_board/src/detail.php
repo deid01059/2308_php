@@ -10,7 +10,6 @@ try {
     if(!isset($_GET["id"]) || $_GET["id"] === "") {
         throw new Exception("Parameter Error : No id"); // 강제 예외 발생 : Parameter Error
     }
-
     $id = $_GET["id"]; // id 셋팅
 
     //DB 연결
@@ -64,26 +63,30 @@ $page = $_GET["page"];
     <?php
         require_once(FILE_HEADER);
     ?>
-    <table>
-        <tr>
-            <th>글번호</th>
-            <td><?php echo $item["id"]; ?></td>
-        </tr>
-        <tr>
-            <th>제목</th>
-            <td><?php echo $item["head"]; ?></td>
-        </tr>
-        <tr>
-            <th>내용</th>
-            <td><?php echo $item["content"]; ?></td>
-        </tr>
-        <tr>
-            <th>작성일자</th>
-            <td><?php echo $item["create_date"]; ?></td>
-        </tr>
-    </table>
-    <a class=page-btn href="#">수정</a>
-    <a class=page-btn href="/mini_board/src/list.php/?page=<?php echo $page;?>">취소</a>
-    <a class=page-btn href="#">삭제</a>
+    <div class="detail_container">    
+        <table class="detail_table">
+            <tr>
+                <th>글번호</th>
+                <td><?php echo $item["id"]; ?></td>
+            </tr>
+            <tr>
+                <th>제목</th>
+                <td><?php echo $item["head"]; ?></td>
+            </tr>
+            <tr>
+                <th>내용</th>
+                <td><?php echo $item["content"]; ?></td>
+            </tr>
+            <tr>
+                <th>작성일자</th>
+                <td><?php echo $item["create_date"]; ?></td>
+            </tr>
+        </table>    
+    </div>
+    <section>
+    <a class=page_btn href="#">수정</a>
+    <a class=page_btn href="/mini_board/src/list.php/?page=<?php echo $page;?>">취소</a>
+    <a class=page_btn href="#">삭제</a>
+    </section>
 </body>
 </html>

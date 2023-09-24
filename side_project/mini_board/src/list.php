@@ -85,41 +85,49 @@ try {
     <?php
         require_once(FILE_HEADER);
     ?>
-    <main>
-        <a href="/mini_board/src/insert.php">글작성</a>
-        <table>
+    <main>        
+        <table class="list_table">
+            <td class="insert_button"><a class=insert_board href="/mini_board/src/insert.php">글작성</a></td>
             <colgroup>
                 <col width="15%">
                 <col width="50%">
                 <col width="25%">
             </colgroup>
-            <tr class="table-title">
+            <tr class="table_title">
                 <th>번호</th>
                 <th>제목</th>
                 <th>작성일자</th>
             </tr>
             <?php
-                // 리스트를 생성
-                foreach($result as $item){
+            // 리스트를 생성
+            foreach($result as $item){
             ?>        
-                    <tr>
-                        <td><?php echo $item["id"]; ?></td>
-                        <td><a href="/mini_board/src/detail.php/?id=<?php echo $item["id"]; ?>&page=<?php echo $page_num; ?>"><?php echo $item["head"]; ?></a></td>          
-                        <td><?php echo $item["create_date"]; ?></td>
-                    </tr>
+            <tr>
+                <td><?php echo $item["id"]; ?></td>
+                <td><a class="boards_title" href="/mini_board/src/detail.php/?id=<?php echo $item["id"]; ?>&page=<?php echo $page_num; ?>"><?php echo $item["head"]; ?></a></td>          
+                <td><?php echo $item["create_date"]; ?></td>              
+            </tr>
             <?php    
-                }
+            }
             ?>
+           
         </table>
         <section>
-            <a class="page-btn" href="/mini_board/src/list.php/?page=<?php echo $prev_page_num ?>">이전</a>
+            <a class="page_btn" href="/mini_board/src/list.php/?page=<?php echo $prev_page_num ?>">이전</a>
             <?php
-                for($i=1; $i <= $max_page_num; $i++){
-            ?>      <a class="page-btn" href="/mini_board/src/list.php/?page=<?php echo $i ?>"><?php echo $i ?></a>
-            <?php
-                }
+                $a = isset($_GET["page"]) ? $_GET["page"] : 1;
+                $min_page = max($a - 2, 1); 
+                $max_page = min($a + 2, $max_page_num);
+                for ($i = $min_page; $i <= $max_page; $i++) {
+                    $class = ($i == $a) ? "page_btn now_page" : "page_btn";
+                    // 현재 페이지와 $i를 비교하여 현재 페이지에 해당하는 버튼에 강조 스타일을 적용
             ?>
-            <a class="page-btn"  href="/mini_board/src/list.php/?page=<?php echo $next_page_num ?>">다음</a>
+                <a class="<?php echo $class; ?>" href="/mini_board/src/list.php/?page=<?php echo $i ?>"><?php echo $i ?></a>
+            <?php
+                    }
+               
+            ?>
+            <a class="page_btn" href="/mini_board/src/list.php/?page=<?php echo $next_page_num ?>">다음</a>
         </section>
     </main>
 </body>
