@@ -1,14 +1,34 @@
-CREATE DATABASE ;
+INSERT INTO boards(
+	head
+	,content
+)
+VALUES('제목','내용')
+,('제목1 ','내용')
+,('제목2 ','내용')
+,('제목3 ','내용')
+,('제목4 ','내용')
+,('제목5 ','내용')
+,('제목6 ','내용')
+,('제목7 ','내용')
+,('제목8 ','내용')
+,('제목9 ','내용')
+,('제목10 ','내용')
+,('제목11 ','내용')
+,('제목12 ','내용')
+,('제목13 ','내용')
+,('제목14 ','내용')
+,('제목15 ','내용')
+,('제목16 ','내용')
+,('제목17 ','내용')
+,('제목18 ','내용')
+,('제목19 ','내용')
+,('제목20 ','내용')
+,('제목21 ','내용')
+,('제목22 ','내용')
+,('제목23 ','내용')
+,('제목24 ','내용')
+,('제목25 ','내용')
+,('제목26 ','내용')
+,('제목27 ','내용');
 
-USE mini_board;
-
-CREATE TABLE boards(
-	id INT PRIMARY KEY AUTO_INCREMENT
-	,head VARCHAR(100) NOT NULL
-	,content VARCHAR(1000) NOT NULL
-	,create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-	,delete_flg CHAR(1) NOT NULL DEFAULT '0'
-	,delete_date DATETIME DEFAULT NULL
-);
-
-COMMIT;
+COMMIT;boards

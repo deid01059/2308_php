@@ -5,4 +5,4 @@ xcopy D:\workspace\2308_php\side_project\mini_test\self_1\src C:\Apache24\htdocs
 
     집
 
-    
+xcopy C:\Users\TEST\Desktop\html.file\2308_php\side_project\mini_test\self_1\src C:\Apache24\htdocs\mini_test\self_1\src /E /Y    
