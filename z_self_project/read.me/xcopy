@@ -1,6 +1,0 @@
-
-
-
-집에서연결
-
-xcopy C:\Users\TEST\Desktop\html.file\2308_php\z_self_project\self_1\src C:\Apache24\htdocs\self_1\src /E /Y

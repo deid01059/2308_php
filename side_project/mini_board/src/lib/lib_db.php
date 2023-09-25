@@ -182,4 +182,41 @@ function db_select_boards_id(&$conn, &$arr_param){
 }
 
 
+
+// -------------------------------
+// 함수명   : db_update_boards_id
+// 기능     : boards 레코드 수정
+// 파라미터 : PDO       &$conn 
+//           Array      &arr_param 쿼리 작성용 배열
+// 리턴     : boolean
+// -------------------------------
+
+function db_update_boards_id(&$conn, &$arr_param){
+    $sql =
+        " UPDATE " 
+        ." boards "
+        ." SET "
+        ." head = :head "
+        ." ,content = :content "
+        ." WHERE "
+        ." id = :id; "
+        ;
+    $arr_ps = [
+        ":head" => $arr_param["head"]
+        ,":content" => $arr_param["content"]
+        ,":id" => $arr_param["id"]
+    ];   
+    try{
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute($arr_ps);
+        return $result; // 정상 : 쿼리 결과 리턴
+    } catch(Exception $e) {
+        echo $e->getMessage(); // Exception 메세지 출력
+        return false; // 예외발생 : flase 리턴
+    }
+
+}
+
+
+
 ?>

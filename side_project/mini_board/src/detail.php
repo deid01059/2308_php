@@ -5,6 +5,8 @@ define("FILE_HEADER", ROOT."header.php");
 require_once(ROOT."lib/lib_db.php");
 
 $id = ""; //게시글 id
+
+
 try {
     // id 확인
     if(!isset($_GET["id"]) || $_GET["id"] === "") {
@@ -84,7 +86,7 @@ $page = $_GET["page"];
         </table>    
     </div>
     <section>
-    <a class=page_btn href="#">수정</a>
+    <a class=page_btn href="/mini_board/src/update.php/?id=<?php echo $id; ?>&page=<?php echo $page;?>">수정</a>
     <a class=page_btn href="/mini_board/src/list.php/?page=<?php echo $page;?>">취소</a>
     <a class=page_btn href="#">삭제</a>
     </section>
