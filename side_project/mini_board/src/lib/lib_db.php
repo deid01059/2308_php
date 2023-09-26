@@ -62,13 +62,15 @@ function db_select_boards_paging(&$conn, &$arr_param){
     try {
         $sql =
         " SELECT "
-        ." id "
-        ." ,head "
-        ." ,create_date "
+        ."      id "
+        ."      ,head "
+        ."      ,create_date "
         ." FROM "
-        ." boards "
+        ."      boards "
+        ." WHERE "
+        ."      delete_flg = '0' "
         ." ORDER BY "
-        ." id DESC "
+        ."      id DESC "
         ." LIMIT :list_cnt OFFSET :offset "
         ;
 
@@ -93,7 +95,9 @@ function db_select_boards_cnt( &$conn ){
         " SELECT "
         ." count(id) as cnt "
         ." FROM "
-        ." boards "
+        ."      boards "
+        ." WHERE "
+        ."      delete_flg = '0' "
         ;
     try {
         $stmt = $conn->query($sql);
@@ -121,12 +125,12 @@ function db_select_boards_cnt( &$conn ){
 function db_insert_boards(&$conn, &$arr_param){
     $sql =
         " INSERT INTO boards( "
-        ." head "
-        ." ,content "
+        ."      head "
+        ."      ,content "
         ." ) "
         ." VALUES ( "
-        ." :head "
-        ." ,:content "
+        ."      :head "
+        ."      ,:content "
         ." ) "
         ;
     $arr_ps = [
@@ -166,6 +170,8 @@ function db_select_boards_id(&$conn, &$arr_param){
         ."     boards "
         ." WHERE "
         ."     id = :id "
+        ." AND "
+        ."      delete_flg = '0' "
         ;
     $arr_ps = [
         ":id" => $arr_param["id"]
@@ -212,9 +218,44 @@ function db_update_boards_id(&$conn, &$arr_param){
         return $result; // 정상 : 쿼리 결과 리턴
     } catch(Exception $e) {
         echo $e->getMessage(); // Exception 메세지 출력
-        return false; // 예외발생 : flase 리턴
+        return false; // 예외발생 : false 리턴
     }
 
+}
+
+
+// -------------------------------
+// 함수명   : db_delete_boards_id
+// 기능     : 특정 id의 레코드 삭제처리
+// 파라미터 : PDO       &$conn 
+//           Array      &arr_param 쿼리 작성용 배열
+// 리턴     : boolean
+// -------------------------------
+
+function db_delete_boards_id(&$conn, &$arr_param) {
+    $sql =
+        " UPDATE "
+        ."      boards "
+        ." SET "
+        ."      delete_date = NOW() "
+        ."      ,delete_flg = '1' "
+        ." WHERE "
+        ."      id = :id "
+    ;
+
+    $arr_ps = [
+        ":id" => $arr_param["id"]
+    ];
+
+    try {
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute($arr_ps);
+        
+        return $result;  // 정상 : 쿼리 결과 리턴
+    } catch (Exception $e) {
+        echo $e->getMessage(); // Exception 메세지 출력
+        return false; // 예외발생 : false 리턴
+    }
 }
 
 
