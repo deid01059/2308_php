@@ -5,7 +5,6 @@
 // 함수명   : my_db_conn
 // 기능     : DB Connect
 // 파라미터 : PDO    &$conn
-//           Array  &$arr_param
 // 리턴     : boolen
 // -------------------------------
 
@@ -56,6 +55,7 @@ function db_destroy_conn(&$conn){
 // 함수명   : db_select_boards_paging
 // 기능     : boards paging 조회
 // 파라미터 : PDO  &$conn
+//            Array  &$arr_param
 // 리턴     : Array /false
 // -------------------------------
 function db_select_boards_paging(&$conn, &$arr_param){
@@ -68,10 +68,10 @@ function db_select_boards_paging(&$conn, &$arr_param){
         ." FROM "
         ."      boards "
         ." WHERE "
-        ."      delete_flg = '0' "
+        ."      delete_flg = '0' " // delete_flg = '1'일시 삭제된 글이므로 조회 X
         ." ORDER BY "
         ."      id DESC "
-        ." LIMIT :list_cnt OFFSET :offset "
+        ." LIMIT :list_cnt OFFSET :offset " 
         ;
 
         $arr_ps = [
@@ -79,9 +79,10 @@ function db_select_boards_paging(&$conn, &$arr_param){
             ,":offset" => $arr_param["offset"]
         ];
 
-        $stmt = $conn->prepare($sql);
-        $stmt->execute($arr_ps);
-        $result = $stmt->fetchALL();
+        $stmt = $conn->prepare($sql); // $sql의 내용을 DB서버에 실행할수있도록준비    
+                //   prepare 는 $arr_ps 값(매개변수)를 대입 해 줘야 하는 상황일 때 를 위해 실행하지 않고 준비
+        $stmt->execute($arr_ps); // $stmt 에 $arr_ps의 값을 대입
+        $result = $stmt->fetchALL(); // $resurt에 배열타입으로 $stmt의 레코드를 반환
         return $result; //정상
     } catch(Exception $e){
         echo $e->getMessage(); // Exception 메세지 출력
@@ -89,6 +90,14 @@ function db_select_boards_paging(&$conn, &$arr_param){
     }
 }
 
+
+
+// -------------------------------
+// 함수명   : db_select_boards_cnt
+// 기능     : boards 의 id갯수 count
+// 파라미터 : PDO  &$conn
+// 리턴     : Array /false
+// -------------------------------
 
 function db_select_boards_cnt( &$conn ){
         $sql =
@@ -100,7 +109,7 @@ function db_select_boards_cnt( &$conn ){
         ."      delete_flg = '0' "
         ;
     try {
-        $stmt = $conn->query($sql);
+        $stmt = $conn->query($sql);     // 따로 지정해줘야할 매개변수가 없으므로 query문으로 작성
         $result = $stmt->fetchALL();
 
         return (int)$result[0]["cnt"]; //정상 : 쿼리 결과 리턴
@@ -119,7 +128,7 @@ function db_select_boards_cnt( &$conn ){
 // 함수명   : db_destroy_conn
 // 기능     : DB Destroy
 // 파라미터 : PDO       &$conn
-//           Array      &arr_param 쿼리 작성용 배열
+//            Array      &arr_param 쿼리 작성용 배열
 // 리턴     : bool / false
 // -------------------------------
 function db_insert_boards(&$conn, &$arr_param){
@@ -153,8 +162,8 @@ function db_insert_boards(&$conn, &$arr_param){
 // -------------------------------
 // 함수명   : db_select_boards_id
 // 기능     : select_boards_id
-// 파라미터 : PDO       &$conn &$arr_apram
-//           Array      &arr_param 쿼리 작성용 배열
+// 파라미터 : PDO       &$conn 
+//            Array     &arr_param 쿼리 작성용 배열
 // 리턴     : array / false
 // -------------------------------
 
@@ -193,7 +202,7 @@ function db_select_boards_id(&$conn, &$arr_param){
 // 함수명   : db_update_boards_id
 // 기능     : boards 레코드 수정
 // 파라미터 : PDO       &$conn 
-//           Array      &arr_param 쿼리 작성용 배열
+//            Array      &arr_param 쿼리 작성용 배열
 // 리턴     : boolean
 // -------------------------------
 

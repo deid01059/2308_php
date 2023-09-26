@@ -4,8 +4,7 @@ define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/mini_board/src/");
 define("FILE_HEADER", ROOT."header.php");
 require_once(ROOT."lib/lib_db.php");
 
-$id = ""; //게시글 id
-
+$id = ""; // 변수에 공백값을줘서 변수사용시 오류 발생 제거
 
 try {
     // id 확인

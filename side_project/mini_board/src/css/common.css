@@ -266,6 +266,11 @@ a {
 
 }
 
+.delete_table caption{
+    color: rgb(190, 0, 0);
+    font-weight: 800;
+}
+
 .delete_table tr th{
     font-size: 1.3rem;
     vertical-align: top;
@@ -281,4 +286,26 @@ a {
     height: 2rem;
     border-radius: 20px 20px 20px 20px;
     min-width: 300px;
+}
+
+.delete_submit_btn, .delete_cancle_btn{
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    color: #0000007d;
+    background-color: #ffffff;
+    border-radius: 20%;
+    border: none;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.delete_submit_btn:hover {
+    cursor: pointer;
+    background-color: #d3d3d3d6;
+}
+
+.delete_cancle_btn:hover {
+    background-color: #d3d3d3d6;
 }

@@ -25,11 +25,12 @@ try {
     $max_page_num = ceil($boards_cnt / $list_cnt); // 최대페이지 수
     
     // GET Method 확인
-    if(isset($_GET["page"])){
-        $page_num = $_GET["page"]; // 유저가 보내온 페이지 셋팅
-    }
-    // 삼항연산자로 작성할 경우
-    $a = isset($_GET["page"]) ? $_GET["page"] : 1;
+    // if(isset($_GET["page"])){
+    //     $page_num = $_GET["page"];   // 밑의 삼항연산자로 대체
+    // }
+
+    // 삼항연산자로 작성
+    $page_num = isset($_GET["page"]) ? $_GET["page"] : 1;
     
     
     $offset = ($page_num - 1)* $list_cnt; //오프셋계산
@@ -119,11 +120,18 @@ try {
         <section>
             <a class="page_btn" href="/mini_board/src/list.php/?page=<?php echo $prev_page_num ?>">이전</a>
             <?php
-                $min_page = max($a - 2, 1); 
-                $max_page = min($a + 2, $max_page_num);
+                $min_page = max($page_num - 2, 1); 
+                $max_page = min($page_num + 2, $max_page_num);
+                if($min_page === 1){
+                    $min_page = 1;
+                    $max_page = 5;
+                } else if($max_page === $max_page_num){
+                    $min_page = $max_page_num-4;
+                    $max_page = $max_page_num;
+                } 
                 for ($i = $min_page; $i <= $max_page; $i++) {
                     // 삼항연산자 : 조건 ? 참일때처리 : 거짓일때처리
-                    $class = ($i == $a) ? "page_btn now_page" : "";
+                    $class = ($i == $page_num) ? "page_btn now_page" : "";
                     // 현재 페이지와 $i를 비교하여 현재 페이지에 해당하는 버튼에 강조 스타일을 적용
             ?>
                 <a class="page_btn <?php echo $class; ?> list_page_no_btn" href="/mini_board/src/list.php/?page=<?php echo $i ?>"><?php echo $i ?></a>
