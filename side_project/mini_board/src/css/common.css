@@ -134,7 +134,6 @@ a {
 
 .insert_main {
     text-align: center;
- 
 }
 
 .insert_fieldset {
@@ -244,4 +243,42 @@ a {
     min-width: 300px;
 }
 
+/* delete page */
 
+.delete_body{
+    text-align: center;
+}
+
+
+.delete_main {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 1100px;
+}
+
+
+.delete_table{
+    margin: 3rem auto;
+    padding: 2rem;
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.459);
+    border-radius: 20px 20px 20px 20px;
+
+}
+
+.delete_table tr th{
+    font-size: 1.3rem;
+    vertical-align: top;
+    border: none;
+    min-width: 100px;
+}
+
+.delete_table tr td{
+    margin: 20px;
+    padding: 0px 10px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.459);
+    height: 2rem;
+    border-radius: 20px 20px 20px 20px;
+    min-width: 300px;
+}

@@ -13,6 +13,7 @@ try {
         throw new Exception("Parameter Error : No id"); // 강제 예외 발생 : Parameter Error
     }
     $id = $_GET["id"]; // id 셋팅
+    $page = $_GET["page"]; // page 셋팅
 
     //DB 연결
     if(!my_db_conn($conn)){
@@ -43,7 +44,6 @@ try {
 }
 
 
-$page = $_GET["page"];
 
 ?>
 
@@ -88,7 +88,7 @@ $page = $_GET["page"];
     <section>
     <a class=page_btn href="/mini_board/src/update.php/?id=<?php echo $id; ?>&page=<?php echo $page;?>">수정</a>
     <a class=page_btn href="/mini_board/src/list.php/?page=<?php echo $page;?>">취소</a>
-    <a class=page_btn href="#">삭제</a>
+    <a class=page_btn href="/mini_board/src/delete.php/?id=<?php echo $id; ?>&page=<?php echo $page;?>">삭제</a>
     </section>
 </body>
 </html>
