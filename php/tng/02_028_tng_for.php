@@ -57,16 +57,16 @@
 
 
 // 2번 역정렬
-// $my_int = 8;
-// for ($int_line = 1; $int_line <= $my_int; $int_line++ ){	
-// 	for ($blk = $my_int-$int_line; $blk >= 1; $blk-- ){
-// 	echo " ";
-// 	}
-// 	for ($star = 1; $star <= $int_line-1; $star++ ){
-// 		echo "*";
-// 		}
-// 	echo "\n";
-// }
+$my_int = 8;
+for ($int_line = 1; $int_line <= $my_int; $int_line++ ){	
+	for ($blk = $my_int-$int_line; $blk >= 1; $blk-- ){
+	echo " ";
+	}
+	for ($star = 1; $star <= $int_line-1; $star++ ){
+		echo "*";
+		}
+	echo "\n";
+}
 
 
 // 3번 삼각형
