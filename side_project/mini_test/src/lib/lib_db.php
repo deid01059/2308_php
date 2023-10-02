@@ -13,7 +13,7 @@ function my_db_conn( &$conn ) {
     $db_host    = "localhost"; // host
     $db_user    = "root"; // user
     $db_pw      = "php504"; // password
-    $db_name = "board"; // DB name
+    $db_name = "chimhaha"; // DB name
     $db_charset = "utf8mb4"; // charset
     $db_dns     = "mysql:host=".$db_host.";dbname=".$db_name.";charset=".$db_charset;
 
@@ -61,14 +61,17 @@ function db_select_boards_paging(&$conn, &$arr_param){
     try {
         $sql =
         " SELECT "
-        ." id "
-        ." ,title "
-        ." ,write_date "
+        ."      id "
+    ."          ,title "
+        ."      ,write_date "
         ." FROM "
-        ." board "
+                ." board "
+        ." WHERE "
+        ."      delete_flg = '0' " 
         ." ORDER BY "
-        ." id DESC "
-        ." LIMIT :list_cnt OFFSET :offset "
+        ."      id DESC "
+        ."      LIMIT :list_cnt " 
+        ."      OFFSET :offset "
         ;
 
         $arr_ps = [
@@ -90,9 +93,11 @@ function db_select_boards_paging(&$conn, &$arr_param){
 function db_select_boards_cnt( &$conn ){
         $sql =
         " SELECT "
-        ." count(id) as cnt "
+        ."      count(id) as cnt "
         ." FROM "
-        ." board "
+        ."      board "
+        ." WHERE "
+        ."      delete_flg = '0' "
         ;
     try {
         $stmt = $conn->query($sql);
@@ -119,13 +124,14 @@ function db_select_boards_cnt( &$conn ){
 // -------------------------------
 function db_insert_boards(&$conn, &$arr_param){
     $sql =
-        " INSERT INTO board( "
-        ." title "
-        ." ,content "
+        " INSERT INTO " 
+        ." board( "
+        ."      title "
+        ."      ,content "
         ." ) "
         ." VALUES ( "
-        ." :title "
-        ." ,:content "
+        ."      :title "
+        ."      ,:content "
         ." ) "
         ;
     $arr_ps = [
@@ -165,6 +171,8 @@ function db_select_boards_id(&$conn, &$arr_param){
         ."     board "
         ." WHERE "
         ."     id = :id "
+        ." AND "
+        ."      delete_flg = '0' "
         ;
     $arr_ps = [
         ":id" => $arr_param["id"]
@@ -193,12 +201,12 @@ function db_select_boards_id(&$conn, &$arr_param){
 function db_update_boards_id(&$conn, &$arr_param){
     $sql =
         " UPDATE " 
-        ." board "
+        ."      board "
         ." SET "
-        ." title = :title "
-        ." ,content = :content "
+        ."      title = :title "
+        ."      ,content = :content "
         ." WHERE "
-        ." id = :id; "
+        ."      id = :id; "
         ;
     $arr_ps = [
         ":head" => $arr_param["title"]
@@ -217,7 +225,39 @@ function db_update_boards_id(&$conn, &$arr_param){
 }
 
 
+// -------------------------------
+// 함수명   : db_delete_boards_id
+// 기능     : 특정 id의 레코드 삭제처리
+// 파라미터 : PDO       &$conn 
+//           Array      &arr_param 쿼리 작성용 배열
+// 리턴     : boolean
+// -------------------------------
 
+function db_delete_boards_id(&$conn, &$arr_param) {
+    $sql =
+        " UPDATE "
+        ."      board "
+        ." SET "
+        ."      delete_date = NOW() "
+        ."      ,delete_flg = '1' "
+        ." WHERE "
+        ."      id = :id "
+    ;
+
+    $arr_ps = [
+        ":id" => $arr_param["id"]
+    ];
+
+    try {
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute($arr_ps);
+        
+        return $result;  // 정상 : 쿼리 결과 리턴
+    } catch (Exception $e) {
+        echo $e->getMessage(); // Exception 메세지 출력
+        return false; // 예외발생 : false 리턴
+    }
+}
 
 
 

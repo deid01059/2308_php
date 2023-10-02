@@ -4,20 +4,172 @@
     margin: 0px;
     padding: 0px;
 }
+
+
 /* header */
 
 header h1{
+    padding: 50px;
+    font-size: 3rem;
     text-align: center;
-    width: 100%;
-    height: 3rem;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgb(148, 148, 148);
 }
+
 
 header h1 a {
     color: black;
     text-decoration: none;
 }
 
-header h1 a:hover {
-    color: rgb(53, 53, 53);
+header h1 a img {
+    width: 50px;
+    
+}
+
+
+header h1 a span {
+    font-size: 1rem;
+}
+
+@keyframes wobble-horizontal {
+    16.65% {
+      transform: translateX(8px);
+    }
+  
+    33.3% {
+      transform: translateX(-6px);
+    }
+  
+    49.95% {
+      transform: translateX(4px);
+    }
+  
+    66.6% {
+      transform: translateX(-2px);
+    }
+  
+    83.25% {
+      transform: translateX(1px);
+    }
+  
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+.wobble-horizontal {
+    display: inline-block;
+  
+@include hideTapHighlightColor();
+@include hardwareAccel();
+@include improveAntiAlias();
+  
+&:hover {
+    animation-name: wobble-horizontal;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+}
+}
+  
+
+
+
+
+
+
+
+
+/* list page */
+
+main {
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.list_table {
+    padding: 2rem;
+    border-radius: 20px;
+    background-color: rgba(216, 216, 216, 0.5);
+    margin: 0px auto;
+}
+
+
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,700,900);
+
+
+section {
+    text-align: center;
+}
+
+
+.menu {
+    display: flex; 
+    list-style: none;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu li {
+    margin: 10px 5px; 
+
+}
+
+.menu a {
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+.SMN_effect-13 a {
+  color: #000000;
+}
+
+
+
+.SMN_effect-13 a:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: #6c6c6c;
+  opacity: 0;
+  -webkit-transform: translateY(5px);
+  -moz-transform: translateY(5px);
+  transform: translateY(5px);
+  -webkit-transition: -webkit-transform 0.4s, opacity 0.4s;
+  -moz-transition: -moz-transform 0.4s, opacity 0.4s;
+  transition: transform 0.4s, opacity 0.4s;
+  pointer-events: none;
+}
+
+
+.SMN_effect-13 a:hover:after, .SMN_effect-13 a:focus:after {
+  opacity: 1;
+  -webkit-transform: translateY(0px);
+  -moz-transform: translateY(0px);
+  transform: translateY(0px);
+}
+
+.minmax_btn{
+    color: red;
+}
+
+.page_btn {
+    margin: 0px 10px;
+}
+
+/* btn스타일 적용으로 인해 중복값적용이 불가하여 id 사용 */
+#minmax_btn {
+    color: rgb(76, 58, 239);
+}
+
+
+.now_page {
+    font-weight: 900;
 }
