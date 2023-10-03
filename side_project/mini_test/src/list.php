@@ -23,11 +23,6 @@ try {
 
     $max_page_num = ceil($boards_cnt / $list_cnt); // 최대페이지 수
     
-    // GET Method 확인
-    // if(isset($_GET["page"])){
-    //     $page_num = $_GET["page"];   // 밑의 삼항연산자로 대체
-    // }
-
     // 삼항연산자로 작성
     $page_num = isset($_GET["page"]) ? $_GET["page"] : 1;
     
@@ -93,8 +88,8 @@ try {
     <div class="main_top frame">
         <form action="/mini_test/src/search.php" method="get">
             <input type="text" name="title">
-            <input type="hidden" name="page_num" value="<?php echo $page_num ?>">
-            <button type="submit">검색</button>
+            <input type="hidden" name="page" value="<?php echo $page_num ?>">
+            <button type="submit">홈으로</button>
         </form>
         <td class="button_1"><a class=insert_board href="/mini_test/src/insert.php">글작성</a></td>
     </div>

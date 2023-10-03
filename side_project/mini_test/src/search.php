@@ -88,10 +88,7 @@ try {
     ?>
 <main>
     <div class="main_top frame">
-        <form action="/mini_test/src/search.php" method="post">
-            <input type="text" name="title" required>
-            <button type="submit">검색</button>
-        </form>
+        <a href="/mini_test/src/list.php/?page=<?php echo $page_num ?>">이전</a>
         <td class="button_1"><a class=insert_board href="/mini_test/src/insert.php">글작성</a></td>
     </div>
     <table class="list_table frame">
