@@ -6,15 +6,27 @@
 }
 
 
+/* 공통 몸통영역 */
+.frame {
+  background-color: rgba(216, 216, 216, 0.5);
+  width: 80vw;
+  max-width: 1000px;
+  text-align: center;
+  padding: 2rem;
+}
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
 /* header */
 
 header h1{
-    padding: 50px;
+    padding-top: 50px;
+    padding-bottom: 20px;
     font-size: 3rem;
     text-align: center;
-    border-bottom: 1px solid rgb(148, 148, 148);
 }
-
 
 header h1 a {
     color: black;
@@ -25,7 +37,6 @@ header h1 a img {
     width: 50px;
     
 }
-
 
 header h1 a span {
     font-size: 1rem;
@@ -82,16 +93,22 @@ header h1 a span {
 
 /* list page */
 
-main {
-    text-align: center;
+main {   
     padding-top: 50px;
     padding-bottom: 20px;
+
+}
+
+.main_top{
+    padding: 10px 20px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
 }
 
 .list_table {
-    padding: 2rem;
     border-radius: 20px;
-    background-color: rgba(216, 216, 216, 0.5);
     margin: 0px auto;
 }
 
@@ -166,7 +183,8 @@ section {
 
 /* btn스타일 적용으로 인해 중복값적용이 불가하여 id 사용 */
 #minmax_btn {
-    color: rgb(76, 58, 239);
+    font-weight: 900;
+    font-size: 1.1rem;
 }
 
 

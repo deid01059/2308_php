@@ -1,77 +1,74 @@
 <?php
-define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/mini_test/src/");
-define("FILE_HEADER", ROOT."header.php");
-require_once(ROOT."lib/lib_db.php");
+define("ROOT", $_SERVER["DOCUMENT_ROOT"] . "/mini_test/src/");
+define("FILE_HEADER", ROOT . "header.php");
+require_once(ROOT . "lib/lib_db.php");
 
 $conn = null; // DB connection 변수
 
 $list_cnt = 5; // 한 페이지 최대 표시 수
 $page_num = 1; // 페이지 번호 초기화
+
 try {
     // DB 접속
-    if(!my_db_conn($conn)){
+    if (!my_db_conn($conn)) {
         // DB Instance 에러
-        throw new Exception("DB Error : PDO instance"); //강제예외발생 : DB Insrance
+        throw new Exception("DB Error : PDO instance"); // 강제 예외 발생 : DB Insrance
     }
+    // title 확인
+    if (!isset($_GET["title"]) || $_GET["title"] === "") {
+        throw new Exception("Parameter Error : No title"); // 강제 예외 발생 : Parameter Error
+    }
+    $title = $_GET["title"]; // title 셋팅
+
+    $arr_param = [
+        "title" => '%' . $title . '%'
+    ];
     // -------------
     // 페이징 처리
     // -------------
-    $boards_cnt = db_select_boards_cnt($conn);
-    if($boards_cnt === false) {
+    $boards_cnt = db_search_boards_cnt($conn, $arr_param); // 수정: 검색어 파라미터 추가
+    if ($boards_cnt === false) {
         throw new Exception("DB Error : SELECT Count"); // 강제 예외 발생 : DB SELECT Count
     }
 
     $max_page_num = ceil($boards_cnt / $list_cnt); // 최대페이지 수
-    
-    // GET Method 확인
-    // if(isset($_GET["page"])){
-    //     $page_num = $_GET["page"];   // 밑의 삼항연산자로 대체
-    // }
 
-    // 삼항연산자로 작성
+    // GET Method 확인
     $page_num = isset($_GET["page"]) ? $_GET["page"] : 1;
     
-    
-    $offset = ($page_num - 1)* $list_cnt; //오프셋계산
+    $offset = ($page_num - 1) * $list_cnt; // 오프셋 계산
     
     // 이전버튼
     $prev_page_num = $page_num - 1;
-    if($prev_page_num === 0){
+    if ($prev_page_num === 0) {
         $prev_page_num = 1;
     }
     
     // 다음버튼
     $next_page_num = $page_num + 1;
-    if($next_page_num > $max_page_num){
+    if ($next_page_num > $max_page_num) {
         $next_page_num = $max_page_num;
     }
     
-    // DB 조회시 사용할 데이터 배열
+    // 게시글 데이터 조회
     $arr_param = [
-        "list_cnt" => $list_cnt
+        "title" => '%' . $title . '%'
+        ,"list_cnt" => $list_cnt
         ,"offset" => $offset
     ];
-    
-    
-    
-    // 게시글 리스트 조회 
-    $result  = db_select_boards_paging($conn, $arr_param);
-    if(!$result){
-        throw new Exception("DB Error : SELECT boards"); // 강제 예외 발생 : SELECT boards
+
+    // 게시글 리스트 조회
+    $result = db_search_boards_title($conn, $arr_param);
+    if (!$result) {
+        throw new Exception("DB Error : NO title"); // 강제 예외 발생 : SELECT boards
     }
-
-} catch(Exception $e) {
-    echo $e->getMessage(); //예외발생 메세지 출력
-    exit; //처리종료
+    
+} catch (Exception $e) {
+    echo $e->getMessage(); // 예외발생 메세지 출력
+    exit; // 처리종료
 } finally {
-    db_destroy_conn($conn); //DB파기
+    db_destroy_conn($conn); // DB 파기
 }
-
-
-
-
-
-
 
 
 
@@ -91,9 +88,8 @@ try {
     ?>
 <main>
     <div class="main_top frame">
-        <form action="/mini_test/src/search.php" method="get">
-            <input type="text" name="title">
-            <input type="hidden" name="page_num" value="<?php echo $page_num ?>">
+        <form action="/mini_test/src/search.php" method="post">
+            <input type="text" name="title" required>
             <button type="submit">검색</button>
         </form>
         <td class="button_1"><a class=insert_board href="/mini_test/src/insert.php">글작성</a></td>
@@ -125,10 +121,10 @@ try {
     <section>
         <ul class="menu SMN_effect-13">
             <li>
-                <a class="page_btn" id="minmax_btn" href="/mini_test/src/list.php/?page=1"><<</a>
+                <a class="page_btn" id="minmax_btn" href="/mini_test/src/search.php/?page=1"><<</a>
             </li> 
             <li>
-                <a class="page_btn" href="/mini_test/src/list.php/?page=<?php echo $prev_page_num ?>"><</a>
+                <a class="page_btn" href="/mini_test/src/search.php/?page=<?php echo $prev_page_num ?>"><</a>
             </li> 
             <li>
                 <?php
@@ -146,17 +142,17 @@ try {
                             $class = ($i == $page_num) ? "now_page" : "";
                             // 현재 페이지와 $i를 비교하여 현재 페이지에 해당하는 버튼에 강조 스타일을 적용
                 ?>
-                <a class="page_btn <?php echo $class; ?> " href="/mini_test/src/list.php/?page=<?php echo $i ?>"><?php echo $i ?></a>
+                <a class="page_btn <?php echo $class; ?> " href="/mini_test/src/search.php/?page=<?php echo $i ?>&title=<?php echo $title ?>"><?php echo $i ?></a>
                 <?php
                         }
                 
                 ?>
             </li>
             <li>
-                <a class="page_btn" href="/mini_test/src/list.php/?page=<?php echo $next_page_num ?>">></a>
+                <a class="page_btn" href="/mini_test/src/search.php/?page=<?php echo $next_page_num ?>">></a>
             </li>
             <li>
-                <a class="page_btn" id="minmax_btn" href="/mini_test/src/list.php/?page=<?php echo $max_page_num ?>">>></a>
+                <a class="page_btn" id="minmax_btn" href="/mini_test/src/search.php/?page=<?php echo $max_page_num ?>">>></a>
             </li>
         </ul>                        
     </section>
