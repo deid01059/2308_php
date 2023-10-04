@@ -76,26 +76,26 @@ try {
     <?php
         require_once(FILE_HEADER);
     ?>
-    <div class="detail_container"> 
+    <div class="update"> 
         <form action="/mini_test/src/update.php" method="post">       
-            <table class="detail_table">
+            <table class="table frame">
                 <input type="hidden" name="id" value="<?php echo $id ?>">
                 <input type="hidden" name="page" value="<?php echo $page ?>">
                 <tr>
-                    <th>글번호</th>
-                    <td><?php echo $item["id"]; ?></td>
+                    <th class="th">글번호</th>
+                    <td class="update_id"><?php echo $item["id"]; ?></td>
                 </tr>
                 <tr>
-                    <th>제목</th>
-                    <td><input type="text" name="title" value="<?php echo $item["title"]?>"></td>
+                    <th class="th">제목</th>
+                    <td><input class="update_title" type="text" name="title" value="<?php echo $item["title"]?>"></td>
                 </tr>
                 <tr>
-                    <th>내용</th>
-                    <td><textarea name="content" id="content" cols="30" rows="10"><?php echo $item["content"]?></textarea></td>
+                    <th class="th">내용</th>
+                    <td><textarea class="update_content" name="content" id="content" cols="30" rows="10"><?php echo $item["content"]?></textarea></td>
                 </tr>
             </table>   
-            <button type="submit">확인</button>
-            <a class=page_btn href="/mini_test/src/detail.php/?id=<?php echo $id; ?>&page=<?php echo $page;?>">취소</a>
+            <button type="submit" class="insert_submit_btn">확인</button>
+            <a class="insert_cancle_btn" href="/mini_test/src/detail.php/?id=<?php echo $id; ?>&page=<?php echo $page;?>">취소</a>
         </form> 
     </div>
     <section>

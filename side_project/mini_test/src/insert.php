@@ -54,18 +54,18 @@ if($http_method === "POST"){
         require_once(FILE_HEADER);
     ?>
     <form action="/mini_test/src/insert.php" method="post">
-        <main class="insert_main">
-            <fieldset class="insert_fieldset">
+        <main class="frame">
+            <fieldset>
             <div>
-                <label class="insert_head_label" for="title">제목</label>
-                <input class="insert_head" type="text" name="title" id="title" required>
+                <label for="title">제목</label>
+                <input class="insert_input" type="text" name="title" id="title" required>      
             <br>
-                <label class="insert_content_label" for="content">내용</label>
-                <textarea class="insert_content" name="content" id="content" cols="30" rows="10" required></textarea>
+                <label class="" for="content">내용</label>
+                <textarea class="insert_text_area" name="content" id="content" cols="30" rows="10" required></textarea>
             </div>
             <br>
-          <button class="insert_submit_btn" type="submit">작성</button>
-            <a class="insert_cancle_btn" href="/mini_test/src/list.php">취소</a>      
+                <button class="insert_submit_btn" type="submit">작성</button>
+                <a class="insert_cancle_btn" href="/mini_test/src/list.php">취소</a>      
             </fieldset>
         </main>
     </form> 

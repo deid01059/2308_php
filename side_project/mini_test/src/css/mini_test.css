@@ -3,21 +3,101 @@
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
+    font-family: 'KCCChassam';
 }
-
+@font-face {
+  font-family: 'KCCChassam';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/KCCChassam.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
 
 /* 공통 몸통영역 */
 .frame {
   background-color: rgba(216, 216, 216, 0.5);
+  background-image: linear-gradient(to bottom, #f8ffbe, #f9e2ff);
   width: 80vw;
   max-width: 1000px;
   text-align: center;
   padding: 2rem;
+  border-spacing: 0px 5px;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-bottom: 20px;
 }
+
+
 a {
   text-decoration: none;
   color: #000000;
 }
+
+
+input {
+  outline: none;
+  margin: 0;
+  padding: 0px 5px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+}
+
+th{
+  padding: 0px 10px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.th{
+  background-color: rgba(244, 254, 255, 0.562);
+}
+
+.detail_td{
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+
+
+
+/* 버튼 */
+.btn {
+  background: #211e33;
+  background-image: -webkit-linear-gradient(top, #211e33, #bfbfbf);
+  background-image: -moz-linear-gradient(top, #211e33, #bfbfbf);
+  background-image: -ms-linear-gradient(top, #211e33, #bfbfbf);
+  background-image: -o-linear-gradient(top, #211e33, #bfbfbf);
+  background-image: linear-gradient(to bottom, #211e33, #bfbfbf);
+  -webkit-border-radius: 10;
+  -moz-border-radius: 10;
+  border-radius: 10px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 0.7rem;
+  padding: 3px 6px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #949494;
+  background-image: -webkit-linear-gradient(top, #949494, #2b3136);
+  background-image: -moz-linear-gradient(top, #949494, #2b3136);
+  background-image: -ms-linear-gradient(top, #949494, #2b3136);
+  background-image: -o-linear-gradient(top, #949494, #2b3136);
+  background-image: linear-gradient(to bottom, #949494, #2b3136);
+  text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 /* header */
 
@@ -91,12 +171,11 @@ header h1 a span {
 
 
 
-/* list page */
+/* page */
 
 main {   
-    padding-top: 50px;
+    padding-top: 20px;
     padding-bottom: 20px;
-
 }
 
 .main_top{
@@ -107,10 +186,159 @@ main {
     border-radius: 10px;
 }
 
-.list_table {
+.insert_board_a{
+  display: inline-block;
+  padding: 0px 5px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  line-height: 1.5rem;
+}
+
+
+.table {
     border-radius: 20px;
     margin: 0px auto;
+    margin-bottom: 20px;
+    text-align: center;
 }
+
+
+.table_content {
+  background-color: rgba(255, 255, 255, 0.801);
+  width: 70vw;
+  max-width: 800px;
+  text-align: center;
+  border: none;
+}
+
+.table_content td {
+  padding: 10px 0px;
+}
+
+.td_id {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+
+.td_date {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.boards_title:hover {
+  color: #8f8f8f;
+  font-weight: 540;
+}
+
+
+
+.update_id{
+  background-color: rgba(255, 255, 255, 0.801);
+  width: 40vw;
+  max-width: 800px;
+  text-align: center;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding: 5px 0;
+
+}
+
+.update_title{
+  background-color: rgba(255, 255, 255, 0.801);
+  width: 40vw;
+  max-width: 800px;
+  text-align: center;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding: 5px 0;
+}
+
+
+.update_content{
+  padding: 0.5rem;
+  width: 40vw;
+  background-color: white;
+  border-radius: 13px;
+  vertical-align: middle;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  outline: none;
+}
+
+
+
+
+/* insert page */
+
+textarea {
+  border: none;
+  resize: none;
+  background-color: rgba(255, 255, 255, 0);
+  font-size: 1.2rem;
+  color: #000000;
+}
+
+
+fieldset {
+  border: none;
+}
+
+.insert_input {
+  padding: 0.5rem 0.7rem;
+  width: 40vw;
+  margin-bottom: 20px;
+}
+.insert_text_area {
+  padding: 0.5rem;
+  width: 40vw;
+  background-color: white;
+  border-radius: 13px;
+  vertical-align: middle;
+  outline: none;
+}
+
+.insert_submit_btn{
+  border: none;
+  background: none;
+  margin: 0px 10px;
+  font-size: 1.1rem;
+  font-weight: 400;
+  cursor:pointer;
+}
+
+.insert_cancle_btn{
+  margin: 0px 10px;
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+
+
+/* update */
+.update {
+  text-align: center;
+}
+
+
+.delete_msg{
+  font-size: 2rem;
+  font-weight: 900;
+  color: red;
+  margin: 20 auto;
+  margin-top: 40px;
+}
+
+
+
+
+
+
 
 
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300,700,900);
@@ -181,13 +409,16 @@ section {
     margin: 0px 10px;
 }
 
+
+
+.now_page {
+    font-weight: 900;
+}
+
+
 /* btn스타일 적용으로 인해 중복값적용이 불가하여 id 사용 */
 #minmax_btn {
     font-weight: 900;
     font-size: 1.1rem;
 }
 
-
-.now_page {
-    font-weight: 900;
-}

@@ -101,37 +101,41 @@ try {
     <?php
         require_once(FILE_HEADER);
     ?>
-    <main class="delete_main">
-        <table class="delete_table frame">
-            <caption>
+    <main>
+        <table class="table frame">
+            <caption class="delete_msg">
                 삭제하면 영구적으로 복구 할 수 없습니다.
                 <br>
                 정말로 삭제하시겠습니까?
                 <br><br>
             </caption>
-            <tr>
-                <th>게시글번호</th>
-                <td><?php echo $item["id"] ?></td>
+            <tr class="table_content">
+                <th class="th">글번호</th>
+                <td class="detail_td"><?php echo $item["id"]; ?></td>
             </tr>
-            <tr>
-                <th>작성일</th>
-                <td><?php echo $item["write_date"] ?></td>
+            <tr class="table_content">
+                <th class="th">제목</th>
+                <td class="detail_td">
+                    <div>
+                        <?php echo $item["title"]; ?>
+                    </div>
+                </td class="detail_td">
             </tr>
-            <tr>
-                <th>제목</th>
-                <td><?php echo $item["title"] ?></td>
+            <tr class="table_content">
+                <th class="th">내용</th>
+                <td class="detail_td"><textarea disabled cols=80 rows=10 style='overflow:visible'><?php echo $item["content"]; ?></textarea></td>
             </tr>
-            <tr>
-                <th>내용</th>
-                <td><?php echo $item["content"] ?></td>
+            <tr class="table_content">
+                <th class="th">작성일자</th>
+                <td class="detail_td"><?php echo $item["write_date"]; ?></td>
             </tr>
-        </table>
+        </table>    
     </main>
     <section>
         <form action="/mini_test/src/delete.php" method="post">
             <input type="hidden" name="id" value="<?php echo $id; ?>">
-            <button class="delete_submit_btn" type="submit">동의</button>
-            <a class="delete_cancle_btn" href="/mini_test/src/detail.php/?id=<?php echo $id; ?>&page=<?php echo $page;?>">취소</a>
+            <button class="insert_submit_btn" type="submit">동의</button>
+            <a class="insert_cancle_btn" href="/mini_test/src/detail.php/?id=<?php echo $id; ?>&page=<?php echo $page;?>">취소</a>
         </form>
     </section>
 </body>

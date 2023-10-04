@@ -209,7 +209,7 @@ function db_update_boards_id(&$conn, &$arr_param){
         ."      id = :id; "
         ;
     $arr_ps = [
-        ":head" => $arr_param["title"]
+        ":title" => $arr_param["title"]
         ,":content" => $arr_param["content"]
         ,":id" => $arr_param["id"]
     ];   

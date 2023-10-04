@@ -52,7 +52,7 @@ try {
     
     // 게시글 데이터 조회
     $arr_param = [
-        "title" => '%' . $title . '%'
+        "title" => "%". $title ."%"
         ,"list_cnt" => $list_cnt
         ,"offset" => $offset
     ];
@@ -89,7 +89,7 @@ try {
 <main>
     <div class="main_top frame">
         <a href="/mini_test/src/list.php/?page=<?php echo $page_num ?>">이전</a>
-        <td class="button_1"><a class=insert_board href="/mini_test/src/insert.php">글작성</a></td>
+        <td class="button_1"><a class=insert_board_a href="/mini_test/src/insert.php">글작성</a></td>
     </div>
     <table class="list_table frame">
         <colgroup>
@@ -106,52 +106,50 @@ try {
         // 리스트를 생성
         foreach($result as $item){
         ?>        
-        <tr>
-            <td><?php echo $item["id"]; ?></td>
-            <td><a class="boards_title" href="/mini_test/src/detail.php/?id=<?php echo $item["id"]; ?>&page=<?php echo $page_num; ?>"><?php echo $item["title"]; ?></a></td>          
-            <td><?php echo $item["write_date"]; ?></td>              
+        <tr class="table_content">
+        <td class="td_id"><?php echo $item["id"]; ?></td>
+        <td class="td_title"><a class="boards_title" href="/mini_test/src/detail.php/?id=<?php echo $item["id"]; ?>&page=<?php echo $page_num; ?>"><?php echo $item["title"]; ?></a></td>          
+        <td class="td_date"><?php echo $item["write_date"]; ?></td>              
         </tr>
         <?php    
         }
         ?>        
     </table>
-    <section>
-        <ul class="menu SMN_effect-13">
-            <li>
-                <a class="page_btn" id="minmax_btn" href="/mini_test/src/search.php/?page=1"><<</a>
-            </li> 
-            <li>
-                <a class="page_btn" href="/mini_test/src/search.php/?page=<?php echo $prev_page_num ?>"><</a>
-            </li> 
-            <li>
-                <?php
-                    $min_page = max($page_num - 2, 1); 
-                    $max_page = min($page_num + 2, $max_page_num);
-                        if($min_page === 1){
-                            $min_page = 1;
-                            $max_page = 5;
-                        } else if($max_page === $max_page_num){
-                            $min_page = $max_page_num-4;
-                            $max_page = $max_page_num;
-                        } 
-                        for ($i = $min_page; $i <= $max_page; $i++) {
-                            // 삼항연산자 : 조건 ? 참일때처리 : 거짓일때처리
-                            $class = ($i == $page_num) ? "now_page" : "";
-                            // 현재 페이지와 $i를 비교하여 현재 페이지에 해당하는 버튼에 강조 스타일을 적용
-                ?>
-                <a class="page_btn <?php echo $class; ?> " href="/mini_test/src/search.php/?page=<?php echo $i ?>&title=<?php echo $title ?>"><?php echo $i ?></a>
-                <?php
-                        }
-                
-                ?>
-            </li>
-            <li>
-                <a class="page_btn" href="/mini_test/src/search.php/?page=<?php echo $next_page_num ?>">></a>
-            </li>
-            <li>
-                <a class="page_btn" id="minmax_btn" href="/mini_test/src/search.php/?page=<?php echo $max_page_num ?>">>></a>
-            </li>
-        </ul>                        
+    <section class="menu SMN_effect-13">
+        <a class="page_btn" id="minmax_btn" href="/mini_test/src/search.php/?page=1&title=<?php echo $title ?>"><<</a>
+        <a class="page_btn" href="/mini_test/src/search.php/?page=<?php echo $prev_page_num ?>&title=<?php echo $title ?>"><</a>
+        <?php
+            if($boards_cnt < 21){
+                for ($i = 1; $i <= $max_page_num; $i++) {
+                    // 삼항연산자 : 조건 ? 참일때처리 : 거짓일때처리
+                    $class = ($i == $page_num) ? "now_page" : "";
+        ?>
+                    <a class="page_btn <?php echo $class; ?> " href="/mini_test/src/search.php/?page=<?php echo $i ?>&title=<?php echo $title ?>"><?php echo $i ?></a>        
+        <?php
+                }
+            }
+            else if($boards_cnt >= 21){
+            $min_page = max($page_num - 2, 1); 
+            $max_page = min($page_num + 2, $max_page_num);
+                if($min_page === 1){
+                    $min_page = 1;
+                    $max_page = 5;
+                } 
+                else if($max_page === $max_page_num){
+                    $min_page = $max_page_num-4;
+                    $max_page = $max_page_num;
+                } 
+                for ($i = $min_page; $i <= $max_page; $i++) {
+                    // 삼항연산자 : 조건 ? 참일때처리 : 거짓일때처리
+                    $class = ($i == $page_num) ? "now_page" : "";
+                    // 현재 페이지와 $i를 비교하여 현재 페이지에 해당하는 버튼에 강조 스타일을 적용
+        ?>
+        <a class="page_btn <?php echo $class; ?> " href="/mini_test/src/search.php/?page=<?php echo $i ?>&title=<?php echo $title ?>"><?php echo $i ?></a>
+        <?php
+                }}             
+        ?>
+        <a class="page_btn" href="/mini_test/src/search.php/?page=<?php echo $next_page_num ?>&title=<?php echo $title ?>">></a>
+        <a class="page_btn" id="minmax_btn" href="/mini_test/src/search.php/?page=<?php echo $max_page_num ?>&title=<?php echo $title ?>">>></a>                    
     </section>
 </main>
 </body>

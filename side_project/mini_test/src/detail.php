@@ -63,27 +63,29 @@ try {
 <body>
     <?php
         require_once(FILE_HEADER);
-    ?>
-    <div class="detail_container">    
-        <table class="detail_table frame">
-            <tr>
-                <th>글번호</th>
-                <td><?php echo $item["id"]; ?></td>
+    ?>  
+        <table class="table frame">
+            <tr class="table_content">
+                <th class="th">글번호</th>
+                <td class="detail_td"><?php echo $item["id"]; ?></td>
             </tr>
-            <tr>
-                <th>제목</th>
-                <td><?php echo $item["title"]; ?></td>
+            <tr class="table_content">
+                <th class="th">제목</th>
+                <td class="detail_td">
+                    <div>
+                        <?php echo $item["title"]; ?>
+                    </div>
+                </td class="detail_td">
             </tr>
-            <tr>
-                <th>내용</th>
-                <td><?php echo $item["content"]; ?></td>
+            <tr class="table_content">
+                <th class="th">내용</th>
+                <td class="detail_td"><textarea disabled cols=80 rows=10 style='overflow:visible'><?php echo $item["content"]; ?></textarea></td>
             </tr>
-            <tr>
-                <th>작성일자</th>
-                <td><?php echo $item["write_date"]; ?></td>
+            <tr class="table_content">
+                <th class="th">작성일자</th>
+                <td class="detail_td"><?php echo $item["write_date"]; ?></td>
             </tr>
         </table>    
-    </div>
     <section>
     <a class=page_btn href="/mini_test/src/update.php/?id=<?php echo $id; ?>&page=<?php echo $page;?>">수정</a>
     <a class=page_btn href="/mini_test/src/list.php/?page=<?php echo $page;?>">취소</a>
