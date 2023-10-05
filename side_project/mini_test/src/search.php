@@ -64,8 +64,9 @@ try {
     }
     
 } catch (Exception $e) {
-    echo $e->getMessage(); // 예외발생 메세지 출력
-    exit; // 처리종료
+    // echo $e->getMessage(); //예외발생 메세지 출력  //v002 del
+    header("Location: error.php/?err_msg={$e->getMessage()}");
+    exit; //처리종료
 } finally {
     db_destroy_conn($conn); // DB 파기
 }

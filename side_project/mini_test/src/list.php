@@ -51,12 +51,13 @@ try {
     
     // 게시글 리스트 조회 
     $result  = db_select_boards_paging($conn, $arr_param);
-    if(!$result){
+    if($result === false){
         throw new Exception("DB Error : SELECT boards"); // 강제 예외 발생 : SELECT boards
     }
 
 } catch(Exception $e) {
-    echo $e->getMessage(); //예외발생 메세지 출력
+    // echo $e->getMessage(); //예외발생 메세지 출력  //v002 del
+    header("Location: error.php/?err_msg={$e->getMessage()}");
     exit; //처리종료
 } finally {
     db_destroy_conn($conn); //DB파기

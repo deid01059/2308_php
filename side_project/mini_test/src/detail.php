@@ -36,8 +36,8 @@ try {
     }
     $item=$result[0];
 }catch (Exception $e) {
-    echo $e->getMessage(); // 예외 메세지 출력
-    exit; // 처리종료
+    header("Location: error.php/?err_msg={$e->getMessage()}");
+    exit; //처리종료
 } finally{
     db_destroy_conn($conn); //DB파기
 }
