@@ -15,8 +15,7 @@ try {
         throw new Exception("DB Error : PDO instance"); //강제예외발생 : DB Insrance
     }
     //GET Method의 경우
-    if($http_method === "GET"){
-        
+    if($http_method === "GET"){        
         $id = isset($_GET["id"]) ? $_GET["id"] : ""; //id셋팅
         $page = isset($_GET["page"]) ? $_GET["page"] : ""; //page셋팅
 
