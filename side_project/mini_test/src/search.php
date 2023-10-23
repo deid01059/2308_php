@@ -117,7 +117,9 @@ try {
         ?>        
     </table>
     <section class="menu SMN_effect-13">
-        <a class="page_btn" id="minmax_btn" href="/mini_test/src/search.php/?page=1&title=<?php echo $title ?>"><<</a>
+        <?php if($boards_cnt >= 21){ ?>
+            <a class="page_btn" id="minmax_btn" href="/mini_test/src/search.php/?page=1&title=<?php echo $title ?>"><<</a>
+        <?php } ?>
         <a class="page_btn" href="/mini_test/src/search.php/?page=<?php echo $prev_page_num ?>&title=<?php echo $title ?>"><</a>
         <?php
             if($boards_cnt < 21){
@@ -150,7 +152,9 @@ try {
                 }}             
         ?>
         <a class="page_btn" href="/mini_test/src/search.php/?page=<?php echo $next_page_num ?>&title=<?php echo $title ?>">></a>
-        <a class="page_btn" id="minmax_btn" href="/mini_test/src/search.php/?page=<?php echo $max_page_num ?>&title=<?php echo $title ?>">>></a>                    
+        <?php if($boards_cnt >= 21){ ?>
+            <a class="page_btn" id="minmax_btn" href="/mini_test/src/search.php/?page=<?php echo $max_page_num ?>&title=<?php echo $title ?>">>></a>
+        <?php } ?>                    
     </section>
 </main>
 </body>
