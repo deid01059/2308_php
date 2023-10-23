@@ -47,24 +47,24 @@
 //     }
 // }
 
-// 파일 만들기or파일 열기
-$file = fopen("19.txt", "a");
+// 19.txt 폴더로 넣는법
+// $file = fopen("19.txt", "a");
 
-    $f_num = 0;
-    while(true){
-        $s_num = 0;
-        $f_num++;
-        while (true){
-            $s_num++;r
-            $sum = $f_num * $s_num;
-            fputs($file,$f_num."X".$s_num."=".$sum."\n");
-            if($s_num >= 19){
-                break;
-            }    
-        }
-        if($f_num >= 19){
-            break;
-        }    
-    }
+//     $f_num = 0;
+//     while(true){
+//         $s_num = 0;
+//         $f_num++;
+//         while (true){
+//             $s_num++;
+//             $sum = $f_num * $s_num;
+//             fputs($file,$f_num."X".$s_num."=".$sum."\n");
+//             if($s_num >= 19){
+//                 break;
+//             }    
+//         }
+//         if($f_num >= 19){
+//             break;
+//         }    
+//     }
 
-?>
+// ?>
