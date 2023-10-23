@@ -48,7 +48,8 @@ try {
 
         if($title === ""){
             $arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "title");
-        }       
+        }
+        
         if($content === ""){
             $arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "content");
         }
