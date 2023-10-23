@@ -36,8 +36,8 @@
 
 // // 재할당
 
-let u_name = "홍길동";
-console.log(u_name);
+// let u_name = "홍길동";
+// console.log(u_name);
 // u_name = "갑순이";
 // console.log(u_name);
 
@@ -54,7 +54,7 @@ console.log(u_name);
 
 // // 재할당 불가
 
-const AGE = 19;
-console.log(AGE);
+// const AGE = 19;
+// console.log(AGE);
 // AGE = 20;
 // console.log(AGE);
