@@ -17,3 +17,4 @@ foreach($arr as $key =>$item){
     echo $item["emp_no"];
     }
 }
+?>
