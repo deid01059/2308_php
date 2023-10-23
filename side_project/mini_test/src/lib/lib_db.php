@@ -163,7 +163,7 @@ function db_insert_boards(&$conn, &$arr_param){
 function db_select_boards_id(&$conn, &$arr_param){
     $sql =
         " SELECT "
-        ."     id "
+        ."    id "
         ."     ,title "
         ."     ,content "
         ."     ,write_date "

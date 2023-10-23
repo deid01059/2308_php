@@ -68,19 +68,19 @@ if($http_method === "POST"){
     <title>작성페이지</title>
 </head>
 <body>
-    <?php
-        require_once(FILE_HEADER);
-    ?>
-    <form action="/mini_test/src/insert.php" method="post">
-        <main class="frame">
+    <fieldset>
         <?php
-        foreach($arr_err_msg as $val){
-    ?> 
-        <p class="error_p"><?php echo $val ?></p>
-    <?php        
-        }
-    ?>
-            <fieldset>
+            require_once(FILE_HEADER);
+        ?>
+        <?php
+            foreach($arr_err_msg as $val){
+        ?> 
+            <p class="error_p"><?php echo $val ?></p>
+        <?php        
+            }
+        ?>
+        <form action="/mini_test/src/insert.php" method="post">
+        <main class="frame">
             <div>
                 <label for="title">제목</label>
                 <input class="insert_input" type="text" name="title" id="title" value="<?php echo $title ?>">      
@@ -89,10 +89,10 @@ if($http_method === "POST"){
                 <textarea class="insert_text_area" name="content" id="content" cols="30" rows="10"><?php echo $content ?></textarea>
             </div>
             <br>
-                <button class="insert_submit_btn" type="submit">작성</button>
-                <a class="insert_cancle_btn" href="/mini_test/src/list.php">취소</a>      
-            </fieldset>
         </main>
+        <button class="insert_submit_btn" type="submit">작성</button>
+        <a class="insert_cancle_btn" href="/mini_test/src/list.php">취소</a>      
+    </fieldset>
     </form> 
 </body>
 </html>

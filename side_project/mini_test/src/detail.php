@@ -36,7 +36,7 @@ try {
     }
     $item=$result[0];
 }catch (Exception $e) {
-    header("Location: error.php/?err_msg={$e->getMessage()}");
+    header("Location: /mini_test/src/error.php/?err_msg={$e->getMessage()}");
     exit; //처리종료
 } finally{
     db_destroy_conn($conn); //DB파기

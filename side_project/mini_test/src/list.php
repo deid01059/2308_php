@@ -119,7 +119,7 @@ try {
         ?>        
     </table>
     <section class="menu SMN_effect-13">
-        <a class="page_btn" id="minmax_btn" href="/mini_test/src/list.php/?page=1"><<</a>
+        <a class="page_btn" id="minmax_btn" href="/mini_test/list.php/?page=1"><<</a>
         <a class="page_btn" href="/mini_test/src/list.php/?page=<?php echo $prev_page_num ?>"><</a>
         <?php
             if($boards_cnt < 21){
