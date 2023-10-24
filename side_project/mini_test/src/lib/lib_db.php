@@ -116,7 +116,7 @@ function db_select_boards_cnt( &$conn ){
 
 
 // -------------------------------
-// 함수명   : db_destroy_conn
+// 함수명   : db_insert_boards
 // 기능     : DB Destroy
 // 파라미터 : PDO       &$conn
 //           Array      &arr_param 쿼리 작성용 배열
