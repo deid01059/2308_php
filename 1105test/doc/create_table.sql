@@ -10,6 +10,8 @@ CREATE TABLE lists(
 	,del_date DATETIME DEFAULT NULL
 	,chk_date DATETIME DEFAULT NULL
 	,to_date DATE NOT NULL
+	,up_date DATE DEFAULT NULL
+	,ten_flg CHAR(1) NOT NULLbcd
 );
 
 COMMIT;

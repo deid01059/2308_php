@@ -27,11 +27,6 @@ try {
     } else {
         $to_date = date('Y-01-01', strtotime('+'.$to_year.' year'));
     }
-    // DB 조회시 사용할 데이터 배열
-    $arr_param = [
-        "to_date" =>  $to_date 
-    ];
-
     // 게시글 리스트 조회 
     $result  = db_select_lists($conn, $arr_param);
     if($result === false){

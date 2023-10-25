@@ -62,7 +62,7 @@ function db_destroy_conn(&$conn){
 // 리턴     : 없음
 // 제작     : 20231024
 // -------------------------------
-function db_select_lists(&$conn, &$arr_param){
+function db_select_lists(&$conn){
     try {
         $sql =
             " SELECT 
@@ -74,18 +74,13 @@ function db_select_lists(&$conn, &$arr_param){
                 FROM 
                     lists 
                 WHERE "
-            ."       to_date = :to_date "
-            ."  AND
-                    del_date is null
+            ."      del_date is null
                 AND
                     chk_date IS null
                 ORDER BY
                     id DESC  "
         ;
 
-        $arr_ps = [
-            ":to_date" => $arr_param["to_date"]
-        ];
 
         $stmt = $conn->prepare($sql);
         $stmt->execute($arr_ps);
