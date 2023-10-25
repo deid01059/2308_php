@@ -64,6 +64,8 @@ try {
         $next_page_num = $max_page_num;
     }
 
+    $chk_date1 = $result[0]["chk_date"];
+    $flg = isset($chk_date1)? "1" : "0";
 
 } catch(Exception $e) {
     echo $e->getMessage(); //예외발생 메세지 출력  //v002 del
@@ -94,6 +96,7 @@ try {
         require_once(FILE_HEADER);
     ?>
     <div class="list_container center margin">
+    <a href="/1105test/src/insert.php">글작성</a>
         <?php 
             foreach ($result as $item) {
         ?>
@@ -101,6 +104,9 @@ try {
             <div>
                 <?php echo $item["id"]; ?>
             </div>
+            <a href="/1105test/src/chk_flg.php/?id=<?php echo $item["id"]; ?>&chk_flg=<?php echo $flg ?>&page=<?php echo $page_num ?>">
+                수행완료처리
+            </a>
             <a class="list_content" href="/1105test/src/detail.php/?id=<?php echo $item["id"]; ?>&page=<?php echo $page_num ?>">
                 <?php echo $item["content"]; ?>
             </a>

@@ -92,7 +92,7 @@ if($http_method === "POST"){
         </main>
         <button class="insert_submit_btn" type="submit">작성</button>
         <a class="insert_cancle_btn" href="/mini_test/src/list.php">취소</a>      
+        </form> 
     </fieldset>
-    </form> 
 </body>
 </html>

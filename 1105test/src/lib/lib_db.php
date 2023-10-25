@@ -66,6 +66,7 @@ function db_select_lists_paging(&$conn, &$arr_param){
         ."      ,write_date "
         ."      ,content " 
         ."      ,to_date "
+        ."      ,chk_date"
         ." FROM "
         ."      lists " 
         ." WHERE "
@@ -183,6 +184,7 @@ function db_update_boards_id(&$conn, &$arr_param) {
         ."      lists "
         ." SET "
         ."      content = :content "
+        ."      ,up_date = NOW() "
         ." WHERE "
         ."      id = :id "
         ;
@@ -234,6 +236,122 @@ function db_delete_boards_id(&$conn, &$arr_param) {
 	} 
 }
 
+
+// -------------------------------
+// 함수명   : db_insert_boards
+// 기능     : DB Destroy
+// 파라미터 : PDO       &$conn
+//           Array      &arr_param 쿼리 작성용 배열
+// 리턴     : bool / false
+// -------------------------------
+function db_insert_boards(&$conn, &$arr_param){
+    $sql =
+        " INSERT INTO " 
+        ." lists( "
+        ."      content "
+        ."      ,to_date "
+        ."      ,ten_flg "
+        ." ) "
+        ." VALUES ( "
+        ."      :content "
+        ."      ,:to_date "
+        ."      ,:ten_flg "
+        ." ) "
+        ;
+    $arr_ps = [
+        ":content" => $arr_param["content"]
+        ,":to_date" => $arr_param["to_date"]
+        ,":ten_flg" => $arr_param["to_date"]
+    ];
+
+    try{
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute($arr_ps);
+        return $result; // 정상 : 쿼리 결과 리턴
+    } catch(Exception $e) {
+        echo $e->getMessage(); // Exception 메세지 출력
+        return false; // 예외발생 : flase 리턴
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// -------------------------------
+// 함수명   : db_update_chk_date
+// 기능     : 수행완료된거 chk_date  NOW() 변경
+// 파라미터 : PDO       &$conn 
+//           Array      &arr_param 쿼리 작성용 배열
+// 리턴     : boolean
+//-------------------------------
+
+function db_update_chk_date(&$conn, &$arr_param) {
+    $sql =
+        " UPDATE " .
+        "      lists " .
+        " SET " .
+        "      chk_date = NOW() " .
+        " WHERE " .
+        "      id = :id ";
+
+    $arr_ps = [
+        ":id" => $arr_param["id"]
+    ];
+
+    try {
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute($arr_ps);
+        return $result;  // 정상 : 쿼리 결과 리턴
+    } catch (Exception $e) {
+        echo $e->getMessage(); // Exception 메세지 출력
+        return false; // 예외발생 : false 리턴
+    }
+}
+// -------------------------------
+// 함수명   : db_update_chk_date1
+// 기능     : 수행완료된거 chk_date NULL 변경
+// 파라미터 : PDO       &$conn 
+//           Array      &arr_param 쿼리 작성용 배열
+// 리턴     : boolean
+//-------------------------------
+
+function db_update_chk_date1(&$conn, &$arr_param) {
+    $sql =
+        " UPDATE "
+        ."      lists "
+        ." SET "
+        ."      chk_date = NULL "
+        ." WHERE "
+        ."      id = :id "
+    ;
+
+    $arr_ps = [
+        ":id" => $arr_param["id"]
+    ];
+
+    try {
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute($arr_ps);
+        return $result;  // 정상 : 쿼리 결과 리턴
+    } catch (Exception $e) {
+        echo $e->getMessage(); // Exception 메세지 출력
+        return false; // 예외발생 : false 리턴
+    }
+}
 
 
 

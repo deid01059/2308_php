@@ -62,6 +62,7 @@ try {
         <?php echo $item["write_date"]; ?>
         <?php echo $item["content"]; ?>
         <?php echo $item["to_date"]; ?>
+        <?php echo $up_date; ?>
     </div>
     <section>
         <a href="/1105test/src/update.php/?id=<?php echo $id; ?>&page=<?php echo $page ?>" class="detail_btn">수정</a>

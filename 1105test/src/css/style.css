@@ -41,6 +41,10 @@ body{
 
 
 /* main */
+.main_body{
+    background: none;
+}
+
 .main_a{
     display: block;
     width: 100vw;

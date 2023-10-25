@@ -11,7 +11,7 @@ CREATE TABLE lists(
 	,chk_date DATETIME DEFAULT NULL
 	,to_date DATE NOT NULL
 	,up_date DATE DEFAULT NULL
-	,ten_flg CHAR(1) NOT NULLbcd
+	,ten_flg CHAR(1) NOT NULL
 );
 
 COMMIT;
