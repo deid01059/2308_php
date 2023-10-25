@@ -6,7 +6,6 @@
 // 파라미터 : PDO    &$conn
 //           Array  &$arr_param
 // 리턴     : boolen
-// 제작     : 20231024
 // -------------------------------
 
 
@@ -45,7 +44,6 @@ try {
 // 기능     : DB Destroy
 // 파라미터 : PDO  &$conn
 // 리턴     : 없음
-// 제작     : 20231024
 // -------------------------------
 
 // DB 파기
@@ -56,32 +54,37 @@ function db_destroy_conn(&$conn){
 
 
 // -------------------------------
-// 함수명   : db_select_lists
-// 기능     : 리스트 조회
+// 함수명   : db_select_lists_paging
+// 기능     : 리스트 조회 밑 페이징
 // 파라미터 : PDO  &$conn
 // 리턴     : 없음
-// 제작     : 20231024
 // -------------------------------
-function db_select_lists(&$conn){
-    try {
+function db_select_lists_paging(&$conn, &$arr_param){
         $sql =
-            " SELECT 
-                    id
-                    ,write_date
-                    ,content 
-                    ,to_date 
-                    ,chk_date
-                FROM 
-                    lists 
-                WHERE "
-            ."      del_date is null
-                AND
-                    chk_date IS null
-                ORDER BY
-                    id DESC  "
+        " SELECT "
+        ."      id "
+        ."      ,write_date "
+        ."      ,content " 
+        ."      ,to_date "
+        ." FROM "
+        ."      lists " 
+        ." WHERE "
+        ."      del_date is null "
+        ." AND "
+        ."      chk_date IS null "
+        ." AND "
+        ."      ten_flg = :flg "
+        ." ORDER BY "
+        ."      id DESC "
+        ."      LIMIT :list_cnt "  
+        ."      OFFSET :offset "
         ;
-
-
+        $arr_ps = [
+            ":list_cnt" => $arr_param["list_cnt"]
+            ,":offset" => $arr_param["offset"]
+            ,":flg" => $arr_param["flg"]
+        ];
+    try {
         $stmt = $conn->prepare($sql);
         $stmt->execute($arr_ps);
         $result = $stmt->fetchALL();
@@ -91,6 +94,160 @@ function db_select_lists(&$conn){
         return false; //예외발생
     }
 }
+
+
+// -------------------------------
+// 함수명   : db_select_boards_cnt
+// 기능     : DB insert
+// 파라미터 : PDO       &$conn
+//           Array      &arr_param 쿼리 작성용 배열
+// 리턴     : int / false
+// -------------------------------
+
+function db_select_lists_cnt( &$conn, &$arr_param ){
+        $sql =
+        " SELECT "
+        ."      count(id) as cnt "
+        ." FROM "
+        ."      lists "
+        ." WHERE "
+        ."      del_date is null "
+        ." AND "
+        ."      chk_date IS null "
+        ." AND "
+        ."      ten_flg = :flg "
+        ;
+        $arr_ps = [
+            ":flg" => $arr_param["flg"]
+        ];
+
+    try {
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($arr_ps);
+        $result = $stmt->fetchALL();
+
+        return (int)$result[0]["cnt"]; //정상 : 쿼리 결과 리턴
+    } catch(Exception $e){
+        echo $e->getMessage(); // Exception 메세지 출력
+        return false; //예외발생 : false리턴
+    }
+}
+
+
+//  ---------------------------------------------
+//  함수명 db_select_boards_id
+//  기능 : 디테일 데이터 조회
+//  파라미터 : pdo &$conn
+//			&$arr_param 	
+// -----------------------------------------------
+function db_select_boards_id( &$conn, &$arr_param) {
+    $sql =
+    " SELECT "
+    ."      content "
+    ."      ,write_date"
+    ."      ,chk_date"
+    ."      ,to_date "
+    ."      ,up_date "
+    ." FROM "
+    ."      lists "
+    ." WHERE "
+    ."      id = :id "
+    ." AND "
+    ."      del_date is null "
+    ;
+    $arr_ps = [
+    ":id" => $arr_param["id"]
+    ];
+    try {
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($arr_ps);
+        $result = $stmt->fetchAll();
+        return $result;
+    } catch (Exception $e) {
+        echo $e->getMessage(); //예외 메세지 출력
+    } 
+}
+
+
+// --------------------------------
+// 함수명    : db_update_boards_id
+// 기능      : boards 레코드 작성
+// 파라미터  : PDO    &$conn
+//            Array    &$arr_param 쿼리 작성용 배열
+// 리턴      : boolean
+// --------------------------------
+
+function db_update_boards_id(&$conn, &$arr_param) {
+    $sql = 
+        " UPDATE "
+        ."      lists "
+        ." SET "
+        ."      content = :content "
+        ." WHERE "
+        ."      id = :id "
+        ;
+
+        $arr_ps = [
+            ":id" => $arr_param["id"]
+            ,":content" => $arr_param["content"]
+        ];
+
+        try {
+            $stmt = $conn->prepare($sql);
+            $result = $stmt->execute($arr_param);
+            return $result;
+
+        } catch (Exception $e) {
+            echo $e->getMessage(); // Exception 메세지 출력
+            return false; // 예외발생 : false
+        }
+}
+
+//  ---------------------------------------------
+//  함수명 db_delete_boards_id
+//  기능 : 특정 id의 레코드 삭제처리
+//  파라미터 : pdo &$conn
+//			&$arr_param 	
+// -----------------------------------------------
+
+
+function db_delete_boards_id(&$conn, &$arr_param) {
+	$sql =
+	" UPDATE lists"
+	." SET "
+	." 		del_date = now() "
+	." WHERE "
+	." 		id = :id "
+	;
+
+	$arr_ps = [
+		":id" => $arr_param["id"]
+	];
+
+	try {
+		$stmt = $conn->prepare($sql);
+		$result = $stmt->execute($arr_ps);
+		return $result;
+	} catch (Exception $e) {
+		echo $e->getMessage();
+		return false;
+	} 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ?>
