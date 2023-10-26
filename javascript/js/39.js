@@ -53,7 +53,10 @@ TEXT.removeAttribute('placeholder');
 // 4. 요소 스타일링
 
 // style : 인라인으로 스타일추가
+
 TITLE.style.color = 'red';
+
+
 
 // classList : 클래스 추가 또는 삭제
 
@@ -62,3 +65,68 @@ TITLE.classList.add('class1','class2','class3');
 
 // remove삭제
 TITLE.classList.remove('class1','class2','class3');
+
+
+
+
+
+// 5. 새로운 요소 생성
+
+
+
+// 요소만들기
+
+
+
+// createElement() : 태그생성
+const LI = document.createElement('li');
+
+// 태그에내용작성
+LI.innerHTML = '이건새로만든 LI';
+
+
+
+// 삽입할 부모요소 접근
+const UL = document.querySelector('.ul');
+
+// 부모요소의 가장 마지막 위치에 삽입
+UL.appendChild(LI);
+
+// 요소를 특정 위치에 삽입하는 방법
+const SPACE = document.querySelector('ul li:nth-child(3)');
+
+UL.insertBefore(LI, SPACE);
+
+
+// 해당 요소 지우는법
+LI.remove;
+
+
+
+
+// test
+
+// 1. 사과게임 위에 장기를 넣어주세요.
+
+
+const LI_T = document.createElement('li');
+LI_T.innerHTML = '장기';
+const TEST = document.querySelector('ul li:nth-child(5)');
+UL.insertBefore(LI_T, TEST);
+
+// 2.어메이징브릭에 베이지배경색을 넣어주세요
+
+const TEST2 = document.querySelector('ul li:nth-last-child(1)');
+TEST2.style.backgroundColor = 'beige';
+
+// 3. 리스트에서 짝수는 빨간색 글씨 홀수는 파랑색 글씨로 만들어 주세요
+
+const TEST3 = document.querySelectorAll('ul li');
+
+for(let i=0; i<=TEST3.length; i++){
+    if(i % 2 === 0){
+        TEST3[i].style.color = 'red';
+    } else if(i % 2 === 1){
+        TEST3[i].style.color = 'blue';
+    }       
+}

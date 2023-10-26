@@ -63,10 +63,10 @@ try {
     if($next_page_num > $max_page_num){
         $next_page_num = $max_page_num;
     }
-
-    $chk_date1 = $result[0]["chk_date"];
-    $flg = isset($chk_date1)? "1" : "0";
-
+    if(count($result)>=1){
+        $chk_date1 = $result[0]["chk_date"];
+        $flg = isset($chk_date1)? "1" : "0";
+    }
 } catch(Exception $e) {
     echo $e->getMessage(); //예외발생 메세지 출력  //v002 del
     exit; //처리종료
@@ -97,6 +97,8 @@ try {
     ?>
     <div class="list_container center margin">
     <a href="/1105test/src/insert.php">글작성</a>
+    <br>
+    <a href="/1105test/src/list.php/?flg=<?php if($flg) ?>">10년리스트</a>
         <?php 
             foreach ($result as $item) {
         ?>
@@ -104,7 +106,7 @@ try {
             <div>
                 <?php echo $item["id"]; ?>
             </div>
-            <a href="/1105test/src/chk_flg.php/?id=<?php echo $item["id"]; ?>&chk_flg=<?php echo $flg ?>&page=<?php echo $page_num ?>">
+            <a href="/1105test/src/chk_flg.php/?id=<?php echo $item["id"]; ?>&flg=<?php echo $flg ?>&page=<?php echo $page_num ?>">
                 수행완료처리
             </a>
             <a class="list_content" href="/1105test/src/detail.php/?id=<?php echo $item["id"]; ?>&page=<?php echo $page_num ?>">

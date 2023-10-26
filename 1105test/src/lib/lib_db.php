@@ -70,9 +70,9 @@ function db_select_lists_paging(&$conn, &$arr_param){
         ." FROM "
         ."      lists " 
         ." WHERE "
-        ."      del_date is null "
+        ."      del_date IS NULL "
         ." AND "
-        ."      chk_date IS null "
+        ."      chk_date IS NULL "
         ." AND "
         ."      ten_flg = :flg "
         ." ORDER BY "
@@ -112,9 +112,9 @@ function db_select_lists_cnt( &$conn, &$arr_param ){
         ." FROM "
         ."      lists "
         ." WHERE "
-        ."      del_date is null "
+        ."      del_date IS NULL "
         ." AND "
-        ."      chk_date IS null "
+        ."      chk_date IS NULL "
         ." AND "
         ."      ten_flg = :flg "
         ;
@@ -154,7 +154,7 @@ function db_select_boards_id( &$conn, &$arr_param) {
     ." WHERE "
     ."      id = :id "
     ." AND "
-    ."      del_date is null "
+    ."      del_date is NULL "
     ;
     $arr_ps = [
     ":id" => $arr_param["id"]
@@ -261,7 +261,7 @@ function db_insert_boards(&$conn, &$arr_param){
     $arr_ps = [
         ":content" => $arr_param["content"]
         ,":to_date" => $arr_param["to_date"]
-        ,":ten_flg" => $arr_param["to_date"]
+        ,":ten_flg" => $arr_param["ten_flg"]
     ];
 
     try{
@@ -300,14 +300,16 @@ function db_insert_boards(&$conn, &$arr_param){
 //-------------------------------
 
 function db_update_chk_date(&$conn, &$arr_param) {
+    $test = $arr_param["flg"]==="0" ? " NOW() " : " NULL ";
     $sql =
-        " UPDATE " .
-        "      lists " .
-        " SET " .
-        "      chk_date = NOW() " .
-        " WHERE " .
-        "      id = :id ";
-
+        " UPDATE "
+        ."      lists "
+        ." SET " 
+        ."      chk_date = " . $test
+        ." WHERE "
+        ."      id = :id "
+        ;
+        
     $arr_ps = [
         ":id" => $arr_param["id"]
     ];
@@ -329,29 +331,29 @@ function db_update_chk_date(&$conn, &$arr_param) {
 // 리턴     : boolean
 //-------------------------------
 
-function db_update_chk_date1(&$conn, &$arr_param) {
-    $sql =
-        " UPDATE "
-        ."      lists "
-        ." SET "
-        ."      chk_date = NULL "
-        ." WHERE "
-        ."      id = :id "
-    ;
+// function db_update_chk_date1(&$conn, &$arr_param) {
+//     $sql =
+//         " UPDATE "
+//         ."      lists "
+//         ." SET "
+//         ."      chk_date = NULL "
+//         ." WHERE "
+//         ."      id = :id "
+//     ;
 
-    $arr_ps = [
-        ":id" => $arr_param["id"]
-    ];
+//     $arr_ps = [
+//         ":id" => $arr_param["id"]
+//     ];
 
-    try {
-        $stmt = $conn->prepare($sql);
-        $result = $stmt->execute($arr_ps);
-        return $result;  // 정상 : 쿼리 결과 리턴
-    } catch (Exception $e) {
-        echo $e->getMessage(); // Exception 메세지 출력
-        return false; // 예외발생 : false 리턴
-    }
-}
+//     try {
+//         $stmt = $conn->prepare($sql);
+//         $result = $stmt->execute($arr_ps);
+//         return $result;  // 정상 : 쿼리 결과 리턴
+//     } catch (Exception $e) {
+//         echo $e->getMessage(); // Exception 메세지 출력
+//         return false; // 예외발생 : false 리턴
+//     }
+// }
 
 
 
