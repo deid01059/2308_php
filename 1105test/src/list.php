@@ -63,10 +63,6 @@ try {
     if($next_page_num > $max_page_num){
         $next_page_num = $max_page_num;
     }
-    if(count($result)>=1){
-        $chk_date1 = $result[0]["chk_date"];
-        $flg = isset($chk_date1)? "1" : "0";
-    }
 } catch(Exception $e) {
     echo $e->getMessage(); //예외발생 메세지 출력  //v002 del
     exit; //처리종료
@@ -98,7 +94,17 @@ try {
     <div class="list_container center margin">
     <a href="/1105test/src/insert.php">글작성</a>
     <br>
-    <a href="/1105test/src/list.php/?flg=<?php if($flg) ?>">10년리스트</a>
+    <?php
+        if($flg === "1"){ 
+    ?>
+        <a href="/1105test/src/list.php/?flg=0">1년리스트 보기</a>
+    <?php
+        } else {
+    ?>
+        <a href="/1105test/src/list.php/?flg=1">10년리스트 보기</a>
+    <?php
+        }
+    ?>
         <?php 
             foreach ($result as $item) {
         ?>
@@ -121,42 +127,69 @@ try {
         <?php
             }
         ?>
-        <section class="menu SMN_effect-13">
-        <a href="/1105test/src/list.php/?page=1">처음</a>
-        <a href="/1105test/src/list.php/?page=<?php echo $prev_page_num ?>"><</a>
-        <?php
-            if($boards_cnt < 21){
-                for ($i = 1; $i <= $max_page_num; $i++) {
-                    // 삼항연산자 : 조건 ? 참일때처리 : 거짓일때처리
-                    $class = ($i == $page_num) ? "now_page" : "";
-        ?>
-                    <a class="page_btn <?php echo $class; ?> " href="/1105test/src/list.php/?page=<?php echo $i ?>"><?php echo $i ?></a>        
-        <?php
+        <section><!-- 제작 : 정훈 -->
+            <?php
+                if($boards_cnt > 17){
+            ?> 
+            <a href="/1105test/src/list.php/?page=1&flg=<?php echo $flg ?>"><<</a>
+            <?php
                 }
-            }
-            else if($boards_cnt >= 21){
-            $min_page = max($page_num - 2, 1); 
-            $max_page = min($page_num + 2, $max_page_num);
-                if($min_page === 1){
-                    $min_page = 1;
-                    $max_page = 5;
-                } 
-                else if($max_page === $max_page_num){
-                    $min_page = $max_page_num-4;
-                    $max_page = $max_page_num;
-                } 
-                for ($i = $min_page; $i <= $max_page; $i++) {
-                    // 삼항연산자 : 조건 ? 참일때처리 : 거짓일때처리
-                    $class = ($i == $page_num) ? "now_page" : "";
-                    // 현재 페이지와 $i를 비교하여 현재 페이지에 해당하는 버튼에 강조 스타일을 적용
-        ?>
-        <a class="page_btn <?php echo $class; ?> " href="/1105test/src/list.php/?page=<?php echo $i ?>"><?php echo $i ?></a>
-        <?php
-                }}             
-        ?>
-        <a href="/1105test/src/list.php/?page=<?php echo $next_page_num ?>">></a>      
-        <a href="/1105test/src/list.php/?page=<?php echo $max_page_num ?>">맨끝</a>
-    </section>
+            ?>      
+            <?php
+                if($boards_cnt > 4){
+            ?>                  
+            <a href="/1105test/src/list.php/?page=<?php echo $prev_page_num ?>&flg=<?php echo $flg ?>"><</a>
+            <?php
+                }
+            ?>
+            <?php
+                if($boards_cnt < 17){
+                    for ($i = 1; $i <= $max_page_num; $i++) {
+                        $class = ($i == $page_num) ? "" : "";
+            ?>
+            <?php
+                        if($boards_cnt > 4){
+            ?>
+                        <a class="a <?php echo $class; ?> " href="/1105test/src/list.php/?page=<?php echo $i ?>&flg=<?php echo $flg ?>"><?php echo $i ?></a>        
+            <?php
+                        }
+                    }
+                }
+                else if($boards_cnt >= 17){
+                $min_page = max($page_num - 2, 1); 
+                $max_page = min($page_num + 2, $max_page_num);
+                    if($min_page === 1){
+                        $min_page = 1;
+                        $max_page = 5;
+                    } 
+                    else if($max_page === $max_page_num){
+                        $min_page = $max_page_num-4;
+                        $max_page = $max_page_num;
+                    } 
+                    for ($i = $min_page; $i <= $max_page; $i++) {
+                        $class = ($i == $page_num) ? "" : "";
+                        ?>
+                        
+                        <a class="page_btn <?php echo $class; ?> " href="/1105test/src/list.php/?page=<?php echo $i ?>&flg=<?php echo $flg ?>"><?php echo $i ?></a>
+            <?php
+                    }
+                }             
+            ?>
+            <?php
+                if($boards_cnt > 4){
+            ?>     
+            <a  href="/1105test/src/list.php/?page=<?php echo $next_page_num ?>&flg=<?php echo $flg ?>">></a>
+            <?php
+                }
+            ?>
+            <?php
+                if($boards_cnt > 17){
+            ?> 
+            <a  id="minmax_btn" href="/1105test/src/list.php/?page=<?php echo $max_page_num ?>&flg=<?php echo $flg ?>">>></a>                    
+            <?php
+                }
+            ?>
+        </section>
     </div>
 </body>
 </html>
