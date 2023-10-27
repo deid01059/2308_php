@@ -99,8 +99,8 @@ BTN1.addEventListener('click', keepgo);
 
 // 위에서 오후,오전 시 분 초 미친듯이 계산해주는거
 // 이거하나로 해결가능
-let god = now.toLocaleTimeString();
-console.log(god);
+// let god = now.toLocaleTimeString();
+// console.log(god);
 
 // 오전(후) 00:00:00
 // ex) 오후 4:53:40
