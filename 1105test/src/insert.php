@@ -57,7 +57,7 @@ if($http_method === "POST"){
             $conn->commit(); // 모든 처리 완료시 커밋
 
             // 리스트 페이지로 이동
-            header("Location: list.php");
+            header("Location: list.php/?flg=$flg");
             exit;
         }
     } catch(Exception $e) {
@@ -83,26 +83,57 @@ if($http_method === "POST"){
     <title>작성 페이지</title>
 </head>
 <body>
-    <?php
-        require_once(FILE_HEADER);
-    ?>
-    <?php
-        foreach($arr_err_msg as $val){
-    ?> 
-        <p class="error_p"><?php echo $val ?></p>
-    <?php        
-        }
-    ?>
-    <form action="/1105test/src/insert.php" method="post">
-        <select name="flg">
-            <option value="0">1년</option>
-            <option value="1">10년</option>
-        </select>    
-        <textarea name="content" id="content" cols="30" rows="10"><?php echo $content ?></textarea>
-        <section>
-            <button type="submit">작성</button>
-            <a href="/1105test/src/list.php">취소</a>      
-        </section>
-    </form> 
+    <div class="main_frame center">
+        <!-- 1번그리드 header -->
+        <div class="grid_item">        
+            <?php
+                require_once(FILE_HEADER);
+                ?>
+        </div>
+        <!-- 2번 그리드 왼쪽여백 -->
+        <div class="grid_item">        
+        </div>
+        
+        <!-- 3번그리드 main , sub그리드  -->
+        <div class="grid_item">
+            <div class="sub_frame">
+                <!-- sub1 좌상단 -->
+                <div class="sub_grid_item">               
+                </div>
+
+                <!-- sub2 메인 -->
+                <div class="sub_grid_item">
+                    <?php
+                        foreach($arr_err_msg as $val){
+                    ?> 
+                        <p class="error_p"><?php echo $val ?></p>
+                    <?php        
+                        }
+                    ?>
+                    <form action="/1105test/src/insert.php" method="post">
+                        <select name="flg">
+                            <option value="0">1년</option>
+                            <option value="1">10년</option>
+                        </select>    
+                        <textarea name="content" id="content" cols="30" rows="10"><?php echo $content ?></textarea>
+                        <section>
+                            <button type="submit">작성</button>
+                            <a href="/1105test/src/list.php">취소</a>      
+                        </section>
+                    </form> 
+                </div>
+                <!-- sub3 우측 -->
+                <div class="sub_grid_item">
+                </div>
+            </div>
+        </div>
+        <!-- 4번그리드 왼쪽여백 -->
+        <div class="grid_item">        
+        </div>
+        
+        <!-- 5번그리드 footer -->
+        <div class="grid_item">
+        </div>
+    </div>
 </body>
 </html>

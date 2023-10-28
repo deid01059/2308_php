@@ -6,6 +6,8 @@ require_once(ROOT."lib/lib_db.php");
 $id = "";
 $conn = null;
 $page = "";
+$flg = "";
+$chk = "";
 
 try {
     if(isset($_GET["id"])){
@@ -17,6 +19,16 @@ try {
         $page=$_GET["page"]; //id 셋팅
 	} else {
         throw new Exception("Parameter ERROR : NO page"); //강제 예외 발생
+	}
+    if(isset($_GET["chk"])){
+        $chk=$_GET["chk"]; //id 셋팅
+	} else {
+        throw new Exception("Parameter ERROR : NO chk"); //강제 예외 발생
+	}
+    if(isset($_GET["flg"])){
+        $flg=$_GET["flg"]; //id 셋팅
+	} else {
+        throw new Exception("Parameter ERROR : NO flg"); //강제 예외 발생
 	}
     // DB 접속
     if(!my_db_conn($conn)){
@@ -54,20 +66,50 @@ try {
     <title>디테일페이지</title>
 </head>
 <body>
-    <?php
-        require_once(FILE_HEADER);
-    ?>
-    <div>
-        <?php echo $chk_date; ?>
-        <?php echo $item["write_date"]; ?>
-        <?php echo $item["content"]; ?>
-        <?php echo $item["to_date"]; ?>
-        <?php echo $up_date; ?>
+    <div class="main_frame center">
+        <!-- 1번그리드 header -->
+        <div class="grid_item">        
+            <?php
+                require_once(FILE_HEADER);
+                ?>
+        </div>
+        <!-- 2번 그리드 왼쪽여백 -->
+        <div class="grid_item">        
+        </div>
+        
+        <!-- 3번그리드 main , sub그리드  -->
+        <div class="grid_item">
+            <div class="sub_frame">
+                <!-- sub1 좌상단 -->
+                <div class="sub_grid_item">               
+                </div>
+
+                <!-- sub2 메인 -->
+                <div class="sub_grid_item">
+                    <div>
+                        <?php echo $chk_date; ?>
+                        <?php echo $item["write_date"]; ?>
+                        <?php echo $item["content"]; ?>
+                        <?php echo $item["to_date"]; ?>
+                        <?php echo $up_date; ?>
+                    </div>
+                    <section>
+                        <a href="/1105test/src/update.php/?id=<?php echo $id; ?>&page=<?php echo $page ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>">수정</a>
+                        <a href="/1105test/src/list.php/?page=<?php echo $page ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>">나가기</a>
+                    </section>
+                </div>
+                <!-- sub3 우측 -->
+                <div class="sub_grid_item">
+                </div>
+            </div>
+        </div>
+        <!-- 4번그리드 왼쪽여백 -->
+        <div class="grid_item">        
+        </div>
+        
+        <!-- 5번그리드 footer -->
+        <div class="grid_item">
+        </div>
     </div>
-    <section>
-        <a href="/1105test/src/update.php/?id=<?php echo $id; ?>&page=<?php echo $page ?>" class="detail_btn">수정</a>
-        <a href="/1105test/src/delete.php/?id=<?php echo $id; ?>&page=<?php echo $page ?>" class="detail_btn">삭제</a>
-        <a href="/1105test/src/list.php/?page=<?php echo $page ?>" class="detail_btn">나가기</a>
-    </section>
 </body>
 </html>

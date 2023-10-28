@@ -1,0 +1,35 @@
+<div class="main_frame center">
+        <!-- 1번그리드 header -->
+        <div class="grid_item">        
+            <?php
+                require_once(FILE_HEADER);
+                ?>
+        </div>
+        <!-- 2번 그리드 왼쪽여백 -->
+        <div class="grid_item">        
+        </div>
+        
+        <!-- 3번그리드 main , sub그리드  -->
+        <div class="grid_item">
+            <div class="sub_frame">
+                <!-- sub1 좌상단 -->
+                <div class="sub_grid_item">               
+                </div>
+
+                <!-- sub2 메인 -->
+                <div class="sub_grid_item">
+
+                </div>
+                <!-- sub3 우측 -->
+                <div class="sub_grid_item">
+                </div>
+            </div>
+        </div>
+        <!-- 4번그리드 왼쪽여백 -->
+        <div class="grid_item">        
+        </div>
+        
+        <!-- 5번그리드 footer -->
+        <div class="grid_item">
+        </div>
+    </div>

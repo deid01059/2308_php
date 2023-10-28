@@ -8,6 +8,8 @@ $page = "";
 $conn = null; // conn 초기화 // DB 연결용 변수
 $http_method = $_SERVER["REQUEST_METHOD"]; // Method 확인
 $arr_err_msg= []; //에러메세지용 변수를 배열로 넣어줌
+$flg = "";
+$chk = "";
 
 try {
     // DB 연결
@@ -22,6 +24,9 @@ try {
         // 파라미터 획득
         $id = isset($_GET["id"]) ? trim($_GET["id"]) :""; // id 셋팅
         $page = isset($_GET["page"]) ? trim($_GET["page"]) : ""; // page 셋팅
+        $flg = isset($_GET["flg"]) ? trim($_GET["flg"]) : ""; // flg 셋팅
+        $chk = isset($_GET["chk"]) ? trim($_GET["chk"]) : ""; // chk 셋팅
+        
         
         if($id === ""){
             $arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "id");
@@ -114,28 +119,58 @@ try {
     <title>디테일페이지</title>
 </head>
 <body>
-    <?php
-        require_once(FILE_HEADER);
-    ?>
-    <form action="/1105test/src/update.php" method="post">
-        <input type="hidden" name="id" value="<?php echo $id ?>">
-        <input type="hidden" name="page" value="<?php echo $page ?>"> 
-        <?php
-            foreach($arr_err_msg as $val){
-        ?> 
-            <?php echo $val ?>
-        <?php        
-            }
-        ?>
-        <?php echo $chk_date; ?>
-        <?php echo $item["write_date"]; ?>
-        <textarea name="content" id="content" cols="30" rows="2" maxlength="30" required><?php echo $item["content"] ?></textarea>
-        <?php echo $item["to_date"]; ?>
-        <div>
-            <button type="submit">완료</button>
-            <a class="update_a "href="/1105test/src/detail.php/?id=<?php echo $id; ?>&page=<?php echo $page; ?>">취소</a>
+    <div class="main_frame center">
+        <!-- 1번그리드 header -->
+        <div class="grid_item">        
+            <?php
+                require_once(FILE_HEADER);
+                ?>
+        </div>
+        <!-- 2번 그리드 왼쪽여백 -->
+        <div class="grid_item">        
         </div>
         
-    </form>
+        <!-- 3번그리드 main , sub그리드  -->
+        <div class="grid_item">
+            <div class="sub_frame">
+                <!-- sub1 좌측 -->
+                <div class="sub_grid_item">               
+                </div>
+
+                <!-- sub2 메인 -->
+                <div class="sub_grid_item">
+                    <form action="/1105test/src/update.php" method="post">
+                        <input type="hidden" name="id" value="<?php echo $id ?>">
+                        <input type="hidden" name="page" value="<?php echo $page ?>"> 
+                        <?php
+                            foreach($arr_err_msg as $val){
+                        ?> 
+                            <?php echo $val ?>
+                        <?php        
+                            }
+                        ?>
+                        <?php echo $chk_date; ?>
+                        <?php echo $item["write_date"]; ?>
+                        <textarea name="content" id="content" cols="30" rows="2" maxlength="30" required><?php echo $item["content"] ?></textarea>
+                        <?php echo $item["to_date"]; ?>
+                        <div>
+                            <button type="submit">완료</button>
+                            <a class="update_a "href="/1105test/src/detail.php/?id=<?php echo $id; ?>&page=<?php echo $page; ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>">취소</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- sub3 우측 -->
+                <div class="sub_grid_item">
+                </div>
+            </div>
+        </div>
+        <!-- 4번그리드 왼쪽여백 -->
+        <div class="grid_item">        
+        </div>
+        
+        <!-- 5번그리드 footer -->
+        <div class="grid_item">
+        </div>
+    </div>
 </body>
 </html>

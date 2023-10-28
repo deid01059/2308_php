@@ -60,6 +60,7 @@ function db_destroy_conn(&$conn){
 // 리턴     : 없음
 // -------------------------------
 function db_select_lists_paging(&$conn, &$arr_param){
+    $chk = $arr_param["chk"]==="1" ? " NOT NULL " : " NULL ";
         $sql =
         " SELECT "
         ."      id "
@@ -72,7 +73,7 @@ function db_select_lists_paging(&$conn, &$arr_param){
         ." WHERE "
         ."      del_date IS NULL "
         ." AND "
-        ."      chk_date IS NULL "
+        ."      chk_date IS " . $chk
         ." AND "
         ."      ten_flg = :flg "
         ." ORDER BY "
@@ -106,6 +107,7 @@ function db_select_lists_paging(&$conn, &$arr_param){
 // -------------------------------
 
 function db_select_lists_cnt( &$conn, &$arr_param ){
+    $chk = $arr_param["chk"]==="1" ? " NOT NULL " : " NULL ";
         $sql =
         " SELECT "
         ."      count(id) as cnt "
@@ -114,7 +116,7 @@ function db_select_lists_cnt( &$conn, &$arr_param ){
         ." WHERE "
         ."      del_date IS NULL "
         ." AND "
-        ."      chk_date IS NULL "
+        ."      chk_date IS " . $chk
         ." AND "
         ."      ten_flg = :flg "
         ;
