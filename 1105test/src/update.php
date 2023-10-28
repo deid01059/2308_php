@@ -62,10 +62,17 @@ try {
             $arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "내용");
         }
         if(count($arr_err_msg) === 0){
+            if($flg === ""){
+                $flg = "0";
+            }
+            if($chk === ""){
+                $chk = "0";
+            }
             $arr_param = [
                 "id" => $id
                 ,"content" => $content
             ];
+
             // 게시글 수정 처리
             $conn->beginTransaction(); // 트랜잭션 시작
 
@@ -73,7 +80,7 @@ try {
                 throw new Exception("DB Error : Update_boards_id");
             }
             $conn->commit(); // commit
-            header("Location: detail.php/?id={$id}&page={$page}"); // detail 페이지로 이동
+            header("Location: detail.php/?id={$id}&page={$page}&chk={$chk}&flg={$flg}"); // detail 페이지로 이동
             exit;
         }
     }

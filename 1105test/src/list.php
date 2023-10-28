@@ -26,6 +26,12 @@ try {
     $page_num = isset($_GET["page"]) ? $_GET["page"] : 1;
     $flg = isset($_GET["flg"]) ? $_GET["flg"] : 0;
     $chk = isset($_GET["chk"]) ? $_GET["chk"] : 0;
+    if($flg === ""){
+        $flg = "0";
+    }
+    if($chk === ""){
+        $chk = "0";
+    }
     // 게시글 카운트 조회
     $arr_param = [
         "flg" => $flg
@@ -141,7 +147,7 @@ try {
                         <?php
                             } else {
                         ?>
-                             <a href="/1105test/src/chk_flg.php/?id=<?php echo $item["id"]; ?>&flg=<?php echo $flg ?>&page=<?php echo $page_num ?>">
+                             <a href="/1105test/src/chk_flg.php/?id=<?php echo $item["id"]; ?>&flg=<?php echo $flg ?>&page=<?php echo $page_num ?>&chk=0>&chk_flg=0">
                                 수행완료처리
                             </a>
                         <?php

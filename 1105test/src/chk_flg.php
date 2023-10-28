@@ -18,20 +18,20 @@ try {
     $id = isset($_GET["id"]) ? $_GET["id"] : ""; // id 셋팅
     $flg = isset($_GET["flg"]) ? $_GET["flg"] : ""; // chk_flg 셋팅
     $page = isset($_GET["page"]) ? $_GET["page"] : ""; // fage 셋팅
-    $chk = isset($_POST["chk"]) ? $_POST["chk"] : "";
-    $flg = isset($_POST["flg"]) ? $_POST["flg"] : "";
+    $chk = isset($_GET["chk"]) ? $_GET["chk"] : "";
+    $chk_flg = isset($_GET["chk_flg"]) ? $_GET["chk_flg"] : "";
   
     $conn->beginTransaction(); // 트랜잭션 시작
 
     $arr_param = [
         "id" => $id
-        ,"flg"=>$flg
+        ,"flg"=>$chk_flg
     ];
     if (!db_update_chk_date($conn, $arr_param)) {
         throw new Exception("DB Error : Update_chk_flg");
     }
     $conn->commit(); // commit
-    header("Location: /1105test/src/list.php/?page={$page}&chk={$chk}&flg={$flg}"); // 디테일 페이지로 이동
+    header("Location: /1105test/src/list.php/?page={$page}&flg={$flg}&chk=0"); // 디테일 페이지로 이동
     exit;
 } catch (Exception $e) {
     $conn->rollback(); // rollback

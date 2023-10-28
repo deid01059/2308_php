@@ -94,7 +94,21 @@ try {
                         <?php echo $up_date; ?>
                     </div>
                     <section>
-                        <a href="/1105test/src/update.php/?id=<?php echo $id; ?>&page=<?php echo $page ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>">수정</a>
+                    <?php
+                        if($chk_date === "미수행 상태"){
+                    ?>
+                        <a href="/1105test/src/update.php/?id=<?php echo $id; ?>&page=<?php echo $page ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>">
+                            수정
+                        </a>
+                    <?php
+                        } else {
+                    ?>
+                        <a href="/1105test/src/chk_flg.php/?id=<?php echo $id; ?>&flg=<?php echo $flg ?>&page=<?php echo $page ?>&chk=0&chk_flg=1">
+                            미수행으로 변경
+                        </a>
+                    <?
+                        }
+                    ?>
                         <a href="/1105test/src/list.php/?page=<?php echo $page ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>">나가기</a>
                     </section>
                 </div>
