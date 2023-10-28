@@ -178,33 +178,24 @@ try {
                     ?>
                     <section>
                         <?php
-                            if($boards_cnt > 17){
+                            if($boards_cnt > 21){
                         ?> 
                         <a href="/1105test/src/list.php/?page=1&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>"><<</a>
                         <?php
                             }
                         ?>      
-                        <?php
-                            if($boards_cnt > 4){
-                        ?>                  
                         <a href="/1105test/src/list.php/?page=<?php echo $prev_page_num ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>"><</a>
                         <?php
-                            }
-                        ?>
-                        <?php
-                            if($boards_cnt < 17){
+                            if($boards_cnt < 21){
                                 for ($i = 1; $i <= $max_page_num; $i++) {
-                                    $class = ($i == $page_num) ? "" : "";
+                                    $class = ($i == $page_num) ? "list_now_page" : "";
                         ?>
-                        <?php
-                                    if($boards_cnt > 4){
-                        ?>
+
                                     <a class="a <?php echo $class; ?> " href="/1105test/src/list.php/?page=<?php echo $i ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>"><?php echo $i ?></a>        
                         <?php
-                                    }
                                 }
                             }
-                            else if($boards_cnt >= 17){
+                            else if($boards_cnt >= 21){
                             $min_page = max($page_num - 2, 1); 
                             $max_page = min($page_num + 2, $max_page_num);
                                 if($min_page === 1){
@@ -216,7 +207,7 @@ try {
                                     $max_page = $max_page_num;
                                 } 
                                 for ($i = $min_page; $i <= $max_page; $i++) {
-                                    $class = ($i == $page_num) ? "" : "";
+                                    $class = ($i == $page_num) ? "list_now_page" : "";
                                     ?>
                                     
                                     <a class="page_btn <?php echo $class; ?> " href="/1105test/src/list.php/?page=<?php echo $i ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>"><?php echo $i ?></a>
@@ -224,15 +215,9 @@ try {
                                 }
                             }             
                         ?>
-                        <?php
-                            if($boards_cnt > 4){
-                        ?>     
                         <a  href="/1105test/src/list.php/?page=<?php echo $next_page_num ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>">></a>
                         <?php
-                            }
-                        ?>
-                        <?php
-                            if($boards_cnt > 17){
+                            if($boards_cnt > 21){
                         ?> 
                         <a href="/1105test/src/list.php/?page=<?php echo $max_page_num ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>">>></a>                    
                         <?php
