@@ -112,71 +112,85 @@ try {
         <div class="grid_item">
             <div class="sub_frame">
                 <!-- sub1 좌측 -->
-                <div class="sub_grid_item flex">               
+                <div class="sub_grid_item flex list_table_side">               
                     <?php
                         if($flg === "1"){ 
                     ?>
-                        <a href="/1105test/src/list.php/?flg=0&chk=<?php echo $chk ?>">1년리스트 보기</a>
+                        <a href="/1105test/src/list.php/?flg=0&chk=<?php echo $chk ?>" data-hover="올해의 버킷">올해의 버킷</a>
                     <?php
                         } else {
                     ?>
-                        <a href="/1105test/src/list.php/?flg=1&chk=<?php echo $chk ?>">10년리스트 보기</a>
+                        <a href="/1105test/src/list.php/?flg=1&chk=<?php echo $chk ?>" data-hover="10년 버킷">10년 버킷</a>
                     <?php
                         }
                     ?>
-                    <a href="/1105test/src/insert.php">글작성</a>
+                    <a href="/1105test/src/insert.php" data-hover="글작성">글작성</a>
                 </div>
 
                 <!-- sub2 메인 -->
-                <div class="sub_grid_item list_content_flex">
+                <div class="sub_grid_item list_content_flex list_table_center">
                     <?php 
                         if(!$result){
                     ?>
-                        <div class="list_sel_none">등록된 리스트가 없습니다.</div>
+                        <span class="list_sel_none">등록된 리스트가 없습니다.</span>
                     <?php
-                        } else { foreach ($result as $item) {
+                        } else { 
+                            foreach ($result as $item) {
                     ?>
                     <div class=list_div>
                         <div>
-                            <?php echo $item["id"]; ?>
-                        </div>
-                        <?php 
-                            if($chk === "1"){       
-                        ?>
-                           <span><?php echo $item["chk_date"] ?></span>              
-                        <?php
-                            } else {
-                        ?>
-                             <a href="/1105test/src/chk_flg.php/?id=<?php echo $item["id"]; ?>&flg=<?php echo $flg ?>&page=<?php echo $page_num ?>&chk=0>&chk_flg=0">
-                                수행완료처리
+                            <div>
+                                <?php echo $item["id"]; ?>
+                            </div>
+                            <?php 
+                                if($chk === "1"){       
+                            ?>  
+                                <div>
+                                    <span>
+                                        <?php echo $item["chk_date"] ?>
+                                    </span>              
+                                </div>
+                            <?php
+                                } else {
+                            ?>
+                                <div>
+                                    <a href="/1105test/src/chk_flg.php/?id=<?php echo $item["id"]; ?>&flg=<?php echo $flg ?>&page=<?php echo $page_num ?>&chk=0>&chk_flg=0">
+                                        수행완료
+                                    </a>
+                                </div>
+                            <?php
+                                }
+                            ?>  
+                            </div>
+                        <div>                  
+                            <a class="list_content" href="/1105test/src/detail.php/?id=<?php echo $item["id"]; ?>&page=<?php echo $page_num ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>">
+                                <?php echo $item["content"]; ?>
                             </a>
-                        <?php
-                            }
-                        ?>
-                        
-                        <a class="list_content" href="/1105test/src/detail.php/?id=<?php echo $item["id"]; ?>&page=<?php echo $page_num ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>">
-                            <?php echo $item["content"]; ?>
-                        </a>
-                        <div>
-                            <?php echo $item["write_date"]; ?>
-                            ~
-                            <?php echo $item["to_date"]; ?>
                         </div>
-                         
-                        <form action="/1105test/src/delete.php" method="post">
-                            <input type="hidden" name="id" value="<?php echo $item["id"]; ?>">
-                            <input type="hidden" name="chk" value="<?php echo $chk; ?>">
-                            <input type="hidden" name="page" value="<?php echo $page_num; ?>">
-                            <input type="hidden" name="flg" value="<?php echo $flg; ?>">
-                            <button class="list_del_btn" type="submit"> 
-                                <img class="list_del_img" src="/1105test/src/img/trash_can.png" alt="">
-                            </button>
-                        </form>
+                        <div>
+                            <div>
+                                <?php echo $item["write_date"]; ?>
+                                <br>
+                                ~
+                                <br>
+                                <?php echo $item["to_date"]; ?>
+                            </div>
+                            
+                            <form action="/1105test/src/delete.php" method="post">
+                                <input type="hidden" name="id" value="<?php echo $item["id"]; ?>">
+                                <input type="hidden" name="chk" value="<?php echo $chk; ?>">
+                                <input type="hidden" name="page" value="<?php echo $page_num; ?>">
+                                <input type="hidden" name="flg" value="<?php echo $flg; ?>">
+                                <button class="list_del_btn center" type="submit"> 
+                                    <img class="list_del_img" src="/1105test/src/img/trash_can.png" alt="">
+                                </button>
+                            </form>
+                        </div>
                     </div>
                     <?php
                         }}
                     ?>
-                    <section>
+                    <section class="list_page_num">
                         <?php
                             if($boards_cnt > 21){
                         ?> 
@@ -187,11 +201,13 @@ try {
                         <a href="/1105test/src/list.php/?page=<?php echo $prev_page_num ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>"><</a>
                         <?php
                             if($boards_cnt < 21){
-                                for ($i = 1; $i <= $max_page_num; $i++) {
+                                for ($i = 1; $i <= max($max_page_num,1); $i++) {
                                     $class = ($i == $page_num) ? "list_now_page" : "";
+                                    if($boards_cnt < 5){
+                                        $i = 1;
+                                    }    
                         ?>
-
-                                    <a class="a <?php echo $class; ?> " href="/1105test/src/list.php/?page=<?php echo $i ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>"><?php echo $i ?></a>        
+                                    <a class=" <?php echo $class; ?> " href="/1105test/src/list.php/?page=<?php echo $i ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>"><?php echo $i ?></a>        
                         <?php
                                 }
                             }
@@ -225,9 +241,8 @@ try {
                         ?>
                     </section>
                 </div>
-        
                 <!-- sub3 우측 -->
-                <div class="sub_grid_item">
+                <div class="sub_grid_item list_table_side flex">
                     <?php
                         if($chk==="1"){
                     ?>
@@ -244,10 +259,6 @@ try {
         </div>
         <!-- 4번그리드 왼쪽여백 -->
         <div class="grid_item">        
-        </div>
-        
-        <!-- 5번그리드 footer -->
-        <div class="grid_item">
         </div>
     </div>
     <script src="/1105test/src/js/list.js"></script>
