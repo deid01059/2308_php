@@ -1,6 +1,7 @@
 <?php
 define("ROOT", $_SERVER["DOCUMENT_ROOT"]."/1105test/src/");
 define("FILE_HEADER", ROOT."header.php");
+define("ERROR_MSG_PARAM", "%s을 입력해주세요.");
 require_once(ROOT."lib/lib_db.php");
 
 $id = ""; // 변수에 값을 담기 위해 공백으로 설정
@@ -152,7 +153,7 @@ try {
                         <?php
                             foreach($arr_err_msg as $val){
                         ?> 
-                            <?php echo $val ?>
+                            <p class="error_p"><?php echo $val ?></p>
                         <?php        
                             }
                         ?>

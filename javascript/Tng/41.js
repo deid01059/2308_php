@@ -33,6 +33,7 @@ function time(){
         hour = hour1-12;
     }else{
         ampm = '오전';
+        hour = hour1
     }
     // 영국 오전오후체크
     if( uk >=13){
@@ -93,7 +94,6 @@ function keepgo(){
 // 각 버튼 클릭시 정지 재시작
 BTN.addEventListener('click', stop);
 BTN1.addEventListener('click', keepgo);
-
 
 
 

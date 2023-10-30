@@ -115,7 +115,7 @@ if($http_method === "POST"){
                             <option value="0">1년</option>
                             <option value="1">10년</option>
                         </select>    
-                        <textarea name="content" id="content" cols="30" rows="10"><?php echo $content ?></textarea>
+                        <textarea name="content" id="content" cols="30" rows="10" maxlength="50"><?php echo $content ?></textarea>
                         <section>
                             <button type="submit">작성</button>
                             <a href="/1105test/src/list.php">취소</a>      

@@ -72,6 +72,38 @@ try {
     if($next_page_num > $max_page_num){
         $next_page_num = $max_page_num;
     }
+
+    if($chk==="1"){
+        $chk_i="0";
+        $m="미수행버킷";
+    }else{
+        $chk_i ="1";
+        $m="수행버킷";
+    }
+
+
+        if($flg === "1"){       
+            $flg_msg= "10년 버킷의";
+        } else {    
+            $flg_msg="올해의";
+        }    
+        if($chk === "1"){     
+            $chk_msg  = "수행완료 리스트";
+        } else {    
+            $chk_msg  = "미수행 리스트";
+        }    
+    
+        $min_page = max($page_num - 2, 1); 
+        $max_page = min($page_num + 2, $max_page_num);
+        if($min_page === 1){
+            $min_page = 1;
+            $max_page = 5;
+        } 
+        else if($max_page === $max_page_num){
+            $min_page = $max_page_num-4;
+            $max_page = $max_page_num;
+        } 
+
 } catch(Exception $e) {
     echo $e->getMessage(); //예외발생 메세지 출력  //v002 del
     exit; //처리종료
@@ -135,6 +167,32 @@ try {
                         <span class="list_sel_none">등록된 리스트가 없습니다.</span>
                     <?php
                         } else { 
+                    ?>
+                    <div>
+                        <div class="list_div_header">
+                            <?php echo $flg_msg.$chk_msg ?>
+                        </div>
+                        <div class="list_div" id="list_div_header">
+                            <div>
+                                <div>
+                                    ID
+                                </div>
+                                <div>
+                                    수행일자
+                                </div>      
+                            </div>
+                            <div>                  
+                                내용
+                            </div>
+                            <div>
+                                <div>
+                                기한
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  
+                    <?php
                             foreach ($result as $item) {
                     ?>
                     <div class=list_div>
@@ -155,7 +213,7 @@ try {
                             ?>
                                 <div>
                                     <a href="/1105test/src/chk_flg.php/?id=<?php echo $item["id"]; ?>&flg=<?php echo $flg ?>&page=<?php echo $page_num ?>&chk=0>&chk_flg=0">
-                                        수행완료
+                                        수행처리
                                     </a>
                                 </div>
                             <?php
@@ -175,13 +233,12 @@ try {
                                 <br>
                                 <?php echo $item["to_date"]; ?>
                             </div>
-                            
-                            <form action="/1105test/src/delete.php" method="post">
+                            <form action="/1105test/src/delete.php" method="post" name="list_del<?php echo $item["id"]; ?>">
                                 <input type="hidden" name="id" value="<?php echo $item["id"]; ?>">
                                 <input type="hidden" name="chk" value="<?php echo $chk; ?>">
                                 <input type="hidden" name="page" value="<?php echo $page_num; ?>">
                                 <input type="hidden" name="flg" value="<?php echo $flg; ?>">
-                                <button class="list_del_btn center" type="submit"> 
+                                <button class="list_del_btn center" onclick="return start(<?php echo $item["id"]; ?>)"> 
                                     <img class="list_del_img" src="/1105test/src/img/trash_can.png" alt="">
                                 </button>
                             </form>
@@ -212,16 +269,6 @@ try {
                                 }
                             }
                             else if($boards_cnt >= 21){
-                            $min_page = max($page_num - 2, 1); 
-                            $max_page = min($page_num + 2, $max_page_num);
-                                if($min_page === 1){
-                                    $min_page = 1;
-                                    $max_page = 5;
-                                } 
-                                else if($max_page === $max_page_num){
-                                    $min_page = $max_page_num-4;
-                                    $max_page = $max_page_num;
-                                } 
                                 for ($i = $min_page; $i <= $max_page; $i++) {
                                     $class = ($i == $page_num) ? "list_now_page" : "";
                                     ?>
@@ -243,17 +290,9 @@ try {
                 </div>
                 <!-- sub3 우측 -->
                 <div class="sub_grid_item list_table_side flex">
-                    <?php
-                        if($chk==="1"){
-                    ?>
-                        <a href="/1105test/src/list.php/?page=1&flg=<?php echo $flg ?>&chk=0">미수행 버킷</a>
-                    <?php
-                        } else {
-                    ?>
-                        <a href="/1105test/src/list.php/?page=1&flg=<?php echo $flg ?>&chk=1">수행 버킷</a>
-                    <?php
-                        }
-                     ?>
+                    <a href="/1105test/src/list.php/?page=1&flg=<?php echo $flg ?>&chk=<?php echo $chk_i ?>">
+                        <?php echo $m ?>
+                    </a>
                 </div>
             </div>
         </div>

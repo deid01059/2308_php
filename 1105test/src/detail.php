@@ -81,48 +81,54 @@ try {
         <div class="grid_item">
             <div class="sub_frame">
                 <!-- sub1 좌상단 -->
-                <div class="sub_grid_item">               
+                <div class="sub_grid_item detail_flex_side">      
+                    <section>
+                        <?php
+                            if($chk_date === "미수행 상태"){
+                        ?>
+                            <a href="/1105test/src/update.php/?id=<?php echo $id; ?>&page=<?php echo $page ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>" class="detail_a">
+                                수정
+                            </a>
+                        <?php
+                            } else {
+                        ?>
+                            <a href="/1105test/src/chk_flg.php/?id=<?php echo $id; ?>&flg=<?php echo $flg ?>&page=<?php echo $page ?>&chk=0&chk_flg=1" class="detail_a">
+                                미수행으로 변경
+                            </a>
+                        <?
+                            }
+                        ?>
+  
+                    </section>         
                 </div>
 
                 <!-- sub2 메인 -->
-                <div class="sub_grid_item">
-                    <div>
-                        <?php echo $chk_date; ?>
-                        <?php echo $item["write_date"]; ?>
-                        <?php echo $item["content"]; ?>
-                        <?php echo $item["to_date"]; ?>
-                        <?php echo $up_date; ?>
-                    </div>
-                    <section>
-                    <?php
-                        if($chk_date === "미수행 상태"){
-                    ?>
-                        <a href="/1105test/src/update.php/?id=<?php echo $id; ?>&page=<?php echo $page ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>">
-                            수정
-                        </a>
-                    <?php
-                        } else {
-                    ?>
-                        <a href="/1105test/src/chk_flg.php/?id=<?php echo $id; ?>&flg=<?php echo $flg ?>&page=<?php echo $page ?>&chk=0&chk_flg=1">
-                            미수행으로 변경
-                        </a>
-                    <?
-                        }
-                    ?>
-                        <a href="/1105test/src/list.php/?page=<?php echo $page ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>">나가기</a>
-                    </section>
+                <div class="sub_grid_item detail_flex">
+                        <div>
+                            수행여부 : <?php echo $chk_date; ?>
+                        </div>
+                        <div>
+                            작성일 : <?php echo $item["write_date"]; ?>
+                        </div>
+                        <div>
+                            내용 : <?php echo $item["content"]; ?>
+                        </div>
+                        <div>
+                            기한 : <?php echo $item["to_date"]; ?>
+                        </div>          
+                        <a href="/1105test/src/list.php/?page=<?php echo $page ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>" class="detail_a">나가기</a>
                 </div>
                 <!-- sub3 우측 -->
-                <div class="sub_grid_item">
+                <div class="sub_grid_item detail_flex_side">
+                    수정날짜
+                    <span>
+                        <?php echo "\n".$up_date; ?>
+                    </span>
                 </div>
             </div>
         </div>
         <!-- 4번그리드 왼쪽여백 -->
         <div class="grid_item">        
-        </div>
-        
-        <!-- 5번그리드 footer -->
-        <div class="grid_item">
         </div>
     </div>
 </body>
