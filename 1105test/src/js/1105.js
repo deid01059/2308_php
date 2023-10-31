@@ -6,3 +6,12 @@ function start(id){
         return false;
     }
 }
+
+
+let time = document.querySelector('#insert_time');
+function nowtime(){
+    let now = new Date();
+    time.innerHTML = now.toLocaleTimeString();
+}
+nowtime();
+setInterval(nowtime, 1000);

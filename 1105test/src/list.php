@@ -227,11 +227,9 @@ try {
                         </div>
                         <div>
                             <div>
-                                <?php echo $item["write_date"]; ?>
-                                <br>
+                                <?php echo $item["write_date"]."\n"; ?>
                                 ~
-                                <br>
-                                <?php echo $item["to_date"]; ?>
+                                <?php echo "\n".$item["to_date"]; ?>
                             </div>
                             <form action="/1105test/src/delete.php" method="post" name="list_del<?php echo $item["id"]; ?>">
                                 <input type="hidden" name="id" value="<?php echo $item["id"]; ?>">
@@ -300,6 +298,6 @@ try {
         <div class="grid_item">        
         </div>
     </div>
-    <script src="/1105test/src/js/list.js"></script>
+    <script src="/1105test/src/js/1105.js"></script>
 </body>
 </html>

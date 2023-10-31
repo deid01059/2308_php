@@ -14,6 +14,29 @@ $to_date = "";
 $ten_flg = "";
 
 $Year = date("Y");
+
+$msg = [
+    "도전 없이는 성취도 없다. - Benjamin Franklin"
+    ,"오직 도전을 통해 자신이 무엇을 할 수 있는지 알 수 있다. - Marie Curie"
+    ,"우리가 정복한 것은 산이 아니라 우리 자신이다. - Sir Edmund Hillary "
+    ,"불가능한 것을 도전하면 가능성의 세계로 이끄는 문이 열린다. - Joel Brown"
+    ,"인생은 계속해서 도전하는 것이다. 도전을 멈추면 성장도 멈춘다. - John Maxwell"
+    ,"만약 도전이 너무 커 보인다면, 그것은 네게 완벽한 도전이다. - Dean Karnazes"
+    ,"믿음이 부족하기 때문에 도전하길 두려워하는 바, 나는 스스로를 믿는다. - Muhammad Ali"
+    ,"시도 했는가? 실패했는가? 괜찮다. 다시 시도하라 다시 실패하라. 더 나은 실패를 하라 - Samuel Beckett"
+    ,"대면한다고 해서 모든 것이 바뀔 수는 없지만, 맞서 대면하지 않으면 아무것도 바꿀 수 없다. - James Arthur Baldwin"
+    ,"가장 큰 위험은 위험없는 삶이다. - Stephen Richards Covey"
+];
+$rand_num= rand(0,9);
+
+
+
+
+
+
+
+
+
 if($http_method === "POST"){
     try {
         $flg = isset($_POST["flg"]) ? trim($_POST["flg"]) : "";
@@ -98,11 +121,11 @@ if($http_method === "POST"){
         <div class="grid_item">
             <div class="sub_frame">
                 <!-- sub1 좌상단 -->
-                <div class="sub_grid_item">               
-                </div>
-
-                <!-- sub2 메인 -->
-                <div class="sub_grid_item">
+                <div class="sub_grid_item insert_flex_side">  
+                    <div>
+                        현재시간
+                        <div id="insert_time"></div>
+                    </div>
                     <?php
                         foreach($arr_err_msg as $val){
                     ?> 
@@ -110,20 +133,25 @@ if($http_method === "POST"){
                     <?php        
                         }
                     ?>
-                    <form action="/1105test/src/insert.php" method="post">
-                        <select name="flg">
+                </div>
+
+                <!-- sub2 메인 -->
+                <div class="sub_grid_item ">       
+                    <form action="/1105test/src/insert.php" method="post" class="insert_flex">
+                        <select name="flg" class="insert-select">
                             <option value="0">1년</option>
                             <option value="1">10년</option>
                         </select>    
-                        <textarea name="content" id="content" cols="30" rows="10" maxlength="50"><?php echo $content ?></textarea>
+                        <textarea class="insert-area" name="content" id="content" cols="30" rows="10" maxlength="50" spellcheck="false"><?php echo $content ?></textarea>
                         <section>
-                            <button type="submit">작성</button>
-                            <a href="/1105test/src/list.php">취소</a>      
+                            <button type="submit" class="insert_btn">작성</button>
+                            <a href="/1105test/src/list.php" class="insert_can">취소</a>      
                         </section>
                     </form> 
                 </div>
                 <!-- sub3 우측 -->
-                <div class="sub_grid_item">
+                <div class="sub_grid_item insert_flex_side1 insert_right">
+                    <?php echo $msg[$rand_num]; ?>
                 </div>
             </div>
         </div>
@@ -135,5 +163,6 @@ if($http_method === "POST"){
         <div class="grid_item">
         </div>
     </div>
+    <script src="/1105test/src/js/1105.js"></script>
 </body>
 </html>

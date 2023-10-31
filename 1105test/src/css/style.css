@@ -3,10 +3,23 @@
     margin: 0;
     box-sizing: border-box;
     color: black;
+    font-family: 'Katuri';
 }
 
 
+
+
+
+
 /* 공통 */
+@font-face {
+    font-family: 'Katuri';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_13@1.0/Katuri.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 a {
     text-decoration: none;
 }
@@ -33,8 +46,11 @@ body{
     grid-template-columns: 1fr 8fr 1fr;
 }
 
-
-
+textarea{
+    background: none;
+    resize: none;
+    border: 3px solid white;
+}
 
 
 @media (min-width: 1005px){
@@ -88,6 +104,10 @@ body{
     justify-content: space-evenly;
 }
 
+
+.error_p{
+    color: red;
+}
 
 /* header */
 .header_box{
@@ -295,5 +315,243 @@ body{
 }
 
 .detail_flex div{
-    
+    font-size: 1.4rem;
+    font-weight: 600;
 }
+
+.detail_flex a{
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+
+
+/* insert */
+.insert_flex{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    padding: 1rem;
+    height: 100%;
+    width: 100%;
+    justify-content: space-around;
+
+}
+
+.insert_flex a{
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.insert_flex_side{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 2rem;
+}
+.insert_flex_side1{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+
+.insert-select {
+    display: block;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    color: #555;
+    line-height: 1.3;
+    padding: 0.6em 1.4em 0.5em 0.8em;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 0.5em;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: white;
+    background-image: linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%), linear-gradient(to right, #ccc, #ccc);
+    background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px), 100% 0;
+    background-size: 5px 5px, 5px 5px, 2.5em 2.5em;
+    background-repeat: no-repeat;
+  }
+  
+
+  .insert-select:hover {
+    border-color: #888;
+  }
+  
+
+  .insert-select:focus {
+    outline: none;
+  }
+
+  /* 화살표 아이콘 스타일 */
+  .insert-select::after {
+    position: absolute;
+    top: 50%;
+    right: 1em;
+    transform: translateY(-50%);
+    color: #888;
+    pointer-events: none;
+  }
+  /* 기본 스타일 */
+.insert-area {
+    width: 100%;
+    padding: 10px;
+    border: 8px solid #ddd;
+    border-radius: 6px;
+    font-size: 2rem;
+  }
+  
+
+  /* 포커스 효과 */
+  .insert-area:focus {
+    border-color: #33c3f0;
+    outline: none;
+  }
+  
+  /* 입력된 내용의 스타일 */
+  .insert-area:valid {
+    border-color: #ffffff;
+  }
+  
+  /* 글자 수 제한 표시 */
+  .insert-area:invalid {
+    border-color: #f44336;
+  }
+
+
+.insert_btn{
+    font-weight:900;
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    margin-right: 15px;
+    transition: all 0.5s;
+}
+
+.insert_can{
+    transition: all 0.5s;
+}
+  
+.insert_btn:hover, .insert_can:hover{
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-position: under;
+    color: rgb(159, 159, 159);
+}
+
+.insert_can{
+    margin-left: 15px;
+}
+
+.insert_right_side{
+    padding: 0px 20px;
+}
+
+
+
+
+
+/* update */
+
+
+.update_flex{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    padding: 1rem;
+    height: 100%;
+    width: 100%;
+    justify-content: space-around;
+
+}
+
+.update_flex_side{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 2rem;
+}
+.update_flex_side1{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+
+.update_right_side{
+    padding: 0px 20px;
+}
+
+.update_btn{
+    font-weight:900;
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    margin-right: 15px;
+    transition: all 0.5s;
+}
+
+.update_can{
+    transition: all 0.5s;
+    font-size: 1.2rem;
+    font-weight:900;
+}
+  
+.update_btn:hover, .update_can:hover{
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-position: under;
+    color: rgb(159, 159, 159);
+}
+
+.update_can{
+    margin-left: 15px;
+}
+
+.update_right_side{
+    padding: 0px 20px;
+}
+
+.update_area {
+    width: 100%;
+    height: 280px;
+    padding: 10px;
+    border: 8px solid #ddd;
+    border-radius: 6px;
+    font-size: 2rem;
+  }
+  
+
+  /* 포커스 효과 */
+  .update_area:focus {
+    border-color: #33c3f0;
+    outline: none;
+  }
+  
+  /* 입력된 내용의 스타일 */
+  .update_area:valid {
+    border-color: #ffffff;
+  }
+  
+  /* 글자 수 제한 표시 */
+  .update_area:invalid {
+    border-color: #f44336;
+  }
+
+  .update_date_msg{
+    font-size: 1.5rem;
+  }
+
+  .update_flex_side div div{
+    color: rgb(27, 92, 38);
+    margin-bottom: 20px;
+  }

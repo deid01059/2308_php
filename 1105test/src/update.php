@@ -12,6 +12,22 @@ $arr_err_msg= []; //에러메세지용 변수를 배열로 넣어줌
 $flg = "";
 $chk = "";
 
+
+
+$msg = [
+    "도전 없이는 성취도 없다. - Benjamin Franklin"
+    ,"오직 도전을 통해 자신이 무엇을 할 수 있는지 알 수 있다. - Marie Curie"
+    ,"우리가 정복한 것은 산이 아니라 우리 자신이다. - Sir Edmund Hillary "
+    ,"불가능한 것을 도전하면 가능성의 세계로 이끄는 문이 열린다. - Joel Brown"
+    ,"인생은 계속해서 도전하는 것이다. 도전을 멈추면 성장도 멈춘다. - John Maxwell"
+    ,"만약 도전이 너무 커 보인다면, 그것은 네게 완벽한 도전이다. - Dean Karnazes"
+    ,"믿음이 부족하기 때문에 도전하길 두려워하는 바, 나는 스스로를 믿는다. - Muhammad Ali"
+    ,"시도 했는가? 실패했는가? 괜찮다. 다시 시도하라 다시 실패하라. 더 나은 실패를 하라 - Samuel Beckett"
+    ,"대면한다고 해서 모든 것이 바뀔 수는 없지만, 맞서 대면하지 않으면 아무것도 바꿀 수 없다. - James Arthur Baldwin"
+    ,"가장 큰 위험은 위험없는 삶이다. - Stephen Richards Covey"
+];
+$rand_num= rand(0,9);
+
 try {
     // DB 연결
         if(!my_db_conn($conn)) {
@@ -142,33 +158,42 @@ try {
         <div class="grid_item">
             <div class="sub_frame">
                 <!-- sub1 좌측 -->
-                <div class="sub_grid_item">               
+                <div class="sub_grid_item update_flex_side">  
+                    <div>
+                        <div>     
+                            -현재상태-
+                        </div>
+                        <?php echo $chk_date; ?>
+                    </div>
+                    <?php
+                        foreach($arr_err_msg as $val){
+                    ?> 
+                        <p class="error_p"><?php echo $val ?></p>
+                    <?php        
+                        }
+                    ?>             
                 </div>
 
                 <!-- sub2 메인 -->
                 <div class="sub_grid_item">
-                    <form action="/1105test/src/update.php" method="post">
+                    <form action="/1105test/src/update.php" method="post" class="update_flex">
                         <input type="hidden" name="id" value="<?php echo $id ?>">
                         <input type="hidden" name="page" value="<?php echo $page ?>"> 
-                        <?php
-                            foreach($arr_err_msg as $val){
-                        ?> 
-                            <p class="error_p"><?php echo $val ?></p>
-                        <?php        
-                            }
-                        ?>
-                        <?php echo $chk_date; ?>
-                        <?php echo $item["write_date"]; ?>
-                        <textarea name="content" id="content" cols="30" rows="2" maxlength="30" required><?php echo $item["content"] ?></textarea>
-                        <?php echo $item["to_date"]; ?>
+                        <div class="update_date_msg">
+                            시작일 : <?php echo $item["write_date"]; ?>
+                                <div>~</div>
+                            종료일 : <?php echo $item["to_date"]; ?>
+                        </div>
+                        <textarea class="update_area" name="content" id="content" cols="30" rows="2" maxlength="30" required spellcheck="false"><?php echo $item["content"] ?></textarea>
                         <div>
-                            <button type="submit">완료</button>
-                            <a class="update_a "href="/1105test/src/detail.php/?id=<?php echo $id; ?>&page=<?php echo $page; ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>">취소</a>
+                            <button class="update_btn" type="submit">완료</button>
+                            <a class="update_can" href="/1105test/src/detail.php/?id=<?php echo $id; ?>&page=<?php echo $page; ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>">취소</a>
                         </div>
                     </form>
                 </div>
                 <!-- sub3 우측 -->
-                <div class="sub_grid_item">
+                <div class="sub_grid_item update_flex_side1 update_right">
+                    <?php echo $msg[$rand_num]; ?>
                 </div>
             </div>
         </div>

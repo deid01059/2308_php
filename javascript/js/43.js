@@ -20,6 +20,7 @@
 		- 프로그래밍 언어나 플랫폼에 상관없이 사용 가능
 	JSON.stringify( obj ) : Object를 JSON 포맷의 String으로 변환(Serializing)해주는 메소드
 	JSON.parse( json ) : JSON 포맷의 String을 Object로 변환(Deserializing)해주는 메소드
+
 // XML
 <xml>
 	<data>
@@ -27,6 +28,8 @@
 		<name>홍길동</name>
 	</data>
 </xml>
+
+
 // json
 {
 	data: {
@@ -35,3 +38,104 @@
 	}
 }
 */
+
+// 4.API 예제 사이트
+// https://picsum.photos/
+// const MY_URL = "https://picsum.photos/v2/list?page=2&limit=5"
+
+// 클릭시 사진호출하기
+const BTN_API = document.querySelector('#btn_api')
+// 클릭시 사진호출 취소하기
+const BTN_CLE = document.querySelector('#btn_api_clear')
+BTN_API.addEventListener('click',my_fetch)
+BTN_CLE.addEventListener('click',best)
+
+// 내가 만든 삭제하는 함수
+function clear_img (){
+	const len = document.getElementsByTagName('img').length;
+	for(let i = 0; i<len; i++){
+		let img = document.querySelector('img');
+		img.remove();
+		
+}
+}
+
+// 제일간단(새로고침 )
+// 단점 서버에 요청이다시오니 좋은방법 x 50점짜리
+function img_cle(){
+	window.location.reload();
+}
+
+// 2번째방법(내방법 수정버전) 80점짜리
+function clear_img (){
+	let img = document.querySelectorAll('img');
+	for(let i = 0; i<img.length; i++){
+		img[i].remove();		
+	}
+}
+
+// 3번째방법 90점
+
+function best(){
+	const DIV_IMG = document.querySelector('#div_img'); 
+	DIV_IMG.replaceChildren();
+}
+
+// 4번째방법 90점
+
+function best2(){
+	const DIV_IMG = document.querySelector('#div_img'); 
+	DIV_IMG.innerHTML = '';
+}
+
+
+
+
+
+function my_fetch(){
+	const INPUT_URL = document.querySelector('#input_url');
+	fetch(INPUT_URL.value.trim())
+	
+	.then( response => {
+		if(response.status >= 200 && response.status < 300){
+			return response.json();
+		} else{
+			throw new Error('에러에러')
+		}
+	} )
+	.then( data => makeImg(data) )
+	.catch( error => console.log(error));
+}
+
+function makeImg(data){
+	data.forEach( item => {
+		const NEW_IMG = document.createElement('img');
+		const DIV_IMG = document.querySelector('#div_img')
+		NEW_IMG.setAttribute('src',item.download_url);
+		NEW_IMG.style.width ='200px';
+		NEW_IMG.style.height ='200px';
+		DIV_IMG.appendChild(NEW_IMG);
+	});
+}
+
+// console.log(response) 결과
+// Response {type: 'cors', url: 'https://picsum.photos/v2/list?page=2&limit=5', redirected: false, status: 200, ok: true, …}
+// body : (...)
+// bodyUsed :  false
+// headers :  Headers {}
+// ok : true
+// redirected :  false
+
+// status :  200
+// 200대 정상 300대 서버에서 이상 400대 통신이안될떄
+
+// statusText :  ""
+// type : "cors"
+// url : "https://picsum.photos/v2/list?page=2&limit=5"
+// [[Prototype]] : Response
+
+
+
+
+
+
