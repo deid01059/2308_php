@@ -98,7 +98,7 @@ try {
                 throw new Exception("DB Error : Update_boards_id");
             }
             $conn->commit(); // commit
-            header("Location: detail.php/?id={$id}&page={$page}&chk={$chk}&flg={$flg}"); // detail 페이지로 이동
+            header("Location: detail.php/?id={$id}&page={$page}&chk={$chk}&flg={$flg}&date{$date}"); // detail 페이지로 이동
             exit;
         }
     }
@@ -180,6 +180,9 @@ try {
                     <form action="/1105test/src/update.php" method="post" class="update_flex">
                         <input type="hidden" name="id" value="<?php echo $id ?>">
                         <input type="hidden" name="page" value="<?php echo $page ?>"> 
+                        <input type="hidden" name="page" value="<?php echo $flg ?>"> 
+                        <input type="hidden" name="page" value="<?php echo $chk ?>"> 
+                        <input type="hidden" name="page" value="<?php echo $date ?>"> 
                         <div class="update_date_msg">
                             시작일 : <?php echo $item["write_date"]; ?>
                                 <div>~</div>
