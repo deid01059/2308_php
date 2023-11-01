@@ -1,0 +1,62 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    font-family: 'KCCMurukmuruk';
+}
+
+
+/* 폰트 */
+@font-face {
+    font-family: 'KCCMurukmuruk';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/KCCMurukmuruk.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* 공동영역 */
+
+.center {
+    text-align: center;
+}
+
+.margin {
+    margin: 0 auto;
+}
+
+
+/* header */
+
+.header_a {
+    transition: all 0.5s ease;
+    position: relative;
+}
+
+.header_a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 4px; /* 더 굵은 밑줄을 위해 높이를 조정합니다. */
+    bottom: 0px;
+    left: 0;
+    background-color: #445086;
+    transform-origin: bottom right;
+    transition: transform 0.7s ease;
+}
+
+.header_a:hover::after {
+    transform: scaleX(1);
+}
+
+.header_home{
+    font-size: 1.5rem;
+    transition: all 0.7s ease;
+    color: #000;
+}
+.header_home:hover{
+    color: #5f54dc;
+}
