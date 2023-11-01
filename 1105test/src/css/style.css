@@ -325,6 +325,12 @@ textarea{
 }
 
 
+.detail_flex div:nth-child(1){
+    color: rgb(24, 38, 165);
+}
+.detail_flex p{
+    color:  #2f991c;
+}
 
 /* insert */
 .insert_flex{

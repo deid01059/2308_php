@@ -23,19 +23,30 @@ try {
     // 페이징 처리
     // -------------
     
-    $page_num = isset($_GET["page"]) ? $_GET["page"] : 1;
-    $flg = isset($_GET["flg"]) ? $_GET["flg"] : 0;
-    $chk = isset($_GET["chk"]) ? $_GET["chk"] : 0;
-    if($flg === ""){
-        $flg = "0";
-    }
-    if($chk === ""){
-        $chk = "0";
-    }
+    $page_num = isset($_GET["page"]) ? $_GET["page"] : "1";
+    $flg = isset($_GET["flg"]) ? $_GET["flg"] : "0";
+    $chk = isset($_GET["chk"]) ? $_GET["chk"] : "0";
+    $date = isset($_GET["date"]) ? $_GET["date"] : "0";
+    // if($flg === ""){
+    //     $flg = "0";
+    // }
+    // if($chk === ""){
+    //     $chk = "0";
+    // }
+
+    if($date==="1"){
+        $date_i="0";
+        $date_m="현재진행중";
+    }else{
+        $date_i="1";
+        $date_m="지난버킷들";
+    };
+
     // 게시글 카운트 조회
     $arr_param = [
         "flg" => $flg
         , "chk" => $chk
+        , "date" => $date
     ];
     
     // 게시글 카운트
@@ -53,6 +64,7 @@ try {
         ,"offset" => $offset
         , "flg" => $flg
         , "chk" => $chk
+        , "date" => $date
     ];
 
     // 게시글 리스트 조회 
@@ -80,19 +92,24 @@ try {
         $chk_i ="1";
         $m="수행버킷";
     }
-
-
+    if($date === "1"){
         if($flg === "1"){       
-            $flg_msg= "10년 버킷의";
+            $flg_msg= "과거 10년 버킷의 ";
         } else {    
-            $flg_msg="올해의";
+            $flg_msg="과거 1년의 ";
         }    
-        if($chk === "1"){     
-            $chk_msg  = "수행완료 리스트";
+    }else{
+        if($flg === "1"){       
+            $flg_msg= "10년 버킷의 ";
         } else {    
-            $chk_msg  = "미수행 리스트";
+            $flg_msg="올해의 ";
         }    
-    
+    }   
+    if($chk === "1"){     
+        $chk_msg  = "수행완료 리스트";
+    } else {    
+        $chk_msg  = "미수행 리스트";
+    }
         $min_page = max($page_num - 2, 1); 
         $max_page = min($page_num + 2, $max_page_num);
         if($min_page === 1){
@@ -148,11 +165,11 @@ try {
                     <?php
                         if($flg === "1"){ 
                     ?>
-                        <a href="/1105test/src/list.php/?flg=0&chk=<?php echo $chk ?>" data-hover="올해의 버킷">올해의 버킷</a>
+                        <a href="/1105test/src/list.php/?flg=0&chk=<?php echo $chk ?>&date=<?php echo $date ?>">1년 버킷</a>
                     <?php
                         } else {
                     ?>
-                        <a href="/1105test/src/list.php/?flg=1&chk=<?php echo $chk ?>" data-hover="10년 버킷">10년 버킷</a>
+                        <a href="/1105test/src/list.php/?flg=1&chk=<?php echo $chk ?>&date=<?php echo $date ?>" >10년 버킷</a>
                     <?php
                         }
                     ?>
@@ -161,13 +178,6 @@ try {
 
                 <!-- sub2 메인 -->
                 <div class="sub_grid_item list_content_flex list_table_center">
-                    <?php 
-                        if(!$result){
-                    ?>
-                        <span class="list_sel_none">등록된 리스트가 없습니다.</span>
-                    <?php
-                        } else { 
-                    ?>
                     <div>
                         <div class="list_div_header">
                             <?php echo $flg_msg.$chk_msg ?>
@@ -191,7 +201,13 @@ try {
                             </div>
                         </div>
                     </div>
-                  
+                    <?php 
+                        if(!$result){
+                    ?>
+                        <span class="list_sel_none">등록된 리스트가 없습니다.</span>
+                    <?php
+                        } else { 
+                    ?>        
                     <?php
                             foreach ($result as $item) {
                     ?>
@@ -201,6 +217,27 @@ try {
                                 <?php echo $item["id"]; ?>
                             </div>
                             <?php 
+                                if($date === "1"){
+                                    if($chk === "1"){       
+                            ?>  
+                                <div>
+                                    <span>
+                                        <?php echo $item["chk_date"] ?>
+                                    </span>              
+                                </div>
+                            <?php
+                                } else {
+                            ?>
+                                <div>
+                                    <span>
+                                        미수행
+                                    </span> 
+                                </div>
+                            <?php
+                                }
+                            ?>
+                            <?php
+                            } else {
                                 if($chk === "1"){       
                             ?>  
                                 <div>
@@ -212,16 +249,16 @@ try {
                                 } else {
                             ?>
                                 <div>
-                                    <a href="/1105test/src/chk_flg.php/?id=<?php echo $item["id"]; ?>&flg=<?php echo $flg ?>&page=<?php echo $page_num ?>&chk=0>&chk_flg=0">
+                                    <a href="/1105test/src/chk_flg.php/?id=<?php echo $item["id"]; ?>&flg=<?php echo $flg ?>&page=<?php echo $page_num ?>&chk=0>&chk_flg=0&date=<?php echo $date ?>">
                                         수행처리
                                     </a>
                                 </div>
                             <?php
-                                }
+                                }}
                             ?>  
                             </div>
                         <div>                  
-                            <a class="list_content" href="/1105test/src/detail.php/?id=<?php echo $item["id"]; ?>&page=<?php echo $page_num ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>">
+                            <a class="list_content" href="/1105test/src/detail.php/?id=<?php echo $item["id"]; ?>&page=<?php echo $page_num ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>&date=<?php echo $date ?>">
                                 <?php echo $item["content"]; ?>
                             </a>
                         </div>
@@ -236,6 +273,7 @@ try {
                                 <input type="hidden" name="chk" value="<?php echo $chk; ?>">
                                 <input type="hidden" name="page" value="<?php echo $page_num; ?>">
                                 <input type="hidden" name="flg" value="<?php echo $flg; ?>">
+                                <input type="hidden" name="date" value="<?php echo $date; ?>">
                                 <button class="list_del_btn center" onclick="return start(<?php echo $item["id"]; ?>)"> 
                                     <img class="list_del_img" src="/1105test/src/img/trash_can.png" alt="">
                                 </button>
@@ -249,11 +287,11 @@ try {
                         <?php
                             if($boards_cnt > 21){
                         ?> 
-                        <a href="/1105test/src/list.php/?page=1&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>"><<</a>
+                        <a href="/1105test/src/list.php/?page=1&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>&date=<?php echo $date ?>"><<</a>
                         <?php
                             }
                         ?>      
-                        <a href="/1105test/src/list.php/?page=<?php echo $prev_page_num ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>"><</a>
+                        <a href="/1105test/src/list.php/?page=<?php echo $prev_page_num ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>&date=<?php echo $date ?>"><</a>
                         <?php
                             if($boards_cnt < 21){
                                 for ($i = 1; $i <= max($max_page_num,1); $i++) {
@@ -262,7 +300,7 @@ try {
                                         $i = 1;
                                     }    
                         ?>
-                                    <a class=" <?php echo $class; ?> " href="/1105test/src/list.php/?page=<?php echo $i ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>"><?php echo $i ?></a>        
+                                    <a class=" <?php echo $class; ?> " href="/1105test/src/list.php/?page=<?php echo $i ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>&date=<?php echo $date ?>"><?php echo $i ?></a>        
                         <?php
                                 }
                             }
@@ -271,12 +309,12 @@ try {
                                     $class = ($i == $page_num) ? "list_now_page" : "";
                                     ?>
                                     
-                                    <a class="page_btn <?php echo $class; ?> " href="/1105test/src/list.php/?page=<?php echo $i ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>"><?php echo $i ?></a>
+                                    <a class="page_btn <?php echo $class; ?> " href="/1105test/src/list.php/?page=<?php echo $i ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>&date=<?php echo $date ?>"><?php echo $i ?></a>
                         <?php
                                 }
                             }             
                         ?>
-                        <a  href="/1105test/src/list.php/?page=<?php echo $next_page_num ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>">></a>
+                        <a  href="/1105test/src/list.php/?page=<?php echo $next_page_num ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>&date=<?php echo $date ?>">></a>
                         <?php
                             if($boards_cnt > 21){
                         ?> 
@@ -288,8 +326,11 @@ try {
                 </div>
                 <!-- sub3 우측 -->
                 <div class="sub_grid_item list_table_side flex">
-                    <a href="/1105test/src/list.php/?page=1&flg=<?php echo $flg ?>&chk=<?php echo $chk_i ?>">
+                    <a href="/1105test/src/list.php/?page=1&flg=<?php echo $flg ?>&chk=<?php echo $chk_i ?>&date=<?php echo $date ?>">
                         <?php echo $m ?>
+                    </a>
+                    <a href="/1105test/src/list.php/?page=1&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>&date=<?php echo $date_i ?>">
+                        <?php echo $date_m ?>
                     </a>
                 </div>
             </div>

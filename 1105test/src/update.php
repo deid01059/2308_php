@@ -43,6 +43,7 @@ try {
         $page = isset($_GET["page"]) ? trim($_GET["page"]) : ""; // page 셋팅
         $flg = isset($_GET["flg"]) ? trim($_GET["flg"]) : ""; // flg 셋팅
         $chk = isset($_GET["chk"]) ? trim($_GET["chk"]) : ""; // chk 셋팅
+        $date = isset($_GET["date"]) ? trim($_GET["date"]) : ""; // date 셋팅
         
         
         if($id === ""){
@@ -187,7 +188,7 @@ try {
                         <textarea class="update_area" name="content" id="content" cols="30" rows="2" maxlength="30" required spellcheck="false"><?php echo $item["content"] ?></textarea>
                         <div>
                             <button class="update_btn" type="submit">완료</button>
-                            <a class="update_can" href="/1105test/src/detail.php/?id=<?php echo $id; ?>&page=<?php echo $page; ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>">취소</a>
+                            <a class="update_can" href="/1105test/src/detail.php/?id=<?php echo $id; ?>&page=<?php echo $page; ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>&date=<?php echo $date ?>">취소</a>
                         </div>
                     </form>
                 </div>

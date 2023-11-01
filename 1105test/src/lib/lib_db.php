@@ -61,6 +61,7 @@ function db_destroy_conn(&$conn){
 // -------------------------------
 function db_select_lists_paging(&$conn, &$arr_param){
     $chk = $arr_param["chk"]==="1" ? " NOT NULL " : " NULL ";
+    $date = $arr_param["date"]==="1" ? " > " : " <= ";
         $sql =
         " SELECT "
         ."      id "
@@ -76,6 +77,8 @@ function db_select_lists_paging(&$conn, &$arr_param){
         ."      chk_date IS " . $chk
         ." AND "
         ."      ten_flg = :flg "
+        ." AND "
+        ."      write_date ".$date." to_date "
         ." ORDER BY "
         ."      id DESC "
         ."      LIMIT :list_cnt "  
@@ -108,6 +111,7 @@ function db_select_lists_paging(&$conn, &$arr_param){
 
 function db_select_lists_cnt( &$conn, &$arr_param ){
     $chk = $arr_param["chk"]==="1" ? " NOT NULL " : " NULL ";
+    $date = $arr_param["date"]==="1" ? " > " : " <= ";
         $sql =
         " SELECT "
         ."      count(id) as cnt "
@@ -119,6 +123,8 @@ function db_select_lists_cnt( &$conn, &$arr_param ){
         ."      chk_date IS " . $chk
         ." AND "
         ."      ten_flg = :flg "
+        ." AND "
+        ."      write_date ".$date." to_date "
         ;
         $arr_ps = [
             ":flg" => $arr_param["flg"]

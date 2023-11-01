@@ -8,6 +8,7 @@ $conn = null;
 $page = "";
 $flg = "";
 $chk = "";
+$date = "";
 
 try {
     if(isset($_GET["id"])){
@@ -30,6 +31,11 @@ try {
 	} else {
         throw new Exception("Parameter ERROR : NO flg"); //강제 예외 발생
 	}
+    if(isset($_GET["date"])){
+        $date=$_GET["date"]; //id 셋팅
+	} else {
+        throw new Exception("Parameter ERROR : NO date"); //강제 예외 발생
+	}
     // DB 접속
     if(!my_db_conn($conn)){
         // DB Instance 에러
@@ -45,8 +51,27 @@ try {
 		throw new Exception("DB Error : PDO Select_id count," .count($result));
 	}
     $item=$result[0];
+
+
+    $from = new DateTime($item["write_date"]);
+    $to = new DateTime($item["to_date"]);
+    $total = $from -> diff( $to ) -> days;
+
+    $to_ = strtotime($to->format('Y-m-d H:i:s'));
+    $from_ = strtotime($from->format('Y-m-d H:i:s'));
+    if($to_>$from_){
+        $total = "남은기한 : ".$from -> diff( $to ) -> days." 일";
+    }
+    else if($to_ === $from_){
+        $total = "D-DAY";
+    }
+    if($to_<$from_){
+        $total = "이미 지난 버킷리스트 입니다";
+    }
+
+
     $chk_date1 = $item["chk_date"];
-    $chk_date = isset($chk_date1)? $chk_date1 : "미수행 상태";
+    $chk_date = isset($chk_date1)? $chk_date1 : "미수행 버킷 입니다";
     $up_date1 = $item["up_date"];
     $up_date = isset($up_date1)? $up_date1 : "없음";
 } catch (Exception $e) {
@@ -84,9 +109,17 @@ try {
                 <div class="sub_grid_item detail_flex_side">      
                     <section>
                         <?php
-                            if($chk_date === "미수행 상태"){
+                            if($to_<$from_){
+                        ?>  
+                            <div>
+                                현재시간
+                                <div id="insert_time"></div>
+                            </div>
+                        <?php
+                            } else {
+                            if($chk_date === "미수행 버킷 입니다"){
                         ?>
-                            <a href="/1105test/src/update.php/?id=<?php echo $id; ?>&page=<?php echo $page ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>" class="detail_a">
+                            <a href="/1105test/src/update.php/?id=<?php echo $id; ?>&page=<?php echo $page ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>&date=<?php echo $date ?>" class="detail_a">
                                 수정
                             </a>
                         <?php
@@ -96,7 +129,7 @@ try {
                                 미수행으로 변경
                             </a>
                         <?
-                            }
+                            }}
                         ?>
   
                     </section>         
@@ -105,7 +138,7 @@ try {
                 <!-- sub2 메인 -->
                 <div class="sub_grid_item detail_flex">
                         <div>
-                            수행여부 : <?php echo $chk_date; ?>
+                            수행일 : <?php echo $chk_date; ?>
                         </div>
                         <div>
                             작성일 : <?php echo $item["write_date"]; ?>
@@ -115,8 +148,11 @@ try {
                         </div>
                         <div>
                             기한 : <?php echo $item["to_date"]; ?>
+                            <p>
+                                <?php echo $total ?>
+                            </p>
                         </div>          
-                        <a href="/1105test/src/list.php/?page=<?php echo $page ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>" class="detail_a">나가기</a>
+                        <a href="/1105test/src/list.php/?page=<?php echo $page ?>&flg=<?php echo $flg ?>&chk=<?php echo $chk ?>&date=<?php echo $date ?>" class="detail_a">나가기</a>
                 </div>
                 <!-- sub3 우측 -->
                 <div class="sub_grid_item detail_flex_side">
@@ -131,5 +167,6 @@ try {
         <div class="grid_item">        
         </div>
     </div>
+    <script src="/1105test/src/js/1105.js"></script>
 </body>
 </html>
