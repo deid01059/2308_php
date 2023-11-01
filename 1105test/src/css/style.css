@@ -257,7 +257,10 @@ textarea{
     background-color: rgba(250, 235, 215, 0.684);
     font-size: 2rem;
 }
-
+.list_table_side1{
+    background-color: rgba(253, 150, 118, 0.684);
+    font-size: 2rem;
+}
 
 .list_table_side a {
     transition: all 0.5s;

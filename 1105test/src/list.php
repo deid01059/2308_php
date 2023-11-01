@@ -121,6 +121,8 @@ try {
             $max_page = $max_page_num;
         } 
 
+        $class1 = ($date === "1") ? "list_table_side1" : "";
+
 } catch(Exception $e) {
     echo $e->getMessage(); //예외발생 메세지 출력  //v002 del
     exit; //처리종료
@@ -161,7 +163,7 @@ try {
         <div class="grid_item">
             <div class="sub_frame">
                 <!-- sub1 좌측 -->
-                <div class="sub_grid_item flex list_table_side">               
+                <div class="sub_grid_item flex list_table_side <?php echo $class1 ?>">               
                     <?php
                         if($flg === "1"){ 
                     ?>
@@ -325,7 +327,7 @@ try {
                     </section>
                 </div>
                 <!-- sub3 우측 -->
-                <div class="sub_grid_item list_table_side flex">
+                <div class="sub_grid_item list_table_side flex <?php echo $class1 ?>">
                     <a href="/1105test/src/list.php/?page=1&flg=<?php echo $flg ?>&chk=<?php echo $chk_i ?>&date=<?php echo $date ?>">
                         <?php echo $m ?>
                     </a>

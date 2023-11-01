@@ -67,6 +67,9 @@ try {
         $id = isset($_POST["id"]) ? trim($_POST["id"]) :""; // id 셋팅
         $page = isset($_POST["page"]) ? trim($_POST["page"]) : ""; // page 셋팅
         $content = isset($_POST["content"]) ? trim($_POST["content"]) : ""; //content셋팅
+        $date = isset($_POST["date"]) ? trim($_POST["date"]) : ""; //content셋팅
+        $chk = isset($_POST["chk"]) ? trim($_POST["chk"]) : ""; //content셋팅
+        $flg = isset($_POST["flg"]) ? trim($_POST["flg"]) : ""; //content셋팅
         if($id === ""){
             $arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "id");
         }       
@@ -78,6 +81,9 @@ try {
         }
         if($content === ""){
             $arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "내용");
+        }
+        if($date === ""){
+            $arr_err_msg[] = sprintf(ERROR_MSG_PARAM, "남은기한");
         }
         if(count($arr_err_msg) === 0){
             if($flg === ""){
@@ -98,7 +104,7 @@ try {
                 throw new Exception("DB Error : Update_boards_id");
             }
             $conn->commit(); // commit
-            header("Location: detail.php/?id={$id}&page={$page}&chk={$chk}&flg={$flg}&date{$date}"); // detail 페이지로 이동
+            header("Location: detail.php/?id={$id}&page={$page}&chk={$chk}&flg={$flg}&date={$date}"); // detail 페이지로 이동
             exit;
         }
     }
@@ -180,9 +186,9 @@ try {
                     <form action="/1105test/src/update.php" method="post" class="update_flex">
                         <input type="hidden" name="id" value="<?php echo $id ?>">
                         <input type="hidden" name="page" value="<?php echo $page ?>"> 
-                        <input type="hidden" name="page" value="<?php echo $flg ?>"> 
-                        <input type="hidden" name="page" value="<?php echo $chk ?>"> 
-                        <input type="hidden" name="page" value="<?php echo $date ?>"> 
+                        <input type="hidden" name="flg" value="<?php echo $flg ?>"> 
+                        <input type="hidden" name="chk" value="<?php echo $chk ?>"> 
+                        <input type="hidden" name="date" value="<?php echo $date ?>"> 
                         <div class="update_date_msg">
                             시작일 : <?php echo $item["write_date"]; ?>
                                 <div>~</div>
