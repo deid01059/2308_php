@@ -59,17 +59,19 @@ try {
 
     $to_ = strtotime($to->format('Y-m-d H:i:s'));
     $from_ = strtotime($from->format('Y-m-d H:i:s'));
-    if($to_>$from_){
-        $total = "남은기한 : ".$from -> diff( $to ) -> days." 일";
+    if($chk ==="1"){
+        $total = "!!!수행완료!!!";
+    }else{  
+        if($to_>$from_){
+            $total = "남은기한 : ".$from -> diff( $to ) -> days." 일";
+        }
+        else if($to_ === $from_){
+            $total = "D-DAY";
+        }
+        if($to_<$from_){
+            $total = "수행실패...";
     }
-    else if($to_ === $from_){
-        $total = "D-DAY";
     }
-    if($to_<$from_){
-        $total = "이미 지난 버킷리스트 입니다";
-    }
-
-
     $chk_date1 = $item["chk_date"];
     $chk_date = isset($chk_date1)? $chk_date1 : "미수행 버킷 입니다";
     $up_date1 = $item["up_date"];
