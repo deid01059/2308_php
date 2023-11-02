@@ -10,6 +10,7 @@ $flg = "";
 $chk = "";
 $date = "";
 
+
 try {
     if(isset($_GET["id"])){
         $id=$_GET["id"]; //id 셋팅
@@ -53,12 +54,12 @@ try {
     $item=$result[0];
 
 
-    $from = new DateTime($item["write_date"]);
+    $from = new DateTime;
     $to = new DateTime($item["to_date"]);
     $total = $from -> diff( $to ) -> days;
 
-    $to_ = strtotime($to->format('Y-m-d H:i:s'));
-    $from_ = strtotime($from->format('Y-m-d H:i:s'));
+    $to_ = strtotime($to->format('Y-m-d'));
+    $from_ = strtotime($from->format('Y-m-d'));
     if($chk ==="1"){
         $total = "!!!수행완료!!!";
     }else{  
@@ -111,7 +112,7 @@ try {
                 <div class="sub_grid_item detail_flex_side">      
                     <section>
                         <?php
-                            if($to_<$from_){
+                            if( $to_< $from_){
                         ?>  
                             <div>
                                 현재시간

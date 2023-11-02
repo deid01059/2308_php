@@ -8,6 +8,7 @@ $content = "";
 $to_date="";
 $flg = 0;
 $chk = "";
+$to_ = "";
 
 $today = date("Y-m-d");
 $list_cnt = 5; // 한 페이지 최대 표시 수
@@ -41,12 +42,12 @@ try {
         $date_i="1";
         $date_m="지난버킷들";
     };
-
     // 게시글 카운트 조회
     $arr_param = [
         "flg" => $flg
         , "chk" => $chk
         , "date" => $date
+        , "now" => $today
     ];
     
     // 게시글 카운트
@@ -65,6 +66,7 @@ try {
         , "flg" => $flg
         , "chk" => $chk
         , "date" => $date
+        , "now" => $today
     ];
 
     // 게시글 리스트 조회 

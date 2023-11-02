@@ -78,7 +78,7 @@ function db_select_lists_paging(&$conn, &$arr_param){
         ." AND "
         ."      ten_flg = :flg "
         ." AND "
-        ."      write_date ".$date." to_date "
+        ."      :now ".$date." to_date "
         ." ORDER BY "
         ."      id DESC "
         ."      LIMIT :list_cnt "  
@@ -88,6 +88,7 @@ function db_select_lists_paging(&$conn, &$arr_param){
             ":list_cnt" => $arr_param["list_cnt"]
             ,":offset" => $arr_param["offset"]
             ,":flg" => $arr_param["flg"]
+            ,":now" => $arr_param["now"]
         ];
     try {
         $stmt = $conn->prepare($sql);
@@ -124,10 +125,11 @@ function db_select_lists_cnt( &$conn, &$arr_param ){
         ." AND "
         ."      ten_flg = :flg "
         ." AND "
-        ."      write_date ".$date." to_date "
+        ."      :now ".$date." to_date "
         ;
         $arr_ps = [
             ":flg" => $arr_param["flg"]
+            ,":now" => $arr_param["now"]
         ];
 
     try {
