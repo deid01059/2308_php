@@ -33,7 +33,7 @@ class Router{
         } else if($url === "user/logout"){
             if($method === "GET"){
                 // 해당 컨트롤러 호출
-                
+                new UC("logoutGet");
             }
         } else if ($url === "user/regist"){
             if($method === "GET"){

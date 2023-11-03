@@ -32,7 +32,16 @@ class UserController extends ParentsController{
         
         return "Location: /board/list";
     }
-    
+    // 로그아웃처리
+    protected function logoutGet(){
+        session_unset();
+        session_destroy();
+
+        // 로그인 페이지 리턴
+        return "Location: /user/login";
+    }
+
+
     // 회원가입 페이지 이동
     protected function registGet(){
         return "view/regist"._EXTENSION_PHP;
