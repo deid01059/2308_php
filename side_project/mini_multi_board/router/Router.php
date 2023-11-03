@@ -27,7 +27,8 @@ class Router{
                 new UC("loginGet");
             } else {
                 // 해당 컨트롤러 호출
-        
+                new UC("loginPost");
+                
             }
         } else if($url === "user/logout"){
             if($method === "GET"){

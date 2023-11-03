@@ -6,3 +6,7 @@ main {
     grid-gap: 1rem;
     padding:30px 0 70px 0;
 }
+
+.list_insert_btn:hover {
+    cursor: pointer;
+}
