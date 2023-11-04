@@ -1,3 +1,4 @@
+USE mini_multi_board;
 -- user 테이블 기본값
 INSERT INTO user(u_id,u_pw,u_name)
 VALUES('admin','MTIzNDU2Nzg=','관리자')
@@ -13,4 +14,5 @@ VALUES('1','0','관리자가 쓴 제목1','관리자가 쓴 내용1')
 INSERT INTO boardname(b_type,b_name)
 VALUES('0','자유게시판')
 ,('1','질문게시판');
-mini_multi_board
+
+COMMIT;
