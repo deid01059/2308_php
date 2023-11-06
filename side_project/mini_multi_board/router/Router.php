@@ -44,7 +44,14 @@ class Router{
             if($method === "GET"){
                 // 해당 컨트롤러 호출
                 new BC("listGet");
-            } 
+            }
+        } else if ($url === "board/add"){
+            if($method === "GET"){
+                // 처리없음
+            }else{
+                // 해당 컨트롤러 호출
+                new BC("addPost");
+            }
         } 
 
         echo "이상한 URL : ".$url;

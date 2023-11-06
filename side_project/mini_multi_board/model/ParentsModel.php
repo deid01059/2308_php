@@ -37,7 +37,7 @@ class ParentsModel{
     
     // beginTransaction
     public function beginTransaction(){
-        $this->conn->begrollBack;
+        $this->conn->beginTransaction();
     }
     
     // commit

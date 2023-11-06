@@ -27,10 +27,10 @@ class UserController extends ParentsController{
             return "view/login.php";
         }
         
-        // 세션에 u_id 저장
-        $_SESSION["u_id"] = $resultUserInfo[0]["u_id"];
+        // 세션에 id 저장
+        $_SESSION["u_pk"] = $resultUserInfo[0]["id"];
         
-        return "Location: /board/list";
+        return "Location: /board/list?b_type=0";
     }
     // 로그아웃처리
     protected function logoutGet(){
@@ -41,13 +41,14 @@ class UserController extends ParentsController{
         return "Location: /user/login";
     }
 
-
     // 회원가입 페이지 이동
     protected function registGet(){
         return "view/regist"._EXTENSION_PHP;
     }
+
     // 비밀번호 암호화
     private function encryptionPassword($pw){
         return base64_encode($pw);
     }
+
 }
