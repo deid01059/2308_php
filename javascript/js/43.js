@@ -21,6 +21,8 @@
 	JSON.stringify( obj ) : Object를 JSON 포맷의 String으로 변환(Serializing)해주는 메소드
 	JSON.parse( json ) : JSON 포맷의 String을 Object로 변환(Deserializing)해주는 메소드
 
+
+
 // XML
 <xml>
 	<data>
@@ -37,6 +39,9 @@
 		,name: '홍길동'
 	}
 }
+
+
+// XML보다 가볍고 가독성이 좋음
 */
 
 // 4.API 예제 사이트

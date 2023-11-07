@@ -3,6 +3,7 @@
 namespace model;
 
 class UserModel extends ParentsModel {
+    // login 시도
     public function getUserInfo($arrUserInfo, $pwFlg = false){
         $sql = 
         " SELECT "
@@ -31,4 +32,34 @@ class UserModel extends ParentsModel {
             exit();
         }
     }
+    //  유저정보인서트
+    public function addUserInfo($arrAddUser){
+        $sql =
+            " INSERT INTO user ( "
+            ."      u_id "
+            ."      ,u_pw "
+            ."      ,u_name"
+            ." ) "
+            ." VALUES ( "
+            ."      :u_id "
+            ."      ,:u_pw "
+            ."      ,:u_name "
+            ." ) "
+            ;
+        $prepare = [
+            ":u_id" => $arrAddUser["u_id"]
+            ,":u_pw" => $arrAddUser["u_pw"]
+            ,":u_name" => $arrAddUser["u_name"]
+        ];
+
+        try{
+            $stmt = $this->conn->prepare($sql);
+            $result = $stmt->execute($prepare);
+            return $result; 
+        } catch(Exception $e) {
+            echo "UserModel->addUserInfo Error : ".$e->getMessage();
+            exit();
+        }
     }
+
+}

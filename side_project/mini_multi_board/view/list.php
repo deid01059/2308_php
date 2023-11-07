@@ -22,12 +22,13 @@
 		<?php
 			foreach($this->arrBoardInfo as $item){
 		?>
-			<div class="card">
+			<div class="card" >
 				<img src="<?php echo isset($item["b_img"]) ? "/"._PATH_USERIMG.$item["b_img"] : ""; ?>" class="card-img-top" alt="이미지없음">
 				<div class="card-body">
 					<h5 class="card-title"><?php echo $item["b_title"] ?></h5>
 					<p class="card-text"><?php echo mb_substr($item["b_content"], 0, 10)."..."; ?></p>
-					<button id="btnDetail" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDetail">상세</button>
+					<!-- <button id="btnDetail" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDetail">상세</button>  : 기존 상세 버튼 -->
+					<button id="btnDetail" class="btn btn-primary" onclick="openDetail(<?php echo $item['id'] ?>); return false">상세</button>
 				</div>
 			</div>
 		<?php		
@@ -40,16 +41,17 @@
 		<div class="modal-dialog modal-dialog-scrollable">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">개발자 입니다</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					<h5 class="modal-title" id="b_title">개발자 입니다</h5>
+					<button type="button" onclick="closeModal(); return false;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body te">
-					<p>사진이쁘죠?</p>
-					<img src="http://picsum.photos/455/850.jpg" alt="..." style="margin: 0 auto;">
-					<p>여기는 바닥입니다</p>
+					<p id="created_at">작성일자</p>
+					<p id="updated_at">수정일자</p>
+					<p id="b_content">내용</p>
+					<img src="" alt="..." style="margin: 0 auto;" id="b_img">
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+					<button type="button" onclick="closeModal(); return false;" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 				</div>
 			</div>
 		</div>

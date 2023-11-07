@@ -3,6 +3,7 @@
 namespace model;
 
 class BoardModel extends ParentsModel{
+    // 리스트조회
     public function getBoardList($arrBoardInfo){
         $sql = 
         " SELECT "
@@ -37,6 +38,7 @@ class BoardModel extends ParentsModel{
         }
     }
 
+    // 작성
     public function boardInsert($arrBoardInsert){
         $sql =
             " INSERT INTO board ( "
@@ -68,6 +70,37 @@ class BoardModel extends ParentsModel{
             return $result; 
         } catch(Exception $e) {
             echo "BoardModel->BoardInsert Error : ".$e->getMessage();
+            exit();
+        }
+    }
+
+    // 디테일 조회
+    public function getBoardDetail($arrBoardDetailInfo){
+        $sql = 
+        " SELECT "
+        ."      id "
+        ."      ,u_pk "
+        ."      ,b_title "
+        ."      ,b_content "
+        ."      ,b_img "
+        ."      ,created_at "
+        ."      ,updated_at "
+        ." FROM "
+        ."      board "
+        ." WHERE "
+        ."      id = :id "
+        ;
+
+        $prepare = [
+            ":id" => $arrBoardDetailInfo["id"]
+        ];
+        try{
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute($prepare);
+            $result = $stmt->fetchAll();
+            return $result;
+        }catch(Exception $e){
+            echo "BoardModel->getBoardDetail Error : ".$e->getMessage();
             exit();
         }
     }

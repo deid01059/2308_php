@@ -23,36 +23,36 @@ class Router{
     
         if($url === "user/login"){
             if($method === "GET"){
-                // 해당 컨트롤러 호출
                 new UC("loginGet");
             } else {
-                // 해당 컨트롤러 호출
                 new UC("loginPost");
                 
             }
         } else if($url === "user/logout"){
             if($method === "GET"){
-                // 해당 컨트롤러 호출
                 new UC("logoutGet");
             }
         } else if ($url === "user/regist"){
             if($method === "GET"){
-                // 해당 컨트롤러 호출
                 new UC("registGet");
-            } 
+            } else {
+                new UC("registPost");
+            }
         } else if ($url === "board/list"){
             if($method === "GET"){
-                // 해당 컨트롤러 호출
                 new BC("listGet");
             }
         } else if ($url === "board/add"){
             if($method === "GET"){
                 // 처리없음
             }else{
-                // 해당 컨트롤러 호출
                 new BC("addPost");
             }
-        } 
+        } else if ($url === "board/detail"){
+            if($method === "GET"){
+                new BC("detailGet");
+            }
+        }
 
         echo "이상한 URL : ".$url;
         exit();
