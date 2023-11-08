@@ -9,7 +9,6 @@
 //     MODAL.classList.add('displayNone');
 // })
 
-let test;
 
 // 상세 모달 제어
 function openDetail(id){
@@ -47,4 +46,38 @@ function closeModal(){
     const MODAL = document.querySelector('#modalDetail')
     MODAL.classList.remove('show');
     MODAL.style = ('display: none;');
+}
+
+
+// 아이디중복체크
+function chkId(){
+    const ID_CHK_MSG = document.querySelector('#idChkMsg');
+    ID_CHK_MSG.innerHTML = '';
+    const ID = document.querySelector('#u_id');
+    const URL = '/user/idchk';
+    // POST로 fetch하는 방법
+    // 새로운 폼객체 생성
+    const formData = new FormData();
+    formData.append("u_id", ID.value)
+    const HEADER = {
+        method: 'POST'
+        ,body: formData
+    };
+    fetch(URL,HEADER)
+    .then(response => response.json())
+    .then(data => {
+            if(data.errflg === "0"){
+                ID_CHK_MSG.innerHTML = "사용가능한 아이디 입니다";
+                ID_CHK_MSG.classList = 'text-success';
+                const S_BTN = document.querySelector('#s_btn');
+                S_BTN.setAttribute('type','submit');
+            } else {
+                ID_CHK_MSG.innerHTML = "사용할수 없는 아이디입니다";
+                ID_CHK_MSG.classList = 'text-danger';
+                const B_BTN = document.querySelector('#s_btn');
+                B_BTN.setAttribute('type','button');
+            }
+        }
+    )
+    .catch( error => console.log(error) )
 }

@@ -3,6 +3,7 @@
 namespace controller;
 
 use model\UserModel as UM;
+use lib\Validation as Vd;
 class UserController extends ParentsController{
     // 로그인
     protected function loginGet(){
@@ -12,13 +13,24 @@ class UserController extends ParentsController{
     
     // 로그인처리
     protected function loginPost(){
+        $inputData = [
+            "u_id" => $_POST["u_id"]
+            ,"u_pw" => $_POST["u_pw"]
+        ];
+        // 유효성체크
+        if(!Vd::userChk($inputData)){
+            $this->arrErrorMsg = Vd::getArrErrorMsg();
+            return "view/login.php";
+            exit();
+        }
         // ID,PW 설정(DB에서 사용할 데이터 가공)
         $arrInput = [];
         $arrInput["u_id"] = $_POST["u_id"];
         $arrInput["u_pw"] = $this->encryptionPassword($_POST["u_pw"]);
 
-        $modelUser = new UM();
-        $resultUserInfo = $modelUser->getUserInfo($arrInput, true);
+        
+        $userModel = new UM();
+        $resultUserInfo = $userModel->getUserInfo($arrInput, true);
 
         // 유저 유무 체크
         if(count($resultUserInfo) === 0){
@@ -48,46 +60,29 @@ class UserController extends ParentsController{
 
     // 회원가입 처리
     protected function registPost(){
-        $u_id = $_POST["u_id"];
-        $u_pw = $_POST["u_pw"];
-        $u_pw_chk = $_POST["u_pw_chk"];
-        $u_name = $_POST["u_name"];
+        $inputData = [
+            "u_id" => $_POST["u_id"]
+            ,"u_pw" => $_POST["u_pw"]
+            ,"u_pw_chk" => $_POST["u_pw_chk"]
+            ,"u_name" => $_POST["u_name"]
+        ];
 
-        $patt_id = "/^[a-zA-Z0-9]{8,20}$/";
-        $patt_pw = "/^[a-zA-Z0-9!@]{8,20}$/";
-        $patt_name = "/^([a-zA-Z가-힣]){2,50}$/u";
-        if($u_pw !== $u_pw_chk){
-            // 비밀번호 에러 처리
-            $this->arrErrorMsg[] = "비밀번호와 비밀번호 확인이 서로 다릅니다.";
-        }
-
-        if(preg_match($patt_id, $u_id, $match)===0){
-            // id에러처리
-            $this->arrErrorMsg[] = "아이디는 영어대소문자,숫자로 8~20자로 입력해주세요.";
-        }
-        if(preg_match($patt_pw, $u_pw, $match)===0){
-            // pw에러처리
-            $this->arrErrorMsg[] = "비밀번호는 영어대소문자,숫자,!,@로 8~20자로 입력해주세요.";
-        }
-        if(preg_match($patt_name, $u_name, $match)===0){
-            // name에러처리
-            $this->arrErrorMsg[] = "이름은 영어대소문자,한글 2~50자로 입력해주세요.";
-        }
-
-        // TODO : 아이디 중복 체크 필요
-
+        $arrAddUserInfo = [
+            "u_id" => $_POST["u_id"]
+            ,"u_pw" => $this->encryptionPassword($_POST["u_pw"])
+            ,"u_name" => $_POST["u_name"]
+        ];
+        
         // 유형성 체크 실패시
-        if(count($this->arrErrorMsg)>0){
+        if(!Vd::userChk($inputData)){
+            $this->arrErrorMsg = Vd::getArrErrorMsg();
             return "view/regist.php";
             exit();
         }
+        // TODO : 아이디 중복 체크 필요
 
-        $arrAddUserInfo = [
-            "u_id" => $u_id
-            ,"u_pw" => $this->encryptionPassword($u_pw)
-            ,"u_name" => $u_name
-        ];
-        
+
+        // 인서트처리
         $userModel = new UM();
         $userModel->beginTransaction();
         $result = $userModel->addUserInfo($arrAddUserInfo);
@@ -100,6 +95,42 @@ class UserController extends ParentsController{
         $userModel->destroy();
 
         return "Location: /user/login";
+    }
+
+    // 아이디 중복확인
+    protected function idChkPost(){
+        $errorFlg ="0";
+        $errorMsg = "";
+        // 유효성체크배열
+        $inputData = [
+            "u_id" => $_POST["u_id"]
+        ];
+        // 유형성 체크 실패시
+        if(!Vd::userChk($inputData)){
+            $errorFlg ="1";
+            $errorMsg = Vd::getArrErrorMsg()[0];
+        }
+        // 모델인스턴스후 검색시작
+        $userModel = new UM();
+        $resultUserInfo = $userModel->getUserInfo($inputData);
+        $userModel -> destroy();
+        
+        // 레스폰스 데이터 작성
+        if(count($resultUserInfo) > 0){
+            $errorFlg = "1";
+            $errorMsg = "이미 존재하는 아이디입니다.";
+        }
+
+        $arrChk = [
+            "errflg" => $errorFlg
+            ,"msg" => $errorMsg
+        ];
+        $response = json_encode($arrChk);
+        // response 처리
+        header('Content-type: application/json');
+        echo $response;
+        exit();
+
     }
 
     // 비밀번호 암호화
