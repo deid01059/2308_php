@@ -21,12 +21,25 @@ function openDetail(id){
         const IMG = document.querySelector('#b_img');
         const CREATE = document.querySelector('#created_at');
         const UPDATE = document.querySelector('#updated_at');
+        const BTN_DEL = document.querySelector('#btnDel');
+
 
         TITLE.innerHTML = data.data.b_title;
         CONTENT.innerHTML = data.data.b_content;
         CREATE.innerHTML = "작성날짜 : "+data.data.created_at;
         UPDATE.innerHTML = "수정날짜 : "+data.data.updated_at;
         IMG.setAttribute('src',data.data.b_img)
+        BTN_DEL.setAttribute('href','/board/del?id='+data.data.id+'&b_type='+data.data.b_type)
+        console.log(data);
+        // 삭제버튼 제어
+        if(data.delflg === "1") {
+            BTN_DEL.classList.add('show');
+            BTN_DEL.classList.remove('d-none');
+        } else {
+            BTN_DEL.classList.add('d-none');
+            BTN_DEL.classList.remove('show');
+        }
+        
 
         openModal();
     })
@@ -81,3 +94,8 @@ function chkId(){
     )
     .catch( error => console.log(error) )
 }
+
+
+
+
+

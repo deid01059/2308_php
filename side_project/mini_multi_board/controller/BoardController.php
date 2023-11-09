@@ -89,12 +89,15 @@ class BoardController extends ParentsController{
         // 이미지 패스 재설정
         $result[0]["b_img"] = "/"._PATH_USERIMG.$result[0]["b_img"];
         
+        // 유저체크(삭제버튼 표시용)
+        $delFlg = (int)$result[0]["u_pk"] === (int)$_SESSION["u_pk"] ? "1" : "0";
+
         // 레스폰스 데이터 작성
         $arrTmp = [
             "errflg" => "0"
             ,"msg" => ""
             ,"data" => $result[0]
-    
+            ,"delflg" => $delFlg    
         ];
         $response = json_encode($arrTmp);
 
@@ -102,6 +105,27 @@ class BoardController extends ParentsController{
         header('Content-type: application/json');
         echo $response;
         exit();
+    }
+    protected function delGet(){
+        $id = $_GET["id"];
+        $u_pk = $_SESSION["u_pk"];
+        $b_type = $_GET["b_type"];
+        $delListInfo = [
+            "id" => $id
+            ,"u_pk" => $u_pk
+        ];       
+        
+        // 모델 인스턴스
+        $boardModel = new BM();
+        $boardModel->beginTransaction();
+        $result = $boardModel->delList($delListInfo);
+        if($result !== 1){
+            $boardModel->rollBack();
+        } else {
+            $boardModel->commit();
+        }
+        $boardModel -> destroy();
+        return "Location: /board/list?b_type=$b_type";
     }
 
 

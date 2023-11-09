@@ -50,13 +50,12 @@ class ParentsController {
             header("Location:/user/login");
             exit();
         }
-                 // 로그인한 상태에서 로그인페이지 접속시 board/list로 이동
+        // 로그인한 상태에서 로그인페이지 접속시 board/list로 이동
         if(isset($_SESSION["u_pk"]) && $url === "user/login" ){
             header("Location: /board/list");
             exit();
         }
     }
-
     // 뷰 호출용 메소드
     private function callView($path){
         // view/list.php

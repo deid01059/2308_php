@@ -81,6 +81,7 @@ class BoardModel extends ParentsModel{
         ."      id "
         ."      ,u_pk "
         ."      ,b_title "
+        ."      ,b_type "
         ."      ,b_content "
         ."      ,b_img "
         ."      ,created_at "
@@ -104,4 +105,31 @@ class BoardModel extends ParentsModel{
             exit();
         }
     }
+    
+    public function delList($delListInfo) {
+        $sql =
+        " UPDATE board"
+        ." SET "
+        ." 		deleted_at = now() "
+        ." WHERE "
+        ." 		id = :id "
+        ." AND "
+        ."      u_pk = :u_pk "
+        ;
+
+        $prepare = [
+            ":id" => $delListInfo["id"]
+            ,":u_pk" => $delListInfo["u_pk"]
+        ];
+
+        try {
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute($prepare);
+            $result = $stmt->columnCount();
+            return $result;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return false;
+        } 
+}
 }   

@@ -22,7 +22,7 @@
 		<?php
 			foreach($this->arrBoardInfo as $item){
 		?>
-			<div class="card" >
+			<div class="card" id="card<?php echo $item["id"] ?>">
 				<img src="<?php echo isset($item["b_img"]) ? "/"._PATH_USERIMG.$item["b_img"] : ""; ?>" class="card-img-top" alt="이미지없음">
 				<div class="card-body">
 					<h5 class="card-title"><?php echo $item["b_title"] ?></h5>
@@ -50,7 +50,9 @@
 					<p id="b_content">내용</p>
 					<img src="" alt="..." style="margin: 0 auto;" id="b_img">
 				</div>
+
 				<div class="modal-footer">
+					<a href="" id="btnDel" class="btn btn-secondary me-auto p-2">삭제</a>
 					<button type="button" onclick="closeModal(); return false;" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 				</div>
 			</div>
