@@ -120,6 +120,13 @@ Route::get('/name/home/php504/user', function () {
 use App\Http\Controllers\TestController;
 Route::get('/test', [TestController::class, 'index'])->name('test.index');
 
-// php artisan make:controller 컨트롤러명 --resource
+// 모든 액션 메소드를 자동으로 생성php artisan make:controller 컨트롤러명 --resource
 use App\Http\Controllers\TaskController;
 Route::resource('/task ', UserController::class);
+//GET|HEAD        task .................... task.index › TaskController@index  
+//POST            task .................... task.store › TaskController@store  
+//GET|HEAD        task/create ............. task.create › TaskController@create  
+//GET|HEAD        task/{task} ............. task.show › TaskController@show  
+//PUT|PATCH       task/{task} ............. task.update › TaskController@update  
+//DELETE          task/{task} ............. task.destroy › TaskController@destroy  
+//GET|HEAD        task/{task}/edit ........ task.edit › TaskController@edit
