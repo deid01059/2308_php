@@ -114,7 +114,7 @@ class BoardController extends ParentsController{
             "id" => $id
             ,"u_pk" => $u_pk
         ];       
-        
+
         // 모델 인스턴스
         $boardModel = new BM();
         $boardModel->beginTransaction();

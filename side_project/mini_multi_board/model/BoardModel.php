@@ -125,7 +125,7 @@ class BoardModel extends ParentsModel{
         try {
             $stmt = $this->conn->prepare($sql);
             $stmt->execute($prepare);
-            $result = $stmt->columnCount();
+            $result = $stmt->rowCount();
             return $result;
         } catch (Exception $e) {
             echo $e->getMessage();

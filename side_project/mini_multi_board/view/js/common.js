@@ -30,7 +30,6 @@ function openDetail(id){
         UPDATE.innerHTML = "수정날짜 : "+data.data.updated_at;
         IMG.setAttribute('src',data.data.b_img)
         BTN_DEL.setAttribute('href','/board/del?id='+data.data.id+'&b_type='+data.data.b_type)
-        console.log(data);
         // 삭제버튼 제어
         if(data.delflg === "1") {
             BTN_DEL.classList.add('show');
