@@ -21,8 +21,8 @@ Route::get('/', function () {
 
 Route::get('/user/login', [UserController::class, 'loginget'])->name('user','loginget'); // 로그인 화면 이동
 Route::post('/user/login', [UserController::class, 'loginpost'])->name('user','loginpost'); // 로그인 처리
-Route::get('/user/registe', [UserController::class, 'registeget'])->name('user','registeget'); // 회원가입 화면 이동
-Route::post('/user/registe', [UserController::class, 'registepost'])->name('user','registepost'); // 회원가입 처리
+Route::get('/user/registration', [UserController::class, 'registrationget'])->name('user','registrationget'); // 회원가입 화면 이동
+Route::post('/user/registration', [UserController::class, 'registrationpost'])->name('user','registrationpost'); // 회원가입 처리
 
 // GET|HEAD        user ...................................................................................... user.index › UserController@index  로그인화면이동
 
