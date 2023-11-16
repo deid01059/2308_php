@@ -20,19 +20,20 @@ class UserController extends Controller
         return view('login');
     }
     public function loginpost(Request $request){
-        // 유효성 검사
-        $validator = Validator::make(
-            $request->only('email','password')
-            ,[
-                'email'     => 'required|email|max:50'
-                ,'password' => 'required|regex:/^(?=.*[a-z])(?=.*\d)(?=.*[!@~#?])[a-zA-Z\d!@~#?]+$/u|min:8|max:50'
-            ]
-        );
+        // del 1116 미들웨어로 동작
+        // // 유효성 검사
+        // $validator = Validator::make(
+        //     $request->only('email','password')
+        //     ,[
+        //         'email'     => 'required|email|max:50'
+        //         ,'password' => 'required|regex:/^(?=.*[a-z])(?=.*\d)(?=.*[!@~#?])[a-zA-Z\d!@~#?]+$/u|min:8|max:50'
+        //     ]
+        // );
 
-        // 유효성 검사 실패시 처리
-        if($validator->fails()){
-            return view('login')->withErrors($validator->errors());
-        }
+        // // 유효성 검사 실패시 처리
+        // if($validator->fails()){
+        //     return view('login')->withErrors($validator->errors());
+        // }
 
         // 유저 정보 습득
         $result = User::where('email',$request->email)->first();
@@ -58,22 +59,23 @@ class UserController extends Controller
         return view('registration');
     }
     public function registrationpost(Request $request){
-        // 유효성 검사
-        $validator = Validator::make(
-            $request->only('email','name','password','passwordchk')
-            ,[
-                'email'     => 'required|email|max:50'
-                // 이메일유효성검사
-                // 필수 | 이메일형식인지 | 최대글자수
-                ,'name'     => 'required|regex:/^[a-zA-Z가-힣]+$/u|min:2|max:50'
-                ,'password' => 'required|same:passwordchk|regex:/^(?=.*[a-z])(?=.*\d)(?=.*[!@~#?])[a-zA-Z\d!@~#?]+$/u|min:8|max:50'
-            ]
-        );
+        // del 1116 미들웨어로 동작
+        // // 유효성 검사
+        // $validator = Validator::make(
+        //     $request->only('email','name','password','passwordchk')
+        //     ,[
+        //         'email'     => 'required|email|max:50'
+        //         // 이메일유효성검사
+        //         // 필수 | 이메일형식인지 | 최대글자수
+        //         ,'name'     => 'required|regex:/^[a-zA-Z가-힣]+$/u|min:2|max:50'
+        //         ,'password' => 'required|same:passwordchk|regex:/^(?=.*[a-z])(?=.*\d)(?=.*[!@~#?])[a-zA-Z\d!@~#?]+$/u|min:8|max:50'
+        //     ]
+        // );
         
-        // 유효성 검사 실패시 처리
-        if($validator->fails()){
-            return view('registration')->withErrors($validator->errors());
-        }
+        // // 유효성 검사 실패시 처리
+        // if($validator->fails()){
+        //     return view('registration')->withErrors($validator->errors());
+        // }
 
         // 데이터 베이스에 저장할 데이터 획득
         $data = $request->only('email','name','password');

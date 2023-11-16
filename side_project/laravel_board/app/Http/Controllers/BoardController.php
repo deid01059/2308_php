@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\Board;
 
 class BoardController extends Controller
@@ -15,15 +16,17 @@ class BoardController extends Controller
      */
     public function index()
     {
-        // 로그인 체크
-        if(!Auth::check()){
-            return redirect()->route('user.login.get');
-        }
+        // *del 231116 미들웨어로 이관
+        // // 로그인 체크
+        // if(!Auth::check()){
+        //     return redirect()->route('user.login.get');
+        // }
+
 
         // 게시글 획득
-        $resurt = Board::get();
+        $result = Board::get();
 
-        return view('list')->with('data',$resurt);
+        return view('list')->with('data',$result);
     }
 
     /**
@@ -33,7 +36,7 @@ class BoardController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -44,9 +47,41 @@ class BoardController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        // //방법1
+        // Board::insert([
+        //     'b_title'=>$request->b_title
+        //     ,'b_content'=>$request->b_content
+        //     ,'created_at'=>now()
+        //     ,'updated_at'=>now()
+        // ]);
+        // return redirect()->route('board.index');
+        
+        // // 방법2 내방법
+        // DB::beginTransaction();
+        // $result = 
+        //     DB::table('boards')
+        //     ->insert([
+        //         'b_title' => $_POST['b_title']
+        //         ,'b_content' => $_POST['b_content']
+        //         ,'updated_at' => now()
+        //         ,'created_at' => now()
+        //     ]);       
+        // if(!$result){
+        //     DB::rollback();
+        // }else(
+        //     DB::commit()
+        // );
+        // 방법3
+        
+        $arrInputData = $request->only('b_title', 'b_content');
+        $result = Board::create($arrInputData);
 
+        // save()를 이용하는 방법
+        // $model = new Board($arrInputData)
+        // $model = save();
+
+        return redirect()->route('board.index');
+    }
     /**
      * Display the specified resource.
      *
@@ -55,14 +90,24 @@ class BoardController extends Controller
      */
     public function show($id)
     {   
-        // 로그인 체크  
-        if(!Auth::check()){
-            return redirect()->route('user.login.get');
-        }
+        // // 로그인 체크  
+        // if(!Auth::check()){
+        //     return redirect()->route('user.login.get');
+        // }
 
         // 게시글 획득
-        $resurt = Board::find($id); 
-        return view('detail')->with('data',$resurt);
+        $result = Board::find($id); 
+
+        // 조회수 올리기
+        $result->b_hits++; // 조회수 1증가
+        $result->timestamps = false;
+
+        // 업데이트처리
+        $result->save();
+
+
+
+        return view('detail')->with('data',$result);
 
     }
 
@@ -97,6 +142,14 @@ class BoardController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            DB::beginTransaction();
+            Board::destroy($id);
+            DB::commit();
+        } catch(Excepion $e){
+            DB::rollback();
+            return redirect()->route('error')->withErrors($e -> getMessage());
+        }
+        return redirect()->route('board.index');
     }
 }
