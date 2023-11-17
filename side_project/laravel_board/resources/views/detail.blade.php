@@ -13,9 +13,9 @@
             @method('delete')
             @csrf
             <button type="submit" class="btn btn-primary mb-2">삭제</button>
+            <a href="{{ route('board.edit', ['board'=> $data->b_id]) }}" class="btn btn-primary">수정</a>
         </form>
         <a href="{{ route('board.index') }}" class="btn btn-primary">나가기</a>
-        <a href="{{ route('board.index') }}" class="btn btn-primary">수정</a>
     </div>
 </main>
 @endsection

@@ -119,7 +119,9 @@ class BoardController extends Controller
      */
     public function edit($id)
     {
-        //
+        $result = Board::find($id); 
+        
+        return view('edit')->with('data',$result);
     }
 
     /**
@@ -131,7 +133,38 @@ class BoardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // 방법1
+        // $arrInputData = $request->only('b_title', 'b_content');
+        // DB::beginTransaction();
+        // $result = 
+        //     DB::table('boards')
+        //     ->where('b_id',$id)
+        //     ->update([
+        //         'b_title' => $_POST['b_title']
+        //         ,'b_content' => $_POST['b_content']
+        //     ]);       
+        // if(!$result){
+        //     DB::rollback();
+        // }else(
+        //     DB::commit()
+        // );
+        // $result1 = Board::find($id); 
+
+
+        // 방법2 orm
+        try {
+            DB::beginTransaction();
+            $result = Board::find($id); 
+            $result->b_title = $request->b_title;
+            $result->b_content = $request->b_content;
+            $result->save();
+            DB::commit();
+        } catch(Excepion $e){
+            DB::rollback();
+            return redirect()->route('error')->withErrors($e -> getMessage());
+        }
+            
+        return redirect()->route('board.show', ['board'=> $id]);
     }
 
     /**

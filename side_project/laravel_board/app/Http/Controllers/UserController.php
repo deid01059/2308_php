@@ -87,7 +87,6 @@ class UserController extends Controller
         // orm,엘로컨트 방식
         $result = User::create($data);
 
-
         return redirect()->route('user.login.get');
     }
     // ===============
