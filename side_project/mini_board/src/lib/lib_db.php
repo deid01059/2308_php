@@ -82,7 +82,7 @@ function db_select_boards_paging(&$conn, &$arr_param){
         $stmt = $conn->prepare($sql); // $sql의 내용을 DB서버에 실행할수있도록준비    
                 //   prepare 는 $arr_ps 값(매개변수)를 대입 해 줘야 하는 상황일 때 를 위해 실행하지 않고 준비
         $stmt->execute($arr_ps); // $stmt 에 $arr_ps의 값을 대입
-        $result = $stmt->fetchALL(); // $resurt에 배열타입으로 $stmt의 레코드를 반환
+        $result = $stmt->fetchALL(); // $result에 배열타입으로 $stmt의 레코드를 반환
         return $result; //정상
     } catch(Exception $e){
         echo $e->getMessage(); // Exception 메세지 출력
