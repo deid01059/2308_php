@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\Board;
-
+use Illuminate\Support\Facades\Auth;
 class BoardController extends Controller
 {
     /**
@@ -59,11 +59,16 @@ class BoardController extends Controller
         if(!Auth::check()){
             return redirect()->route('user.login.get');
         }
-
+        // 방법 1
         // 게시글 획득
         $resurt = Board::find($id); 
         return view('detail')->with('data',$resurt);
-
+        // // 방법2
+        // $resurt = 
+        //     DB::table('boards')
+        //     ->where('b_id','=',$id)
+        //     ->get();
+        // return view('detail')->with('data',$resurt);
     }
 
     /**
