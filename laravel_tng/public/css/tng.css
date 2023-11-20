@@ -2,6 +2,7 @@
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
+	list-style: none;
 }
 
 .center{
@@ -11,18 +12,80 @@
 a {
 	text-decoration: none;
 }
+body {
+	background-color: #4171D6;
+}
 
-.main_header{
-	background-color: beige;
-	padding: 1.5rem;
-	width: 70vw;
-	margin: 30px auto 10px auto;
+
+/* 헤더 */
+.main_header_t{
+    background-color: #34414D;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main_header_t div a{
+	color: #cecece;
+}
+
+.main_header_t_f {
+	background-color: #4171D6;
+	padding: 11px 20px;
+	color: #fff;
 	font-size: 1.5rem;
-	text-decoration: none;
+	line-height: 1.5rem;
+	font-weight: 900;
 }
 
-.main_header a:nth-child(1){
-	float: left;
-	font-size: 2rem;
-	line-height: 2rem;	
+
+.main_header_t_l{
+	margin-right: 10px;
+	padding: 4px 14px 4px 14px;
+    border-radius: 8px;
+    background-color: #4171D6;
+    color: #fff;
+    font-size: 0.9rem;
 }
+
+
+
+
+/* 밑에꺼 */
+.main_header_b{
+    background-color: #4171D6;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+}
+.main_header_b a{
+	color: #fff;
+}
+
+
+
+/* main */
+
+main {
+	padding-top: 5rem;
+	width: 80%;
+	margin: 0 auto;
+}
+
+.main_header {
+	text-align: center;
+	font-size: 1.7rem;
+	color: #fff;
+	padding-bottom: 30px;
+}
+
+.main_container{
+	background-color: white;
+	padding: 2rem;
+	display: grid;
+	
+	grid-template-columns: repeat( auto-fit, minmax(350px, 1fr) );
+}
+

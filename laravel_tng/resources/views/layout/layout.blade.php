@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="/css/tng.css">
 	<title>@yield('title', 'Laravel Board')</title>
 </head>
-<body class="vh-100 vw-100">
+<body>
 	@include('layout.header')
 	@yield('main')
 
