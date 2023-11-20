@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Board;
 
-class BoardController extends Controller
+class BoardController extends Controllerz
 {
     /**
      * Display a listing of the resource.

@@ -1,0 +1,28 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.center{
+	text-align: center;
+}
+
+a {
+	text-decoration: none;
+}
+
+.main_header{
+	background-color: beige;
+	padding: 1.5rem;
+	width: 70vw;
+	margin: 30px auto 10px auto;
+	font-size: 1.5rem;
+	text-decoration: none;
+}
+
+.main_header a:nth-child(1){
+	float: left;
+	font-size: 2rem;
+	line-height: 2rem;	
+}
