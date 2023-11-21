@@ -2,43 +2,53 @@
   <img alt="Vue logo" src="./assets/logo.png">
 
   <!-- 헤더 -->
-  <div class="nav">
-    <!-- 반복문 -->
 
-    <!-- 키값이 필요없을때 -->
-    <a v-for="item in nav_list" :key="item" href="#">{{ item }}</a>
-    <br>
-    <!-- 키값이필요할때 -->
-    <a v-for="(item, i) in nav_list" :key="i" href="#">{{ i + ':' + item }}</a>
-  </div>
+<Header :data="nav_list" :data2="sty_color1"></Header>
 
+<!-- 할인 배너 -->
+<Discount>
+</Discount>
+
+<transition name="modalAni">
   <!-- 모달 -->
-  <transition name="modalAni">
-    <div class="bg_black" v-if="modalFlg">
-      <div class="bg_white">
-        <img :src="modalList.img" alt="">
-        <h4>상품명 :{{ modalList.name }}</h4>
-        <p>상품 설명 :{{ modalList.content }}</p>
-        <p>가격 {{ modalList.price }}원</p>
-        <p>신고수 : {{ modalList.reportCnt }}</p>
-        <button @click="modalFlg=false">닫기</button>
-      </div>
-    </div>
+  <Modal v-if="modalFlg"
+  :data = "modalList"
+  @closeModal = "modalClose"
+  ></Modal>
+  
   </transition >
 
   <!-- 상품리스트 -->
+
+  <!-- 컴포넌트 안에서 for -->
+  <!-- <Divlist
+  :data = "products"
+  @modalOpen = "modalOpen"
+  @plusOne = "plusOne"
+  ></Divlist> -->
+
+  <!-- 컴포넌트 밖에서 for -->
   <div>
-    <div v-for ="(item, i) in products" :key="i">
-      <h4 @click="modalOpen(item)">{{ item.name }}</h4>
-      <p>{{ item.price }}원</p>
-      <button @click="plusOne(i)">허위매물신고</button>
-      <span>신고수 : {{ item.reportCnt }}</span>
-    </div>
+    <Divlist
+      v-for="(item,i) in products" :key="i"
+      :data ="item"
+      :productkey = "i"
+      @fncOne = "plusOne"
+      @fncOpenModal = "modalOpen"
+    >
+    </Divlist>
   </div>
+
 </template>
 
 <script>
 import data from './assets/js/data.js';
+
+import Discount from './components/Discount.vue';
+import Header from './components/Header.vue';
+import Modal from './components/Modal.vue';
+import Divlist from './components/Divlist.vue';
+
 
 export default {
   name: 'App',
@@ -47,10 +57,10 @@ export default {
   data(){
     return{
       nav_list:['홈','상품','기타','문의'],
-      sty_color1: 'color: blue; font-size: 25px',
+      sty_color1: 'color: white; font-size: 25px',
       products: data,
       modalFlg : false,
-      modalList:[],
+      modalList:{},
     }
   },
 
@@ -62,7 +72,16 @@ export default {
     modalOpen(item){
       this.modalList=item;
       this.modalFlg=true;
+    },
+    modalClose(){
+      this.modalFlg=false;
     }
+
+  },
+
+  // components : 컴포넌트를 등록하는 영역
+  components: {
+    Discount,Header,Modal,Divlist,
   }
 }
 </script>
