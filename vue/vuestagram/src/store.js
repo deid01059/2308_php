@@ -12,6 +12,7 @@ const store = createStore({
 			imgURL: '', // 작성탭 표시용 이미지 URL저장용
 			postFileData: null, // 글작성 파일데이터 저장용
 			lastBoardId: 0, //가장 마지막 로드 된 게시글 번호 저장용
+			moreViewFlg: true, //더보기버튼 플래그
 		}	
 	},
 
@@ -21,7 +22,7 @@ const store = createStore({
 		// 초기데이터 셋팅용
 		setBoardList(state,data){
 			state.boardData = data;
-			state.lastBoardId = data[data.length - 1].id;
+			this.commit('setLastBoardId',data[data.length - 1].id)
 		},
 
 		// 탭ui 셋팅용
@@ -41,20 +42,25 @@ const store = createStore({
 		setUnShiftBoard(state,data){
 			state.boardData.unshift(data);
 		},
-		// 작성 된 글 삽인용
+		// 작성 된 글 삽입 후 라스트보드아이디 변경
 		setPushBoard(state,data){
 			state.boardData.push(data);
-			state.lastBoardId = data.id;
+			this.commit('setLastBoardId',data.id)
 		},
 		// 작성 후 초기화 처리
 		setClearAddData(state) {
 			state.imgURL = '';
-			state.postFileData = null;
+			this.commit('setPostFileData', null);
 		},
-
-		setLastBoardId(state, id) {
-			state.lastBoardId = id;
-		}
+		// 마지막 게시글 번호 셋팅용
+		setLastBoardId(state,num) {
+			state.lastBoardId = num;
+		},
+		// 더보기 버튼 활성화
+		setMoreViewFlg(state,boo) {
+			state.moreViewFlg = boo;
+			console.log(state.moreViewFlg)
+		},
 	},
 
 	// actions : ajax로 서버에 데이터를 요청할 때나 시간 함수등 비동기 처리는 actions에 정의
@@ -107,6 +113,7 @@ const store = createStore({
 				console.log(err);
 			})
 		},
+		// 더보기
 		actionGetPlusLoad(context) {
 			const URL = 'http://112.222.157.156:6006/api/boards/'+context.state.lastBoardId;
 			const HEADER = {
@@ -116,16 +123,15 @@ const store = createStore({
 			};
 			axios.get(URL,HEADER)
 			.then(res => {
-				// 화면에 출력해줌
 				if(res.data){
 					context.commit('setPushBoard',res.data)
+					context.commit('setLastBoardId',res.data.id)
 				}else{
-					context.state.lastBoardId = 0;
-				}
-				console.log(res.data)
+					context.commit('setMoreViewFlg', false);
+				}		
 			})
 			.catch(err => {
-				console.log(err);
+				console.log(err.response.data);
 			})
 		},
 	}

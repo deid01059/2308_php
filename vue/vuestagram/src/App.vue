@@ -26,7 +26,7 @@
   <!-- 더보기 버튼 -->
   <button 
     @click="plusLoad"
-    v-if="$store.state.lastBoardId > 1" 
+    v-if="$store.state.moreViewFlg && $store.state.flgTapUi === 0" 
     >더보기</button>
   <br>
   <br>
