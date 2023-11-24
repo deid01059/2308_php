@@ -6,10 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Board;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use App\Models\Board;
 
-class BoardController extends Controllerz
+class BoardController extends Controller
 {
     /**
      * Display a listing of the resource.
