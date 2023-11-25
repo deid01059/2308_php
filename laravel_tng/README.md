@@ -105,4 +105,7 @@ npm install --``save-dev vue-loader   모듈없어서 에러날때 설치
 npm run wacth    rundev역활 알아서 행동
 
 
+npm install webpack webpack-cli --save-dev   webpack error 해결
+
+
 <!-- 실질적으로 laravel vue 같이사용시 라라벨서버열고 wacth켜두면 됨 -->
