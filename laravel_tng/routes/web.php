@@ -1,12 +1,24 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
 
 
 Route::get('/', function () {
-    return view('main');
+    return view('welcome');
+});
+Route::get('/login', function () {
+    return view('welcome');
+});
+Route::get('/main', function () {
+    return view('welcome');
+});
+Route::get('/regist', function () {
+    return view('welcome');
+});
+Route::get('/error', function(){
+    return view('welcome');
 });
 
-// 유저쪽라우트
-Route::get('/user/login', [UserController::class, 'loginget'])->name('user.login.get');
+Route::fallback(function() {
+    return redirect('/error');
+});

@@ -1,7 +1,6 @@
-@extends('layout.layout')
-@section('title', 'Main')
-@section('main')
-	<main>
+<template>
+	<div>
+		<main>
 		<div class="main_header">
 			<h1>리그오브레전드 자유게시판</h1>
 		</div>
@@ -59,4 +58,35 @@
 			</div>
 		</div>
 	</main>
-@endsection
+	</div>
+</template>
+<script>
+export default {
+	name: '',
+	props: {
+
+	},
+	
+	components: {
+
+	},
+
+	data() {
+		return {
+			setting: '',
+		}
+	},
+
+	created() {
+
+	},
+
+	mounted() {
+
+	},
+
+	methods: {
+
+	}
+}
+</script>
