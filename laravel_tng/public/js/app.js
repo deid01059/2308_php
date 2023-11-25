@@ -19524,21 +19524,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "main_header_t"
+  "class": "header_frame"
 };
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div><a href=\"/\">리그오브레전드</a></div><div><a href=\"/\">발로란트</a></div><div><a href=\"/\">오버워치</a></div><div><a href=\"/\">배틀그라운드</a></div><div><a href=\"/\">롤토체스</a></div><div><a href=\"/\">메이플</a></div>", 6);
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"main_header_b\"><a href=\"#\">자유게시판</a><a href=\"#\">질문게시판</a><a href=\"#\">나만의공략</a><a href=\"#\">패치노트</a><a href=\"#\">Q&amp;A</a></div>", 1);
+var _hoisted_2 = {
+  "class": "header_frame_h"
+};
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"header_frame_b\"><nav class=\"top-bar__menu-box-1\"><ul><li><a href=\"#\">리그오브레전드</a><ul><li><a href=\"#\">자유게시판</a></li><li><a href=\"#\">질문게시판</a></li><li><a href=\"#\">패치노트</a></li><li><a href=\"#\">Q&amp;A</a></li></ul></li><li><a href=\"#\">오버워치</a><ul><li><a href=\"#\">자유게시판</a></li><li><a href=\"#\">질문게시판</a></li><li><a href=\"#\">패치노트</a></li><li><a href=\"#\">Q&amp;A</a></li></ul></li><li><a href=\"#\">롤토체스</a><ul><li><a href=\"#\">자유게시판</a></li><li><a href=\"#\">질문게시판</a></li><li><a href=\"#\">패치노트</a></li><li><a href=\"#\">Q&amp;A</a></li></ul></li><li><a href=\"#\">배틀그라운드</a><ul><li><a href=\"#\">자유게시판</a></li><li><a href=\"#\">질문게시판</a></li><li><a href=\"#\">패치노트</a></li><li><a href=\"#\">Q&amp;A</a></li></ul></li></ul></nav></div>", 1);
+var _hoisted_4 = {
+  "class": "header_frame_f"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("header", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("header", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: '/main',
-    "class": "main_header_t_f"
+    "class": "frame_header"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("GR.GG")];
     }),
     _: 1 /* STABLE */
-  }), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  })]), _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: '/login',
     "class": "header_login_btn"
   }, {
@@ -19546,7 +19551,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("로그인")];
     }),
     _: 1 /* STABLE */
-  })]), _hoisted_8]);
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: '/regist',
+    "class": "header_regist_btn"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("회원가입")];
+    }),
+    _: 1 /* STABLE */
+  })])])]);
 }
 
 /***/ }),
@@ -19803,7 +19816,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "*{\r\n\tpadding: 0;\r\n\tmargin: 0;\r\n\tbox-sizing: border-box;\r\n\tlist-style: none;\r\n}\r\n\r\n.center{\r\n\ttext-align: center;\r\n}\r\n\r\na {\r\n\ttext-decoration: none;\r\n}\r\nbody {\r\n\tbackground-color: #4171D6;\r\n}\r\n\r\n\r\n/* 헤더 */\r\n.main_header_t{\r\n    background-color: #34414D;\r\n    text-decoration: none;\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n}\r\n\r\n.main_header_t div a{\r\n\tcolor: #cecece;\r\n}\r\n\r\n.main_header_t_f {\r\n\tbackground-color: #4171D6;\r\n\tpadding: 11px 20px;\r\n\tcolor: #fff;\r\n\tfont-size: 1.5rem;\r\n\tline-height: 1.5rem;\r\n\tfont-weight: 900;\r\n}\r\n\r\n\r\n.main_header_t_l{\r\n\tmargin-right: 10px;\r\n\tpadding: 4px 14px 4px 14px;\r\n    border-radius: 8px;\r\n    background-color: #4171D6;\r\n    color: #fff;\r\n    font-size: 0.9rem;\r\n}\r\n\r\n.header_login_btn{\r\n\tmargin-right: 20px;\r\n\tcolor: #fff;\r\n}\r\n\r\n\r\n\r\n\r\n/* 밑에꺼 */\r\n.main_header_b{\r\n    background-color: #4171D6;\r\n    text-decoration: none;\r\n    display: flex;\r\n    justify-content: space-evenly;\r\n    padding: 10px;\r\n}\r\n.main_header_b a{\r\n\tcolor: #fff;\r\n}\r\n\r\n\r\n\r\n/* main */\r\n\r\nmain {\r\n\tpadding-top: 5rem;\r\n\twidth: 80%;\r\n\tmargin: 0 auto;\r\n}\r\n\r\n.main_header {\r\n\ttext-align: center;\r\n\tfont-size: 1.7rem;\r\n\tcolor: #fff;\r\n\tpadding-bottom: 30px;\r\n}\r\n\r\n.main_container{\r\n\tbackground-color: white;\r\n\tpadding: 2rem;\r\n\tdisplay: grid;\r\n\t\r\n\tgrid-template-columns: repeat( auto-fit, minmax(350px, 1fr) );\r\n}\r\n\r\n\r\n\r\n/* 에러페이지 */\r\n.error_box{\r\n\twidth: 60%;\r\n\tmin-width: 400px;\r\n\tbackground-color: rgb(255, 255, 255);\r\n\tpadding: 3rem;\r\n\tmargin: 50px auto;\r\n\ttext-align: center;\r\n}\r\n\r\n.error_box h1{\r\n\tcolor: red;\r\n\tpadding-bottom: 20px;\r\n}\r\n\r\n.error_out_btn{\r\n\tcolor: black;\r\n}\r\n.error_out_btn:hover{\r\n\tcolor: rgb(117, 117, 117);\r\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "*{\r\n\tpadding: 0;\r\n\tmargin: 0;\r\n\tbox-sizing: border-box;\r\n\tlist-style: none;\r\n}\r\n\r\n.center{\r\n\ttext-align: center;\r\n}\r\n\r\na {\r\n\ttext-decoration: none;\r\n}\r\nbody {\r\n\tbackground-color: #4171D6;\r\n}\r\n\r\n\r\n/* 헤더 */\r\n.header_frame{\r\n\twidth: 100%;\r\n\tpadding: 10px;\r\n\tdisplay: grid;\r\n\tgrid-template-columns: 10% 70% 20%; \r\n\tgap: 10px;\r\n}\r\n\r\n.header_frame_h{\r\n\tgrid-column: 1;\r\n}\r\n\r\n.frame_header {\r\n\tbackground-color: #4171D6;\r\n\tpadding: 11px 20px;\r\n\tcolor: #fff;\r\n\tfont-size: 1.5rem;\r\n\tline-height: 1.5rem;\r\n\tfont-weight: 900;\r\n}\r\n\r\n\r\n\r\n.header_frame_b{\r\n\tgrid-column: 2;\r\n}\r\n\r\n.top-bar__menu-box-1 > ul ul {\r\n\tdisplay: none;\r\n} \r\n\r\n/* 변수 생성 */\r\n:root {\r\n\t--site-width: 1200px;\r\n}\r\n\r\n/* 사이트 최소 너비 설정 */\r\n.con-min-width {\r\n\tmin-width: var(--site-width);\r\n}\r\n\r\n/* 실질적으로 메뉴에 사용할 너비 설정 */\r\n.top-bar > .con {\r\n\twidth: var(--site-width);\r\n}\r\n\r\n/* 실질적으로 메뉴에 사용할 너비 설정 */\r\n.top-bar__menu-box-1 > ul > li {\r\n\tdisplay: inline-block;\r\n}\r\n\r\n/* 문자열 가운데 정렬 */\r\n.top-bar__menu-box-1 {\r\n\ttext-align: center;\r\n}\r\n\r\n/* 모든 메뉴 박스의 배경을 검은색으로 하고 글자를 하얀색으로 꾸며보자 */\r\n.top-bar__menu-box-1 ul {\r\n\tbackground-color: rgb(85, 85, 85);\r\n}\r\n\r\n/* 모든 메뉴 크기 조절 */\r\n.top-bar__menu-box-1 ul > li > a {\r\n\tdisplay: block;\r\n\tfont-size: 1rem;\r\n\tpadding: 10px 20px;\r\n\tcolor: #fff;\r\n}\r\n\r\n/* 모든 메뉴를 마우스 인식 시 배경색을 변경 */\r\n.top-bar__menu-box-1 ul > li:hover > a {\r\n\tbackground-color: #55555581;\r\n}\r\n\r\n/* 2차 메뉴가 보이도록 만들어 보자 */\r\n.top-bar__menu-box-1 > ul > li:hover > ul {\r\n\tdisplay: block;\r\n}\r\n\r\n/* 1차 메뉴를 제한 구역으로 설정 */\r\n.top-bar__menu-box-1 > ul > li {\r\n\tposition: relative;\r\n    width: 25%;\r\n}\r\n\r\n/* 2차 메뉴에 absolute 값을 주기 */\r\n.top-bar__menu-box-1 > ul > li > ul {\r\n\tposition: absolute;\r\n\ttop: 100%;\t\t\r\n\tleft: 0;\t\t\r\n\twidth: 100%;\t\t\r\n}\r\n\r\n\r\n.header_frame_f{\r\n\tgrid-column: 3;\r\n}\r\n\r\n.header_frame_b div a{\r\n\tcolor: #cecece;\r\n}\r\n\r\n\r\n.header_login_btn{\r\n\tmargin-right: 20px;\r\n\tcolor: #fff;\r\n}\r\n.header_regist_btn{\r\n\tmargin-right: 20px;\r\n\tcolor: #b4b4b4;\r\n}\r\n\r\n\r\n\r\n\r\n/* main */\r\n\r\nmain {\r\n\tpadding-top: 5rem;\r\n\twidth: 80%;\r\n\tmargin: 0 auto;\r\n}\r\n\r\n.main_header {\r\n\ttext-align: center;\r\n\tfont-size: 1.7rem;\r\n\tcolor: #fff;\r\n\tpadding-bottom: 30px;\r\n}\r\n\r\n.main_container{\r\n\tbackground-color: white;\r\n\tpadding: 2rem;\r\n\tdisplay: grid;\r\n\t\r\n\tgrid-template-columns: repeat( auto-fit, minmax(350px, 1fr) );\r\n}\r\n\r\n\r\n\r\n/* 에러페이지 */\r\n.error_box{\r\n\twidth: 60%;\r\n\tmin-width: 400px;\r\n\tbackground-color: rgb(255, 255, 255);\r\n\tpadding: 3rem;\r\n\tmargin: 50px auto;\r\n\ttext-align: center;\r\n}\r\n\r\n.error_box h1{\r\n\tcolor: red;\r\n\tpadding-bottom: 20px;\r\n}\r\n\r\n.error_out_btn{\r\n\tcolor: black;\r\n}\r\n.error_out_btn:hover{\r\n\tcolor: rgb(117, 117, 117);\r\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

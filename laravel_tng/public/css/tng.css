@@ -18,19 +18,19 @@ body {
 
 
 /* 헤더 */
-.main_header_t{
-    background-color: #34414D;
-    text-decoration: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.header_frame{
+	width: 100%;
+	padding: 10px;
+	display: grid;
+	grid-template-columns: 10% 70% 20%; 
+	gap: 10px;
 }
 
-.main_header_t div a{
-	color: #cecece;
+.header_frame_h{
+	grid-column: 1;
 }
 
-.main_header_t_f {
+.frame_header {
 	background-color: #4171D6;
 	padding: 11px 20px;
 	color: #fff;
@@ -40,34 +40,96 @@ body {
 }
 
 
-.main_header_t_l{
-	margin-right: 10px;
-	padding: 4px 14px 4px 14px;
-    border-radius: 8px;
-    background-color: #4171D6;
-    color: #fff;
-    font-size: 0.9rem;
+
+.header_frame_b{
+	grid-column: 2;
 }
+
+.top-bar__menu-box-1 > ul ul {
+	display: none;
+} 
+
+/* 변수 생성 */
+:root {
+	--site-width: 1200px;
+}
+
+/* 사이트 최소 너비 설정 */
+.con-min-width {
+	min-width: var(--site-width);
+}
+
+/* 실질적으로 메뉴에 사용할 너비 설정 */
+.top-bar > .con {
+	width: var(--site-width);
+}
+
+/* 실질적으로 메뉴에 사용할 너비 설정 */
+.top-bar__menu-box-1 > ul > li {
+	display: inline-block;
+}
+
+/* 문자열 가운데 정렬 */
+.top-bar__menu-box-1 {
+	text-align: center;
+}
+
+/* 모든 메뉴 박스의 배경을 검은색으로 하고 글자를 하얀색으로 꾸며보자 */
+.top-bar__menu-box-1 ul {
+	background-color: rgb(85, 85, 85);
+}
+
+/* 모든 메뉴 크기 조절 */
+.top-bar__menu-box-1 ul > li > a {
+	display: block;
+	font-size: 1rem;
+	padding: 10px 20px;
+	color: #fff;
+}
+
+/* 모든 메뉴를 마우스 인식 시 배경색을 변경 */
+.top-bar__menu-box-1 ul > li:hover > a {
+	background-color: #55555581;
+}
+
+/* 2차 메뉴가 보이도록 만들어 보자 */
+.top-bar__menu-box-1 > ul > li:hover > ul {
+	display: block;
+}
+
+/* 1차 메뉴를 제한 구역으로 설정 */
+.top-bar__menu-box-1 > ul > li {
+	position: relative;
+    width: 25%;
+}
+
+/* 2차 메뉴에 absolute 값을 주기 */
+.top-bar__menu-box-1 > ul > li > ul {
+	position: absolute;
+	top: 100%;		
+	left: 0;		
+	width: 100%;		
+}
+
+
+.header_frame_f{
+	grid-column: 3;
+}
+
+.header_frame_b div a{
+	color: #cecece;
+}
+
 
 .header_login_btn{
 	margin-right: 20px;
 	color: #fff;
 }
-
-
-
-
-/* 밑에꺼 */
-.main_header_b{
-    background-color: #4171D6;
-    text-decoration: none;
-    display: flex;
-    justify-content: space-evenly;
-    padding: 10px;
+.header_regist_btn{
+	margin-right: 20px;
+	color: #b4b4b4;
 }
-.main_header_b a{
-	color: #fff;
-}
+
 
 
 
