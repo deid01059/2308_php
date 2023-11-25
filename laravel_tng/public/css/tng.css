@@ -49,6 +49,11 @@ body {
     font-size: 0.9rem;
 }
 
+.header_login_btn{
+	margin-right: 20px;
+	color: #fff;
+}
+
 
 
 
@@ -89,3 +94,26 @@ main {
 	grid-template-columns: repeat( auto-fit, minmax(350px, 1fr) );
 }
 
+
+
+/* 에러페이지 */
+.error_box{
+	width: 60%;
+	min-width: 400px;
+	background-color: rgb(255, 255, 255);
+	padding: 3rem;
+	margin: 50px auto;
+	text-align: center;
+}
+
+.error_box h1{
+	color: red;
+	padding-bottom: 20px;
+}
+
+.error_out_btn{
+	color: black;
+}
+.error_out_btn:hover{
+	color: rgb(117, 117, 117);
+}

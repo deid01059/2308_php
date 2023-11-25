@@ -1,6 +1,7 @@
-<header>
+<template>
+	<header>
 	<div class="main_header_t">
-		<a href="/" class="main_header_t_f">GR.GG</a>
+		<router-link :to="'/main'" class="main_header_t_f">GR.GG</router-link>
 			<div>
 				<a href="/">리그오브레전드</a>
 			</div>
@@ -19,7 +20,7 @@
 			<div>
 				<a href="/">메이플</a>
 			</div>
-		<a href="#" class="main_header_t_l">로그인</a>
+		<router-link :to="'/login'" class="header_login_btn">로그인</router-link>
 	</div>
 	<div class="main_header_b">
 		<a href="#">자유게시판</a>
@@ -28,10 +29,36 @@
 		<a href="#">패치노트</a>
 		<a href="#">Q&A</a>
 	</div>
-	{{-- 로그인 상태 --}}
-	@auth
-	@endauth
-	{{-- 비로그인 상태 --}}
-	@guest
-	@endguest
 </header>
+</template>
+<script>
+
+export default {
+	name: 'header',
+	props: {
+
+	},
+	
+	components: {
+
+	},
+
+	data() {
+		return {
+			setting: '',
+		}
+	},
+
+	created() {
+
+	},
+
+	mounted() {
+
+	},
+
+	methods: {
+
+	}
+}
+</script>
