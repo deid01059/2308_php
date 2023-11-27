@@ -1,10 +1,11 @@
 import { createWebHistory, createRouter } from 'vue-router';
 
-import Main from '../Main'
-import Login from '../components/Login'
-import Error from '../components/Error'
-import Board from '../components/Board.vue'
-import Regist from '../components/Regist.vue'
+
+import LoginComponent from '../components/LoginComponent'
+import ErrorComponent from '../components/ErrorComponent'
+import BoardComponent from '../components/BoardComponent.vue'
+import RegistComponent from '../components/RegistComponent.vue'
+import MainComponent from '../components/MainComponent.vue'
 const routes = [
 	{
 		path: "/",
@@ -12,19 +13,23 @@ const routes = [
 	},
 	{
 		path: "/main",
-		component: Board
+		component: MainComponent
+	},
+	{
+		path: "/board",
+		component: BoardComponent
 	},
 	{
 		path: "/login",
-		component: Login
+		component: LoginComponent
 	},
 	{
 		path: "/error",
-		component: Error
+		component: ErrorComponent
 	},
 	{
 		path: "/regist",
-		component: Regist
+		component: RegistComponent
 	},
 ];
 

@@ -16,15 +16,68 @@ body {
 	background-color: #4171D6;
 }
 
+/* 미디어쿼리 */
+@media screen and (max-width: 1023px){
+	/* 헤더 */
+	.header_frame{
+		text-align: center;
+		width: 100%;
+		padding: 10px;
+		grid-template-columns: repeat(1, 1fr);
+		gap: 10px;
+	}
+	.header_frame_h{
+		margin-top: 20px;
+	}
+	.header_frame_h a{
+		font-size: 3rem;
+
+	}
+	.header_frame_b{
+		margin-top: 20px;
+	}
+	.top-bar__menu-box-1 ul > li > a{
+		padding: 10px 15px;
+	}
+	.header_frame_f{
+		margin-top: 20px;
+	}
+	.header_frame_f a{
+		font-size: 1.5rem;
+	}
+	.main_container{
+		grid-template-columns: repeat(1, 1fr);
+	}
+}
+
+
+
+@media screen and (min-width: 1024px){
+	/* 헤더 */
+	.header_frame{
+		width: 100%;
+		padding: 10px;
+		display: grid;
+		grid-template-columns: 10% 70% 20%; 
+		gap: 10px;
+	}
+	.top-bar__menu-box-1 ul > li > a{
+		padding: 10px 20px;
+	}
+	.main_container{
+		grid-template-columns: repeat(2, 1fr);
+		min-width: 900px;
+	}
+
+}
+
+
+
+
+
 
 /* 헤더 */
-.header_frame{
-	width: 100%;
-	padding: 10px;
-	display: grid;
-	grid-template-columns: 10% 70% 20%; 
-	gap: 10px;
-}
+
 
 .header_frame_h{
 	grid-column: 1;
@@ -83,7 +136,6 @@ body {
 .top-bar__menu-box-1 ul > li > a {
 	display: block;
 	font-size: 1rem;
-	padding: 10px 20px;
 	color: #fff;
 }
 
@@ -133,23 +185,46 @@ body {
 
 
 
-/* main */
 
-main {
+
+/* 메인페이지 */
+
+.main_container{
+	display: grid;
+	grid-gap: 20px;
+	margin: 5rem auto;
+	width: 70%;
+}
+
+.main_container img {
+	width: 100%;
+	transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s; 
+}
+
+.main_container img:hover {
+	box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+	opacity: 0.7; 
+}
+
+
+
+/* board */
+
+.board_main {
 	padding-top: 5rem;
 	width: 80%;
 	margin: 0 auto;
 }
 
-.main_header {
+.board_header {
 	text-align: center;
 	font-size: 1.7rem;
 	color: #fff;
 	padding-bottom: 30px;
 }
 
-.main_container{
-	background-color: white;
+.board_container{
+	background-color: #fff;
 	padding: 2rem;
 	display: grid;
 	
@@ -178,4 +253,18 @@ main {
 }
 .error_out_btn:hover{
 	color: rgb(117, 117, 117);
+}
+
+.login_box{
+	min-width: 350px;
+	width: 60%;
+	margin: 0 auto;
+	padding: 2rem;
+	background-color: #ffffff;
+}
+
+.login_box label{
+	font-size: 2rem;
+	padding: 10px;
+	color: #838383;
 }
