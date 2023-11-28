@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/',function(){
     return view('welcome');
+});
+
+Route::fallback(function(){
+    return response()->json([
+        'code' => 'E03'
+    ], 404);
 });
