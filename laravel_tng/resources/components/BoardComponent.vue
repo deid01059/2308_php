@@ -13,6 +13,13 @@
 						<td>{{ item.content }}</td>
 						<td>{{ item.created_at }}</td>
 					</tr>
+					<div 
+					@click="plusLoad(laravelData.board.b_no,laravelData.board.b_type)"					
+					>
+					더보기
+					{{ laravelData.board }}
+					</div>
+					<MoreBoardComponent></MoreBoardComponent>
 				</table>
 			</div>
 			<div>
@@ -45,6 +52,8 @@
 	</div>
 </template>
 <script>
+import MoreBoardComponent from './MoreBoardComponent.vue'
+
 export default {
 	name: 'BoardComponent',
 	props: {
@@ -52,7 +61,7 @@ export default {
 	},
 	
 	components: {
-
+		MoreBoardComponent,
 	},
 
 	data() {
@@ -70,7 +79,10 @@ export default {
 	},
 
 	methods: {
-
+		plusLoad($a,$b){
+			// 데이터 추가조회
+			this.$store.dispatch('actionGetPlusLoad',$a,$b);
+		},
 	}
 }
 </script>
