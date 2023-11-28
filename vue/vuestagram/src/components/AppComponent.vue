@@ -42,10 +42,10 @@
 </template>
 
 <script>
-import ContainerComponent from './components/ContainerComponent.vue'
+import ContainerComponent from './ContainerComponent.vue'
 
 export default {
-  name: 'App',
+  name: 'AppComponent',
   created() {
     // dispatch = store의 action 호출
     this.$store.dispatch('actionGetBoardList');

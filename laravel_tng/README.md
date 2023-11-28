@@ -11,7 +11,11 @@
 
 <!-- 에러시 -->
 	npm install --``save-dev vue-loader   모듈없어서 에러날때 설치
-	npm install webpack webpack-cli --save-dev   webpack error 해결
+	npm install webpack webpack-cli --save-dev   
+
+	
+	composer clear-cache    페이커오류시
+    composer clearcache
 
 
 
