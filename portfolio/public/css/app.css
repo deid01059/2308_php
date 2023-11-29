@@ -24,10 +24,11 @@ a {
 }
 
 .header_frame{
-    width: 1000px;
+    width: 100vw;
+    max-width: 1000px;
     margin: 0 auto;
     display: flex;
-	justify-content: space-between;
+    justify-content: space-between;
 }
 
 .header_frame_left{
@@ -37,7 +38,8 @@ a {
 }
 
 .header_img{
-	width: 180px;
+	max-width: 180px;
+    width: 14vw;
 }
 .header_img:hover{
 	cursor: pointer;
@@ -245,9 +247,10 @@ a {
 }
 
 .login_frame{
-    display: flex;
+	display: flex;
     height: 424px;
-    width: 700px;
+    width: 85%;
+    max-width: 700px;
     margin: 0 auto;
     justify-content: space-between;
     flex-direction: column;
@@ -263,7 +266,6 @@ a {
 	background-color: #181a21;
     border-radius: 4px;
     padding: 24px 32px;
-    min-width: 636px;
 	display: flex;
     flex-direction: row;
 }
@@ -287,8 +289,8 @@ a {
 }
 
 .login_box_r_qr{
-	width: 200px;
-	height: 200px;
+    max-width: 200px;
+    width: 15vw;
 }
 
 .login_box_l{
@@ -297,9 +299,79 @@ a {
     grid-template-columns: 1fr;
 	width: 100%;
 }
-.login_box_l button{
+
+.login_input{
+	width: 100%;
+    border: none;
+    background-color: #393c44;
+    padding: 10px 5px;
+    margin-top: 5px;
+	color: #fff;
+	font-size: 1rem;
+}
+
+.login_pw{
+	color: #afafaf;
+}
+
+.login_btn{
+	color: #ffffff;
+	font-size: 1rem;
+	font-weight: 800;
 	width: 70%;
+    border: none;
+    background: linear-gradient(to right, #49adfb, #153cbc);
+    margin: 0 auto;
+}
+.login_btn:hover{
+	cursor: pointer;
+	background: linear-gradient(to right, #4cb1ff, #284fd2);
+}
+
+
+
+
+/* regist */
+
+.regist_btns{
+	display: flex;
+	justify-content: space-between;
+}
+.regist_btn{
+	color: #ffffff;
+	font-size: 1rem;
+	font-weight: 800;
+	width: 40%;
+	background: linear-gradient(to right, #49adfb, #153cbc);
 	border: none;
-	background: linear-gradient(to right, #4b658a, #0e2b89);
-	margin: 0 auto;
+}
+
+.regist_btn:hover{
+	cursor: pointer;
+	background: linear-gradient(to right, #4cb1ff, #284fd2);
+}
+
+.regist_label{
+	color: #afafaf;
+}
+
+.regist_chk{
+	color: white;
+}
+.regist_chk2, .regist_err{
+	color: red;
+}
+
+
+
+/* info */
+
+.info_container{
+	display: flex;
+	background-color: white;
+    width: 85%;
+    max-width: 700px;
+    margin: 0 auto;
+    justify-content: space-between;
+    flex-direction: column;
 }

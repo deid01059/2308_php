@@ -2,8 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BoardsController;
-use App\Http\Controllers\UsersController;
+use App\Http\Controllers\BoardController;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -17,3 +17,9 @@ use App\Http\Controllers\UsersController;
 |
 */
 
+Route::middleware('apiChkToken')->middleware('myUserValidation')->prefix('regist')->group(function() {
+    Route::get('/{id}', [UserController::class, 'search']);
+    Route::post('/', [UserController::class, 'insert']);
+});
+
+Route::middleware('apiChkToken')->middleware('myUserValidation')->post('/login', [UserController::class, 'login']);

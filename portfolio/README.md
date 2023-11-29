@@ -61,3 +61,8 @@ php artisan serve   laravel 서버 열기
 npm run wacth    rundev역활 알아서 행동
 
 
+<!-- 새로고침 방지 -->
+
+npm install --dev node-pre-gyp  첫번째
+
+npm install vuex-persistedstate   새로고침 방지

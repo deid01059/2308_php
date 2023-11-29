@@ -2,12 +2,8 @@
 	<div class="nav_container">
 		<nav class="nav1 center">
 			<ul>
-				<li><a href="#">menu1</a></li>
-				<li><a href="#">menu2</a></li>
-				<li><a href="#">menu3</a></li>
-				<li><a href="#">menu4</a></li>
-				<li><a href="#">menu5</a></li>
-				<li><a href="#">menu5</a></li>
+				<li><a href="#">내 블로그</a></li>
+				<li><a href="#">내 깃허브</a></li>
 			</ul>
 			<ul>
 				<div class="nav_search">

@@ -3,9 +3,9 @@
     <div class="header">
         <div class="header_frame">
             <div class="header_frame_left">
-                <img src="/img/logo_steam.svg" class="header_img"
-                    @click="goboard"
-                >
+                <router-link :to="'/main'" >
+                    <img src="/img/logo_steam.svg" class="header_img">
+                </router-link>
                 <div class="header_menu">상점</div>
                 <div class="header_menu">커뮤니티</div>
                 <div class="header_menu">정보</div>
@@ -13,25 +13,25 @@
             </div>
             <div class="header_frame_right">
                 <a href="https://store.steampowered.com/about/" class="header_menu2">steam설치</a>
+                <router-link :to="'/login'" class="header_menu2"
+                    v-if="$store.state.loginFlg === false" 
+                >로그인</router-link>
+                <router-link :to="'/regist'" class="header_menu2"
+                    v-if="$store.state.loginFlg === false" 
+                >회원가입</router-link>
                 <div class="header_menu2"
-                    @click="gologin"
-                >로그인</div>
-                <div class="header_menu2"
-                    @click="goregist"
-                >회원가입</div>
+                    v-if="$store.state.loginFlg === true" 
+                    @click="$store.commit('setLoginFlg', false)"
+                >로그아웃</div>
+                <router-link :to="'/info'" class="header_menu2"
+                    v-if="$store.state.loginFlg === true" 
+                >내정보</router-link>
             </div>
         </div>
     </div>
     <!-- 메인 영역 -->
-    <BoardComponent
-        v-if="$store.state.fageFlg === 0"
-    ></BoardComponent>
-    <LoginComponent
-        v-if="$store.state.fageFlg === 1"
-    ></LoginComponent>
-    <RegistComponent
-        v-if="$store.state.fageFlg === 2"
-    ></RegistComponent>
+    <router-view></router-view>
+
     <!-- 푸터 영역 -->
     <div class="footer">
 
@@ -44,30 +44,8 @@ import RegistComponent from './RegistComponent.vue'
 export default {
 
     name: 'MainComponent',
-    props: {
-
-    },
-    
     components: {
         BoardComponent,LoginComponent,RegistComponent
     },
-
-    data() {
-        return {
-            setting: '',
-        }
-    },
-
-    methods: {
-        goboard(){
-            this.$store.commit('setPageFlg', 0)
-        },
-        gologin(){
-            this.$store.commit('setPageFlg', 1)
-        },
-        goregist(){
-            this.$store.commit('setPageFlg', 2)
-        },
-    }
 }
 </script>

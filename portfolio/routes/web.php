@@ -16,6 +16,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',function(){
     return view('welcome');
 });
+Route::get('/login',function(){
+    return view('welcome');
+});
+Route::get('/main',function(){
+    return view('welcome');
+});
+Route::get('/regist',function(){
+    return view('welcome');
+});
+Route::get('/info',function(){
+    return view('welcome');
+});
 
 Route::fallback(function(){
     return response()->json([

@@ -2,18 +2,21 @@
 	<div class="login_bg">
 		<div class="login_frame">
 			<div class="login_frame_t">로그인</div>
+			<div
+				v-for="item in $store.state.varErr" :key="item" class="regist_err">{{ item }}</div>
 			<div class="login_frame_b">
 				<div class="login_box_l">
 					<div>
 						<div class="login_blue">아이디</div>
-						<input type="text">
+						<input type="text" class="login_input" id="l_id">
 					</div>
 					<div>
-						<div for="">비밀번호</div>
-						<input type="password">
+						<div class="login_pw">비밀번호</div>
+						<input type="password" class="login_input" id="l_pw">
 					</div>
-					<input type="checkbox" name="" id="">
-					<button>로그인</button>
+					<button class="login_btn"
+						@click="login"
+					>로그인</button>
 				</div>
 				<div class="login_box_r">
 					<div class="login_blue">큐알코드입니다</div>
@@ -40,17 +43,10 @@ export default {
 			setting: '',
 		}
 	},
-
-	created() {
-
-	},
-
-	mounted() {
-
-	},
-
 	methods: {
-
+		login(){
+			this.$store.dispatch('actionLogin');
+		},
 	}
 }
 </script>

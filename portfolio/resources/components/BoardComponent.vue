@@ -12,7 +12,7 @@ import CarouselComponent from './CarouselComponent.vue'
 import BackBoard from './BackBoard.vue'
 import BoardList from './BoardList.vue'
 export default {
-	name: 'BoardContainer',
+	name: 'BoardComponent',
 	props: {
 
 	},
