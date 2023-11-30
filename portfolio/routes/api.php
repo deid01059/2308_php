@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TalkController;
 
 
 /*
@@ -17,9 +18,14 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::middleware('apiChkToken')->middleware('myUserValidation')->prefix('regist')->group(function() {
+Route::middleware('apiChkToken')->middleware('myValidation')->prefix('regist')->group(function() {
     Route::get('/{id}', [UserController::class, 'search']);
     Route::post('/', [UserController::class, 'insert']);
 });
 
-Route::middleware('apiChkToken')->middleware('myUserValidation')->post('/login', [UserController::class, 'login']);
+Route::middleware('apiChkToken')->middleware('myValidation')->post('/login', [UserController::class, 'login']);
+
+Route::middleware('apiChkToken')->middleware('myValidation')->prefix('community')->group(function() {
+    Route::get('/', [TalkController::class, 'search']);
+    Route::post('/', [TalkController::class, 'insert']);
+});

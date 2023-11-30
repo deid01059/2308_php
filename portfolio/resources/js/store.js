@@ -1,7 +1,8 @@
 import { createStore } from "vuex";
 import axios from "axios";
 import router from  "./router.js";
-import createPersistedState from "vuex-persistedstate";
+import VueCookies from "vue-cookies";
+
 
 
 const store = createStore({
@@ -10,8 +11,9 @@ const store = createStore({
 		return {
 		fageFlg: 0, // 탭ui용 플래그
 		idFlg: 0,
-		loginFlg: false,
+		cookieFlg: false,
 		varErr: [],
+		talkData: [],
 		}
 	},
 
@@ -23,8 +25,14 @@ const store = createStore({
 		setErrMsg(state,data){
 			state.varErr=data;
 		},
-		setLoginFlg(state,boo){
-			state.loginFlg=boo;
+		setCookieFlg(state,boo){
+			state.cookieFlg=boo;
+		},
+		setSearchTalk(state,data){
+			state.talkData= data;
+		},
+		setPushTalk(state,data){
+			state.talkData.unshift(data);
 		},
 	},
 
@@ -42,14 +50,21 @@ const store = createStore({
 			};
 			axios.get(URL, HEADER)
 			.then(res => {
-				if(res.data.length === 0){
-					context.commit('setIdFlg',1);
-					document.querySelector('#u_id').readOnly = true;
-				}else if(res.data.length > 0){
-					context.commit('setIdFlg',2);
-				}else {
-					context.commit('setIdFlg',0);
+				if(res.data.code === "0"){
+					if(res.data.data.length === 0){
+						context.commit('setIdFlg',1);
+						document.querySelector('#u_id').readOnly = true;
+					}else if(res.data.data.length > 0){
+						context.commit('setIdFlg',2);
+					}else {
+						context.commit('setIdFlg',0);
+						context.commit('setErrMsg',res.data.errorMsg);
+					}
+				}else{
+					console.log('else')
+					context.commit('setErrMsg',res.data.errorMsg);
 				}
+	
 			})
 			.catch(err => {
 				console.log(err.response.data);
@@ -84,18 +99,14 @@ const store = createStore({
 				axios.post(URL,formData,HEADER)
 				.then(res => {
 					if(res.data.code === "0"){
-						console.log('if');
 						alert("회원가입에 성공 했습니다.");
+						context.commit('setErrMsg',[]);
 						router.push('/login')
 					}else{
-						console.log('else');
-						console.log(res.data.errorMsg);
 						context.commit('setErrMsg',res.data.errorMsg);
 					}
 				})
 				.catch(err => {
-					console.log('catch');
-					console.log(err.response.data.errorMsg);
 					context.commit('setErrMsg',err.response.data.errorMsg);
 				})
 			}else{
@@ -104,7 +115,7 @@ const store = createStore({
 		},
 
 		
-		// 회원가입
+		// 로그인
 		actionLogin(context){
 			let id = document.querySelector('#l_id').value;
 			let pw = document.querySelector('#l_pw').value;
@@ -122,10 +133,10 @@ const store = createStore({
 				axios.post(URL,formData,HEADER)
 				.then(res => {
 					console.log('then')
-					console.log(res)
-					if(res.data.code === "0"){
+					if(res.data.code === "0"){	
+						VueCookies.set("u_id", res.data.data.u_id);
+						context.commit('setCookieFlg', true);
 						router.push('/main')
-						context.commit('setLoginFlg',true);
 					}else{
 						console.log('else');
 						console.log(res.data.errorMsg);
@@ -137,15 +148,83 @@ const store = createStore({
 					console.log(err.response.data.errorMsg);
 					context.commit('setErrMsg',err.response.data.errorMsg);
 				})
-			
+		},
+
+
+		// 쿠키삭제
+		actionDelCookie(context){
+			context.commit('setCookieFlg', false);
+			VueCookies.remove('u_id');
+			router.push('/main')
+		},
+
+
+		// 토크 생성
+		actionloadTalk(context){
+				const URL = '/api/community'
+				const HEADER = {
+					headers: {
+						'Authorization': 'Bearer mykey',
+					}
+				};
+				axios.get(URL,HEADER)
+				.then(res => {
+					console.log(res)
+					if(res.data.code === "0"){	
+						context.commit('setSearchTalk', res.data.data);
+					}else{
+						context.commit('setErrMsg',res.data.errorMsg);
+					}
+				})
+				.catch(err => {
+					console.log(err)
+				})
+		},
+
+
+
+		// 토크 등록
+		actionAddTalk(context){
+			if(VueCookies.get('u_id')){
+				let talk = document.querySelector('#commuinput').value;
+
+				const URL = '/api/community'
+				const HEADER = {
+					headers: {
+						'Authorization': 'Bearer mykey',
+						'Content-Type': 'multipart/form-data',
+					}
+				};
+				const formData = new FormData();
+				formData.append('talk', talk);
+				formData.append('u_id', VueCookies.get('u_id'));
+
+				axios.post(URL,formData,HEADER)
+				.then(res => {
+					if(res.data.code === "0"){	
+						document.querySelector('#commuinput').value = '';
+						context.commit('setPushTalk', res.data.data);
+						context.commit('setLastId', res.data.data.id);
+					}else{
+						context.commit('setErrMsg',res.data.errorMsg);
+						alert(context.state.varErr);
+						context.commit('setErrMsg',res.data.errorMsg);
+					}
+				})
+				.catch(err => {
+					console.log(err.response.data)	
+					if(err.response.data.code === "E03"){
+						alert('글자수가 1~50자 가 아니거나 <>나{}는 사용하지 못합니다.')
+						document.querySelector('#commuinput').value = ''
+					};
+					console.log(err)
+				})
+			}else{
+				alert('로그인을 해야 이용가능한 컨텐츠 입니다.')
+			}
 		},
 	},
-	plugins: [
-		createPersistedState({
-			paths: ['loginFlg']
-		})
-	]
-	
 });
+
 
 export default store;

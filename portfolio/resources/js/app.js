@@ -3,13 +3,20 @@ require('./bootstrap');
 import { createApp } from 'vue'
 import MainComponent from '../components/MainComponent.vue'
 import store from './store.js'
+import VueCookies from "vue-cookies";
 import router from './router.js'
 
-createApp({
+const app = createApp({
 	components: {
 		MainComponent,
 	}
 })
 .use(store)
 .use(router)
-.mount('#app')
+.use(VueCookies);
+app.config.globalProperties.$cookies.config("1d"); 
+
+app.mount('#app');
+
+
+

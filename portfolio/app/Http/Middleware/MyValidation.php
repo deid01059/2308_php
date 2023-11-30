@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 
-class MyUserValidation
+class MyValidation
 {
     // 미들웨어 생성 명령어
     // php artisan make:middleware 미들웨어명
@@ -30,14 +30,16 @@ class MyUserValidation
             ,'password'
             ,'pw_chk'
             ,'phone'
+            ,'talk'
         ];
         // 유효성 체크 리스트
         $arrBaseValidation = [
             'u_id' => 'required|regex:/^(?=.*[a-zA-Z\d])[a-zA-Z\d]{6,15}$/u|min:6|max:15'
             ,'name'     => 'required|regex:/^[a-zA-Z가-힣]+$/u|min:2|max:50'
             ,'password' => 'required|regex:/^(?=.*[a-z])(?=.*\d)(?=.*[!@~#?])[a-zA-Z\d!@~#?]+$/u|min:8|max:50'
-            ,'pw_chk' => 'same:password',
-            'phone' => 'required|regex:/^01[016789]-?([0-9]{4})-?([0-9]{4})$/u',
+            ,'pw_chk' => 'same:password'
+            ,'phone' => 'required|regex:/^01[016789]-?([0-9]{4})-?([0-9]{4})$/u'
+            ,'talk' => 'required|string|between:1,50|regex:/^[^<>{}]*$/u'
         ];
 
         // request 파라미터

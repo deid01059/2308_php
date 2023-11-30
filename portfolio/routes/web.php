@@ -28,6 +28,12 @@ Route::get('/regist',function(){
 Route::get('/info',function(){
     return view('welcome');
 });
+Route::get('/community',function(){
+    return view('welcome');
+});
+Route::get('/shop',function(){
+    return view('welcome');
+});
 
 Route::fallback(function(){
     return response()->json([

@@ -1,0 +1,597 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	list-style: none;
+}
+body{
+	background-image: url('https://cdn.cloudflare.steamstatic.com/store/promo/autumn2023/pattern_leaves_red.gif?v=2');
+}
+.center{
+	text-align: center;
+}
+input:focus{
+	outline: none;
+}
+a {
+	text-decoration: none;
+}
+
+/* 해더 */
+.header{
+	background: #171d25;
+	z-index: 2;
+}
+
+.header_frame{
+    width: 100vw;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header_frame_left{
+    display: flex;
+    align-items: center;
+	padding: 30px 0px;
+}
+
+.header_img{
+	max-width: 180px;
+    width: 14vw;
+}
+.header_img:hover{
+	cursor: pointer;
+}
+
+.header_menu{
+	font-size: 1rem;
+    padding: 0px 7px;
+    color: white;
+}
+
+.header_menu:hover{
+	cursor: pointer;
+	font-size: 1rem;
+	color: rgb(169, 169, 169);
+}
+
+.header_frame_right{
+    display: flex;
+	padding-top: 10px;
+	height: 29px;
+}
+
+.header_menu2{
+	display: flex;
+	font-size: 0.8rem;
+    padding: 0px 10px;
+    color: rgb(179, 179, 179);
+}
+.header_menu2:hover{
+	cursor: pointer;
+	font-size: 0.8rem;
+	color: #fff;
+}
+.header_menu2:nth-child(1) {
+	background-color: #6c9018;
+	color: #fff;
+	transition: background-color 0.5s, color 0.5s; /* 트랜지션 속성 추가 */
+}
+
+.header_menu2:nth-child(1):hover {
+	background-color: #8cb923;
+	color: #fff;
+}
+
+/* 보드베경 */
+.board_bg {
+	background-image: url('https://cdn.cloudflare.steamstatic.com/steam/clusters/sale_autumn2019_assets/54b5034d397baccb93181cc6/home_header_bg_cloudy_english.gif?t=1700618391');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	width: 100%;
+	height: 600px;
+	position: relative;
+}
+
+/* 보드 프레임 */
+.board_container{
+	padding-bottom: 300px;
+}
+
+
+
+/* 네비바 */
+.nav_container{
+	padding-top: 30px;
+}
+.nav1 {
+	margin: 0 auto;
+    width: 940px;
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(to right, #4b658a, #0e2b89);
+}
+.nav1 ul:nth-child(1){
+	display: flex;
+	padding: 5px 0px;
+}
+
+.nav1 ul:nth-child(2){
+	padding: 5px 10px 5px 0px;
+
+}
+
+.nav1 ul li{
+	padding:0 30px;
+}
+
+.nav1 ul li:hover{
+	cursor: pointer;
+}
+
+.nav1 ul li a{
+	color: #fff;
+}
+
+.nav_search{
+	position: relative;
+}
+
+.nav_input{
+	width: 200px;
+	height: 26px;
+	background-color: #305d8a;
+	border: none;
+	color: #fff;
+	padding-left: 7px;
+}
+.nav_input:focus{
+	outline: none;
+}
+.nav_input:hover{
+	border: 0.5px solid #a3caf1;
+}
+.nav_btn{
+	width: 20px;
+	height: 20px;
+	position: absolute;
+    top: 3px;
+    right: 2px;
+	background-color: #6f9bc8;
+	border: none;
+}
+.nav_btn:hover{
+	cursor: pointer;
+}
+.nav_btn img{
+	width: 16px;
+	height: 16px;
+}
+
+
+/* 캐러셀 */
+.car_frame{
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: -150px;
+
+}
+
+.car_header{
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 100px;
+    width: 1040px;
+    font-weight: 900;	
+}
+
+
+.car_container{
+	width: 1100px;
+	margin: 0 auto;
+	position: relative;
+	top: -70px;
+}
+
+.car_left{
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 20px;
+	background-color: rgba(255, 255, 255, 0.18);
+	border: 1px solid #ffffff90;
+	border-radius: 5px;
+}
+.car_right{
+	position: absolute;
+	top: 50%;
+	right: 0;
+	width: 20px;
+	background-color: rgba(255, 255, 255, 0.18);
+	border: 1px solid #ffffff90;
+	border-radius: 5px;
+}
+.car_right:hover, .car_left:hover{
+	cursor: pointer;
+}
+.car_main{
+	display: flex;
+    justify-content: space-between;
+}
+.car_box{
+	width: 360px;
+	height: 450px;
+	background-color: #fff;
+	border: 1px solid #fff;
+	padding: 10px;
+}
+
+
+
+
+/* 리스트 */
+.list_container{
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	width: 70%;
+	grid-gap: 10px;
+}
+
+.listbox{
+	background-color: white;
+}
+
+
+
+/* 푸터 */
+.footer{
+	position: sticky;
+	width: 100%;
+	background-color: #000000;
+	height: 200px;
+}
+
+
+
+
+/* 로그인 */
+.login_bg{
+	background-image: url( 'https://store.cloudflare.steamstatic.com/public/shared/images/joinsteam/new_login_bg_strong_mask.jpg');
+	width: 100%;
+	padding-top: 80px;
+    padding-bottom: 150px;
+}
+
+.login_frame{
+	display: flex;
+    height: 424px;
+    width: 85%;
+    max-width: 700px;
+    margin: 0 auto;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.login_frame_t{
+	color: #fff;
+	font-size: 2rem;
+	font-weight: 900;
+}
+
+.login_frame_b{
+	background-color: #181a21;
+    border-radius: 4px;
+    padding: 24px 32px;
+	display: flex;
+    flex-direction: row;
+}
+
+
+.login_blue{
+	color: #1999ff;
+    font-weight: 500;
+	font-size: 0.8rem;
+}
+
+.login_box_r{
+	flex: 0;
+    display: grid;
+    gap: 4px;
+    margin-left: 40px;
+}
+.login_box_r div:nth-last-child(1){
+	font-size: 0.8rem;
+	color: #fff;
+}
+
+.login_box_r_qr{
+    max-width: 200px;
+    width: 15vw;
+}
+
+.login_box_l{
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 1fr;
+	width: 100%;
+}
+
+.login_input{
+	width: 100%;
+    border: none;
+    background-color: #393c44;
+    padding: 10px 5px;
+    margin-top: 5px;
+	color: #fff;
+	font-size: 1rem;
+}
+
+.login_pw{
+	color: #afafaf;
+}
+
+.login_btn{
+	color: #ffffff;
+	font-size: 1rem;
+	font-weight: 800;
+	width: 70%;
+    border: none;
+    background: linear-gradient(to right, #49adfb, #153cbc);
+    margin: 0 auto;
+}
+.login_btn:hover{
+	cursor: pointer;
+	background: linear-gradient(to right, #4cb1ff, #284fd2);
+}
+
+
+
+
+/* regist */
+
+.regist_btns{
+	display: flex;
+	justify-content: space-between;
+}
+.regist_btn{
+	color: #ffffff;
+	font-size: 1rem;
+	font-weight: 800;
+	width: 40%;
+	background: linear-gradient(to right, #49adfb, #153cbc);
+	border: none;
+}
+
+.regist_btn:hover{
+	cursor: pointer;
+	background: linear-gradient(to right, #4cb1ff, #284fd2);
+}
+
+.regist_label{
+	color: #afafaf;
+}
+
+.regist_chk{
+	color: white;
+}
+.regist_chk2, .regist_err{
+	color: red;
+}
+
+
+
+/* info */
+
+.info_frame{
+    display: flex;
+    width: 85%;
+    max-width: 700px;
+    margin: 50px auto 120px;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.info_header{
+	color: #fff;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+.info_container{
+	display: flex;
+    background-color: #5f5f5fc2;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+}
+.info_container div{
+	display: flex;
+	justify-content: center;
+	padding: 10px;
+}
+
+.info_container label {
+	display: inline-block;
+    width: 220px;
+}
+
+.info_id_input{
+	width: 100%;
+	padding: 5px;
+	border: none;
+	color: #d4d2d8;
+    font-weight: 700;
+    background-color: #979290;
+}
+
+.info_id_input2{
+	width: 100%;
+    padding: 5px;
+    border: none;
+    color: #000000;
+    font-weight: 700;
+    background-color: #d5d5d5;
+}
+
+
+.info_container_sec{
+	display: flex;
+	background-color: #5f5f5fc2;
+    justify-content: space-between;
+    flex-direction: column;
+	padding: 20px;
+	color: white;
+	border-radius: 10px;
+}
+.info_container_footer{
+	margin-top: 20px;
+}
+
+.info_msg{
+    color: rgb(255 0 0);
+    font-size: 2.5rem;
+    font-weight: 900;
+    padding-bottom: 20px;
+}
+
+.info_redmsg{
+	color: rgb(164 181 255);
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.info_btn{
+	display: inline-block;
+	color: #ffffff;
+	font-size: 1rem;
+	font-weight: 800;
+	width: 40%;
+	background: linear-gradient(to right, #49adfb, #153cbc);
+	margin-right: 20px;
+	border: none;
+}
+
+.info_btn:hover{
+	cursor: pointer;
+	background: linear-gradient(to right, #4cb1ff, #284fd2);
+}
+.info_btn2{
+	display: inline-block;
+	color: #ffffff;
+	font-size: 1rem;
+	font-weight: 800;
+	width: 40%;
+	background: linear-gradient(to left, #49adfb, #153cbc);
+	margin-left: 20px;
+	border: none;
+}
+
+.info_btn2:hover{
+	cursor: pointer;
+	background: linear-gradient(to left, #4cb1ff, #284fd2);
+}
+
+
+
+
+/* commu */
+.commu_frame{
+	margin: 50px auto 130px;
+    display: flex;
+    background-color: #d4d2d8;
+    width: 85%;
+    max-width: 1200px;
+    padding: 20px;
+	border-radius: 20px;
+    flex-direction: column;
+}
+
+
+.commu_read{
+	display: flex;
+    width: 100%;
+	height: 500px;
+    background-color: #6a7bb2ba;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    flex-direction: column;
+    padding: 20px;
+	overflow-y: scroll;
+}
+
+.commu_read::-webkit-scrollbar {
+    width: 10px;
+}
+.commu_read::-webkit-scrollbar-thumb {
+    background-color: #2f3542;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+}
+.commu_read::-webkit-scrollbar-track {
+    background-color: grey;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+}
+
+.commu_msg{
+	margin-bottom: 30px;
+}
+
+.commu_msg span{
+	color: #fff;
+    padding-left: 10px;
+    font-weight: 600;
+}
+.commu_msg span:nth-child(2){
+	float: right;
+    padding-right: 15px;
+}
+.commu_msg div{
+	color: #000000;
+    background: #fff;
+    padding: 15px;
+    border-radius: 30px;
+    font-weight: 900;
+    margin-top: 6px;
+}
+.commu_write_box{
+	display: flex;
+	width: 100%;
+	background-color: white;
+	border-radius: 10px;
+}
+
+.commu_write_plus{
+	font-size: 2rem;
+    padding: 0px 10px 5px;
+}
+.commu_write_frame{
+    position: relative;
+    width: 100%;
+}
+.commu_write{
+    border: none;
+    width: 100%;
+    padding: 10px;
+    font-size: 1.5rem;
+
+}
+.commu_add_btn{
+	padding: 13px;
+    position: absolute;
+    right: 5px;
+    top: 0%;
+}
+
+.commu_add_btn:hover, .commu_write_plus:hover{
+	cursor: pointer;
+}

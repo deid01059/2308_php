@@ -8,7 +8,7 @@
 			<p>{{ item.likes }} 좋아요</p>
 			<p>
 				<strong>{{ item.name }}</strong>
-				{{ item.content }}
+				{{ item.talk }}
 			</p>
 			<p>{{ item.created_at }}</p>
 		</div>

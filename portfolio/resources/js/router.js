@@ -4,7 +4,9 @@ import BoardComponent from '../components/BoardComponent.vue';
 import LoginComponent from '../components/LoginComponent.vue';
 import RegistComponent from '../components/RegistComponent.vue';
 import InfoComponent from '../components/InfoComponent.vue';
-import store from './store.js';
+import CommuComponent from '../components/CommuComponent.vue';
+import ShopComponent from '../components/ShopComponent.vue';
+import VueCookies from "vue-cookies";
 
 const routes = [
 	{
@@ -19,7 +21,7 @@ const routes = [
 		path: "/login",
 		component: LoginComponent,
 		beforeEnter: (to, from, next) => {
-			if (store.state.loginFlg) {
+			if (VueCookies.get('u_id')) {
 				next('/');
 			} else {
 				next();
@@ -30,7 +32,7 @@ const routes = [
 		path: "/regist",
 		component: RegistComponent,
 		beforeEnter: (to, from, next) => {
-			if (store.state.loginFlg) {
+			if (VueCookies.get('u_id')) {
 				next('/');
 			} else {
 				next();
@@ -41,12 +43,20 @@ const routes = [
 		path: "/info",
 		component: InfoComponent,
 		beforeEnter: (to, from, next) => {
-			if (!(store.state.loginFlg)) {
+			if (!(VueCookies.get('u_id'))) {
 				next('/');
 			} else {
 				next();
 			}
 		},
+	},
+	{
+		path: "/community",
+		component: CommuComponent,
+	},
+	{
+		path: "/shop",
+		component: ShopComponent,
 	},
 ];
 

@@ -14,7 +14,10 @@ class UserController extends Controller
 
         $result = User::select('u_id')->where('u_id',$req->id) ->get();
 
-        return $result;
+        return response()->json([
+            'code' => '0'
+            ,'data' => $result
+        ], 200);
     }
 
     public function insert(Request $req)
@@ -41,7 +44,7 @@ class UserController extends Controller
             return response()->json([
                 'code' => 'E04'
                 ,'errorMsg' => $errorMsg
-            ], 200);
+            ], 300);
         };
 
         return response()->json([
