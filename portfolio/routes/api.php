@@ -29,3 +29,8 @@ Route::middleware('apiChkToken')->middleware('myValidation')->prefix('community'
     Route::get('/', [TalkController::class, 'search']);
     Route::post('/', [TalkController::class, 'insert']);
 });
+
+Route::middleware('apiChkToken')->middleware('myValidation')->prefix('shop')->group(function() {
+    Route::get('/{b_no}', [BoardController::class, 'search']);
+    Route::post('/', [BoardController::class, 'insert']);
+});

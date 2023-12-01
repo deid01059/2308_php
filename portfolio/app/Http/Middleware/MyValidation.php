@@ -31,6 +31,10 @@ class MyValidation
             ,'pw_chk'
             ,'phone'
             ,'talk'
+            ,'title'
+            ,'content'
+            ,'img'
+            ,'b_no'
         ];
         // 유효성 체크 리스트
         $arrBaseValidation = [
@@ -39,7 +43,11 @@ class MyValidation
             ,'password' => 'required|regex:/^(?=.*[a-z])(?=.*\d)(?=.*[!@~#?])[a-zA-Z\d!@~#?]+$/u|min:8|max:50'
             ,'pw_chk' => 'same:password'
             ,'phone' => 'required|regex:/^01[016789]-?([0-9]{4})-?([0-9]{4})$/u'
-            ,'talk' => 'required|string|between:1,50|regex:/^[^<>{}]*$/u'
+            ,'talk' => 'required|max:50|not_regex:/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/u'
+            ,'title' => 'required|max:100|not_regex:/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/u'
+            ,'content' => 'required|max:1000|not_regex:/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/u'
+            ,'img' => 'required|image|mimes:jpeg,png,jpg,gif'
+            ,'b_no' => 'required|string|between:1,1|regex:/^[0-9]$/u'
         ];
 
         // request 파라미터
@@ -47,7 +55,7 @@ class MyValidation
         foreach($arrBaseKey as $val){
             if($request->has($val)){
                 $arrRequestParam[$val] = $request->$val;
-            }else {
+            } else {
                 unset($arrBaseValidation[$val]);
             }
             Log::debug("리퀘스트 파라미터 획득",$arrRequestParam);     
@@ -60,6 +68,7 @@ class MyValidation
 
         // 유효성 검사 실패시 처리
         if($validator->fails()){
+            Log::debug('fails', $validator->errors()->toArray());
             return response()->json([
                 'code' => 'E03'
                 ,'errorMsg' => $validator->errors()

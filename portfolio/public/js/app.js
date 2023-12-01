@@ -19660,8 +19660,19 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var boo = $cookies.get('u_id') ? true : false;
     this.$store.commit('setCookieFlg', boo);
+    this.$store.dispatch('actionGetBoard', '0');
   },
-  methods: {}
+  methods: {
+    changefageflg: function changefageflg() {
+      this.$store.commit('setFageFlg', true);
+    },
+    changefageflgf: function changefageflgf() {
+      this.$store.commit('setFageFlg', false);
+    },
+    addboard: function addboard() {
+      this.$store.dispatch('actionAddBoard');
+    }
+  }
 });
 
 /***/ }),
@@ -20218,8 +20229,95 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
+var _hoisted_1 = {
+  "class": "shop_frame"
+};
+var _hoisted_2 = {
+  "class": "shop_header center"
+};
+var _hoisted_3 = {
+  "class": "shop_write"
+};
+var _hoisted_4 = {
+  "class": "shop_container"
+};
+var _hoisted_5 = {
+  "class": "shop_card_header"
+};
+var _hoisted_6 = {
+  "class": "shop_card_title"
+};
+var _hoisted_7 = {
+  "class": "shop_card_hit"
+};
+var _hoisted_8 = {
+  "class": "shop_card_container"
+};
+var _hoisted_9 = ["src"];
+var _hoisted_10 = {
+  "class": "shop_card_content"
+};
+var _hoisted_11 = {
+  "class": "shop_card_footer"
+};
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "shop_card_like_btn"
+}, "좋아요", -1 /* HOISTED */);
+var _hoisted_13 = {
+  "class": "shop_card_like"
+};
+var _hoisted_14 = {
+  key: 0,
+  "class": "shop_modal"
+};
+var _hoisted_15 = {
+  "class": "shop_modal_frame"
+};
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"shop_modal_header\"><div class=\"shop_modal_label\"> 작성 카테고리 </div><select id=\"shop_type\" class=\"shop_modal_select\"><option>자유게시판</option><option>QnA</option><option>공지사항</option></select></div><div class=\"shop_modal_container\"><div><div class=\"shop_modal_label\">제목</div><input id=\"shop_title\" class=\"shop_modal_input\" type=\"text\" placeholder=\"제목을 입력해 주세요\"></div><div><div class=\"shop_modal_label\">내용</div><textarea id=\"shop_content\" class=\"shop_modal_textbox\" type=\"text\" placeholder=\"내용을 입력해 주세요\"></textarea></div><div><div class=\"shop_modal_label\">사진파일</div><input id=\"shop_file\" type=\"file\" accept=\"image/*\"></div></div>", 2);
+var _hoisted_18 = {
+  "class": "shop_modal_footer center"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, " 상점입니다 ");
+  var _this = this;
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    onClick: _cache[0] || (_cache[0] = function ($event) {
+      _this.$store.commit('setBnoFlg', 0);
+      _this.$store.dispatch('actionGetBoard', '0');
+    })
+  }, " 자유게시판 "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    onClick: _cache[1] || (_cache[1] = function ($event) {
+      _this.$store.commit('setBnoFlg', 1);
+      _this.$store.dispatch('actionGetBoard', '1');
+    })
+  }, " QnA "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    onClick: _cache[2] || (_cache[2] = function ($event) {
+      _this.$store.commit('setBnoFlg', 2);
+      _this.$store.dispatch('actionGetBoard', '2');
+    })
+  }, " 공지사항 ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "shop_write_btn",
+    onClick: _cache[3] || (_cache[3] = function () {
+      return $options.changefageflg && $options.changefageflg.apply($options, arguments);
+    })
+  }, "글작성")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.$store.state.boardData, function (item) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      "class": "shop_card",
+      key: item
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, "제목 : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.title), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, "조회수 : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.b_hits), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"shop_card_img\"  :style=\"{backgroundImage : `url('${item.img}')`}\"></div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+      "class": "shop_card_img",
+      src: item.img
+    }, null, 8 /* PROPS */, _hoisted_9), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.content), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.b_like), 1 /* TEXT */)])]);
+  }), 128 /* KEYED_FRAGMENT */))])]), _ctx.$store.state.fageFlg ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "shop_modal_btn",
+    onClick: _cache[4] || (_cache[4] = function () {
+      return $options.addboard && $options.addboard.apply($options, arguments);
+    })
+  }, "작성"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "shop_modal_btn",
+    onClick: _cache[5] || (_cache[5] = function () {
+      return $options.changefageflgf && $options.changefageflgf.apply($options, arguments);
+    })
+  }, "취소")])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -20394,18 +20492,20 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
   // state() : data를 저장하는 영역
   state: function state() {
     return {
-      fageFlg: 0,
-      // 탭ui용 플래그
-      idFlg: 0,
+      fageFlg: false,
+      idFlg: false,
       cookieFlg: false,
       varErr: [],
-      talkData: []
+      talkData: [],
+      boardData: [],
+      imgURL: '',
+      bNo: 0
     };
   },
   // mutations : 데이터 수정용 함수 저장 영역
   mutations: {
-    setIdFlg: function setIdFlg(state, _int) {
-      state.idFlg = _int;
+    setIdFlg: function setIdFlg(state, boo) {
+      state.idFlg = boo;
     },
     setErrMsg: function setErrMsg(state, data) {
       state.varErr = data;
@@ -20413,11 +20513,23 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
     setCookieFlg: function setCookieFlg(state, boo) {
       state.cookieFlg = boo;
     },
+    setFageFlg: function setFageFlg(state, boo) {
+      state.fageFlg = boo;
+    },
     setSearchTalk: function setSearchTalk(state, data) {
       state.talkData = data;
     },
     setPushTalk: function setPushTalk(state, data) {
       state.talkData.unshift(data);
+    },
+    setUnShiftBoard: function setUnShiftBoard(state, data) {
+      state.boardData.unshift(data);
+    },
+    setBoardList: function setBoardList(state, data) {
+      state.boardData = data;
+    },
+    setBnoFlg: function setBnoFlg(state, _int) {
+      state.bNo = _int;
     }
   },
   // actions : ajax로 서버에 데이터를 요청할 때나 시간 함수등 비동기 처리는 actions에 정의
@@ -20452,7 +20564,7 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
     },
     // 회원가입
     actionRegist: function actionRegist(context) {
-      if (context.state.idFlg === 1) {
+      if (context.state.idFlg === true) {
         var id = document.querySelector('#u_id').value;
         var pw = document.querySelector('#pw').value;
         var pw_chk = document.querySelector('#pw_chk').value;
@@ -20472,6 +20584,11 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
         formData.append('name', name);
         formData.append('phone', phone);
         axios__WEBPACK_IMPORTED_MODULE_0___default().post(URL, formData, HEADER).then(function (res) {
+          document.querySelector('#u_id').value = '';
+          document.querySelector('#pw').value = '';
+          document.querySelector('#pw_chk').value = '';
+          document.querySelector('#name').value = '';
+          document.querySelector('#phone').value = '';
           if (res.data.code === "0") {
             alert("회원가입에 성공 했습니다.");
             context.commit('setErrMsg', []);
@@ -20501,7 +20618,7 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       formData.append('u_id', id);
       formData.append('password', pw);
       axios__WEBPACK_IMPORTED_MODULE_0___default().post(URL, formData, HEADER).then(function (res) {
-        console.log('then');
+        console.log('로그인성공');
         if (res.data.code === "0") {
           vue_cookies__WEBPACK_IMPORTED_MODULE_2___default().set("u_id", res.data.data.u_id);
           context.commit('setCookieFlg', true);
@@ -20578,6 +20695,75 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
       } else {
         alert('로그인을 해야 이용가능한 컨텐츠 입니다.');
       }
+    },
+    // 보드 등록
+    actionAddBoard: function actionAddBoard(context) {
+      if (vue_cookies__WEBPACK_IMPORTED_MODULE_2___default().get('u_id')) {
+        var type = document.querySelector('#shop_type').value;
+        if (type === "자유게시판") {
+          type = "0";
+        } else if (type === "QnA") {
+          type = "1";
+        } else if (type === "공지사항") {
+          type = "2";
+        } else {
+          type = "0";
+        }
+        var title = document.querySelector('#shop_title').value;
+        var content = document.querySelector('#shop_content').value;
+        var img = document.querySelector('#shop_file');
+        var URL = '/api/shop';
+        var HEADER = {
+          headers: {
+            'Authorization': 'Bearer mykey',
+            'Content-Type': 'multipart/form-data'
+          }
+        };
+        var formData = new FormData();
+        formData.append('b_no', type);
+        formData.append('title', title);
+        formData.append('u_id', vue_cookies__WEBPACK_IMPORTED_MODULE_2___default().get('u_id'));
+        formData.append('content', content);
+        formData.append('img', img.files[0]);
+        console.log(context.state.postFileData);
+        console.log(img.files[0]);
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post(URL, formData, HEADER).then(function (res) {
+          // 데이터 초기화
+          document.querySelector('#shop_title').value = "";
+          document.querySelector('#shop_content').value = "";
+          document.querySelector('#shop_file').value = "";
+          // 작성글 데이터 셋팅
+          if (type == context.state.bNo) {
+            context.commit('setUnShiftBoard', res.data.data);
+          }
+          // 작성후 모달창 닫기
+          context.commit('setFageFlg', false);
+        })["catch"](function (err) {
+          console.log('에러');
+          console.log(err.data);
+        });
+      } else {
+        alert('로그인을 해야 이용가능한 컨텐츠 입니다.');
+      }
+    },
+    // 보드 생성
+    actionGetBoard: function actionGetBoard(context, bno) {
+      var URL = '/api/shop/' + bno;
+      var HEADER = {
+        headers: {
+          'Authorization': 'Bearer mykey'
+        }
+      };
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get(URL, HEADER).then(function (res) {
+        console.log(res);
+        if (res.data.code === "0") {
+          context.commit('setBoardList', res.data.data);
+        } else {
+          context.commit('setErrMsg', res.data.errorMsg);
+        }
+      })["catch"](function (err) {
+        console.log(err);
+      });
     }
   }
 });

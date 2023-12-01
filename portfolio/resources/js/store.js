@@ -9,18 +9,21 @@ const store = createStore({
 	// state() : data를 저장하는 영역
 	state() {
 		return {
-		fageFlg: 0, // 탭ui용 플래그
-		idFlg: 0,
+		fageFlg: false,
+		idFlg: false,
 		cookieFlg: false,
 		varErr: [],
 		talkData: [],
+		boardData: [],
+		imgURL: '',
+		bNo: 0,
 		}
 	},
 
 	// mutations : 데이터 수정용 함수 저장 영역
 	mutations: {
-		setIdFlg(state, int){
-			state.idFlg = int;
+		setIdFlg(state, boo){
+			state.idFlg = boo;
 		},
 		setErrMsg(state,data){
 			state.varErr=data;
@@ -28,11 +31,23 @@ const store = createStore({
 		setCookieFlg(state,boo){
 			state.cookieFlg=boo;
 		},
+		setFageFlg(state,boo){
+			state.fageFlg=boo;
+		},
 		setSearchTalk(state,data){
 			state.talkData= data;
 		},
 		setPushTalk(state,data){
 			state.talkData.unshift(data);
+		},
+		setUnShiftBoard(state,data){
+			state.boardData.unshift(data);
+		},
+		setBoardList(state,data){
+			state.boardData = data;
+		},
+		setBnoFlg(state,int){
+			state.bNo=int;
 		},
 	},
 
@@ -74,7 +89,7 @@ const store = createStore({
 		
 		// 회원가입
 		actionRegist(context){
-			if(context.state.idFlg === 1){
+			if(context.state.idFlg === true){
 				let id = document.querySelector('#u_id').value;
 				let pw = document.querySelector('#pw').value;
 				let pw_chk = document.querySelector('#pw_chk').value;
@@ -98,6 +113,11 @@ const store = createStore({
 
 				axios.post(URL,formData,HEADER)
 				.then(res => {
+					document.querySelector('#u_id').value = '';
+					document.querySelector('#pw').value = '';
+					document.querySelector('#pw_chk').value = '';
+					document.querySelector('#name').value = '';
+					document.querySelector('#phone').value = '';
 					if(res.data.code === "0"){
 						alert("회원가입에 성공 했습니다.");
 						context.commit('setErrMsg',[]);
@@ -132,7 +152,7 @@ const store = createStore({
 
 				axios.post(URL,formData,HEADER)
 				.then(res => {
-					console.log('then')
+					console.log('로그인성공')
 					if(res.data.code === "0"){	
 						VueCookies.set("u_id", res.data.data.u_id);
 						context.commit('setCookieFlg', true);
@@ -180,8 +200,8 @@ const store = createStore({
 					console.log(err)
 				})
 		},
-
-
+		
+		
 
 		// 토크 등록
 		actionAddTalk(context){
@@ -198,7 +218,7 @@ const store = createStore({
 				const formData = new FormData();
 				formData.append('talk', talk);
 				formData.append('u_id', VueCookies.get('u_id'));
-
+				
 				axios.post(URL,formData,HEADER)
 				.then(res => {
 					if(res.data.code === "0"){	
@@ -222,6 +242,85 @@ const store = createStore({
 			}else{
 				alert('로그인을 해야 이용가능한 컨텐츠 입니다.')
 			}
+		},
+
+		
+		
+		// 보드 등록
+		actionAddBoard(context){
+			if(VueCookies.get('u_id')){
+				let type = document.querySelector('#shop_type').value;
+				if (type === "자유게시판"){
+					type = "0"
+				}else if(type === "QnA"){
+					type = "1"
+				}else if(type === "공지사항"){
+					type = "2"
+				}else {
+					type = "0"
+				}
+				let title = document.querySelector('#shop_title').value;
+				let content = document.querySelector('#shop_content').value;
+				let img = document.querySelector('#shop_file');
+				
+				const URL = '/api/shop'
+				const HEADER = {
+					headers: {
+						'Authorization': 'Bearer mykey',
+						'Content-Type': 'multipart/form-data',
+					}
+				};
+				const formData = new FormData();
+				formData.append('b_no', type);
+				formData.append('title', title);
+				formData.append('u_id', VueCookies.get('u_id'));
+				formData.append('content', content);
+				formData.append('img', img.files[0]);
+				console.log( context.state.postFileData)
+				console.log(img.files[0]);
+				
+				axios.post(URL,formData,HEADER)
+				.then(res => {
+					// 데이터 초기화
+					document.querySelector('#shop_title').value = "";
+					document.querySelector('#shop_content').value = "";
+					document.querySelector('#shop_file').value = "";
+					// 작성글 데이터 셋팅
+					if(type == context.state.bNo){
+						context.commit('setUnShiftBoard',res.data.data)
+					}
+						// 작성후 모달창 닫기
+					context.commit('setFageFlg',false);
+	
+				})
+				.catch(err => {
+					console.log('에러')	
+					console.log(err.data)	
+				})
+			}else{
+				alert('로그인을 해야 이용가능한 컨텐츠 입니다.')
+			}
+		},
+		// 보드 생성
+		actionGetBoard(context, bno){
+				const URL = '/api/shop/'+ bno
+				const HEADER = {
+					headers: {
+						'Authorization': 'Bearer mykey',
+					}
+				};
+				axios.get(URL,HEADER)
+				.then(res => {
+					console.log(res)
+					if(res.data.code === "0"){	
+						context.commit('setBoardList', res.data.data);
+					}else{
+						context.commit('setErrMsg',res.data.errorMsg);
+					}
+				})
+				.catch(err => {
+					console.log(err)
+				})
 		},
 	},
 });

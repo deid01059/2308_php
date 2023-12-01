@@ -19,8 +19,6 @@ return new class extends Migration
             $table->string('password');
             $table->string('name', 50);
             $table->string('phone', 11);
-            $table->timestamp('email_verified_at')->nullable();
-            $table->rememberToken();
             $table->timestamps(); // create_at, update_at 만드는거
             $table->softDeletes();
         });

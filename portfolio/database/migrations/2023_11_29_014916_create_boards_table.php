@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('boards', function (Blueprint $table) {
             $table->id();
             $table->char('b_no', 1);
-            $table->char('b_type', 1);
             $table->string('title', 100);
             $table->string('content', 2000);
+            $table->string('img', 100);
             $table->string('u_id', 15);
             $table->integer('b_hits')->default(0);
             $table->bigInteger('b_like')->default(0);
