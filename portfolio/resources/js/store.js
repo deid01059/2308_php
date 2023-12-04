@@ -10,7 +10,7 @@ const store = createStore({
 	state() {
 		return {
 		fageFlg: false,
-		idFlg: false,
+		idFlg: 0,
 		cookieFlg: false,
 		varErr: [],
 		talkData: [],
@@ -22,8 +22,8 @@ const store = createStore({
 
 	// mutations : 데이터 수정용 함수 저장 영역
 	mutations: {
-		setIdFlg(state, boo){
-			state.idFlg = boo;
+		setIdFlg(state, int){
+			state.idFlg = int;
 		},
 		setErrMsg(state,data){
 			state.varErr=data;
@@ -69,11 +69,14 @@ const store = createStore({
 					if(res.data.data.length === 0){
 						context.commit('setIdFlg',1);
 						document.querySelector('#u_id').readOnly = true;
+						console.log("flg1")
 					}else if(res.data.data.length > 0){
 						context.commit('setIdFlg',2);
+						console.log("flg2")
 					}else {
 						context.commit('setIdFlg',0);
 						context.commit('setErrMsg',res.data.errorMsg);
+						console.log("flg0")
 					}
 				}else{
 					console.log('else')
@@ -89,7 +92,7 @@ const store = createStore({
 		
 		// 회원가입
 		actionRegist(context){
-			if(context.state.idFlg === true){
+			if(context.state.idFlg === 1){
 				let id = document.querySelector('#u_id').value;
 				let pw = document.querySelector('#pw').value;
 				let pw_chk = document.querySelector('#pw_chk').value;
@@ -130,6 +133,7 @@ const store = createStore({
 					context.commit('setErrMsg',err.response.data.errorMsg);
 				})
 			}else{
+				console.log(context.state.idFlg)
 				alert('아이디중복확인을 해주세요')
 			}
 		},

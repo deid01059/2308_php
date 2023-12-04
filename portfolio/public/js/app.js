@@ -20493,7 +20493,7 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
   state: function state() {
     return {
       fageFlg: false,
-      idFlg: false,
+      idFlg: 0,
       cookieFlg: false,
       varErr: [],
       talkData: [],
@@ -20504,8 +20504,8 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
   },
   // mutations : 데이터 수정용 함수 저장 영역
   mutations: {
-    setIdFlg: function setIdFlg(state, boo) {
-      state.idFlg = boo;
+    setIdFlg: function setIdFlg(state, _int) {
+      state.idFlg = _int;
     },
     setErrMsg: function setErrMsg(state, data) {
       state.varErr = data;
@@ -20528,8 +20528,8 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
     setBoardList: function setBoardList(state, data) {
       state.boardData = data;
     },
-    setBnoFlg: function setBnoFlg(state, _int) {
-      state.bNo = _int;
+    setBnoFlg: function setBnoFlg(state, _int2) {
+      state.bNo = _int2;
     }
   },
   // actions : ajax로 서버에 데이터를 요청할 때나 시간 함수등 비동기 처리는 actions에 정의
@@ -20548,11 +20548,14 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
           if (res.data.data.length === 0) {
             context.commit('setIdFlg', 1);
             document.querySelector('#u_id').readOnly = true;
+            console.log("flg1");
           } else if (res.data.data.length > 0) {
             context.commit('setIdFlg', 2);
+            console.log("flg2");
           } else {
             context.commit('setIdFlg', 0);
             context.commit('setErrMsg', res.data.errorMsg);
+            console.log("flg0");
           }
         } else {
           console.log('else');
@@ -20564,7 +20567,7 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
     },
     // 회원가입
     actionRegist: function actionRegist(context) {
-      if (context.state.idFlg === true) {
+      if (context.state.idFlg === 1) {
         var id = document.querySelector('#u_id').value;
         var pw = document.querySelector('#pw').value;
         var pw_chk = document.querySelector('#pw_chk').value;
@@ -20600,6 +20603,7 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
           context.commit('setErrMsg', err.response.data.errorMsg);
         });
       } else {
+        console.log(context.state.idFlg);
         alert('아이디중복확인을 해주세요');
       }
     },
