@@ -116,14 +116,15 @@ const store = createStore({
 
 				axios.post(URL,formData,HEADER)
 				.then(res => {
-					document.querySelector('#u_id').value = '';
-					document.querySelector('#pw').value = '';
-					document.querySelector('#pw_chk').value = '';
-					document.querySelector('#name').value = '';
-					document.querySelector('#phone').value = '';
+				
 					if(res.data.code === "0"){
 						alert("회원가입에 성공 했습니다.");
 						context.commit('setErrMsg',[]);
+						document.querySelector('#u_id').value = '';
+						document.querySelector('#pw').value = '';
+						document.querySelector('#pw_chk').value = '';
+						document.querySelector('#name').value = '';
+						document.querySelector('#phone').value = '';
 						router.push('/login')
 					}else{
 						context.commit('setErrMsg',res.data.errorMsg);
