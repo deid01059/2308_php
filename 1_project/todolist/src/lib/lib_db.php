@@ -11,10 +11,10 @@
 
 
 function my_db_conn( &$conn ) {
-    $db_host    = "192.168.0.173"; // host
-    $db_user    = "team4"; // user
-    $db_pw      = "team4"; // password
-    $db_name = "todolist"; // DB name
+    $db_host    = "localhost"; // host
+    $db_user    = "team24"; // user
+    $db_pw      = "team24"; // password
+    $db_name = "team24"; // DB name
     $db_charset = "utf8mb4"; // charset
     $db_dns     = "mysql:host=".$db_host.";dbname=".$db_name.";charset=".$db_charset;
 
