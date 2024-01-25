@@ -16,3 +16,11 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::post('auth/login', [AuthController::class,'login']);
+// 미들웨어 설정 kernel.php에 등록
+Route::get('auth',[AuthController::class,'reisstoken']);
+Route::middleware('my.token.auth')->get('boards', function(){
+	return response()->json([
+		'code' => '0'
+		,'msg' => '인증된 유저 입니다.'
+	]);
+});
